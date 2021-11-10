@@ -28,9 +28,6 @@ public class Order {
 	// ----------- >>
 	private Table table;
 
-	// ----------- << attribute.annotations@AAAAAAF9CYtA0WPxYXg= >>
-	// ----------- >>
-	private Set<Item> food = new HashSet<>();
 
 	// ----------- << attribute.annotations@AAAAAAF9CZJa8W89CLk= >>
 	// ----------- >>
@@ -46,14 +43,6 @@ public class Order {
 
 	public Table getTable() {
 		return table;
-	}
-
-	public Set<Item> getFood() {
-		return food;
-	}
-
-	public Set<OrderedItem> getFood() {
-		return food;
 	}
 
 	public void setPrice(Double price) {

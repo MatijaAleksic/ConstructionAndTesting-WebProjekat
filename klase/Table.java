@@ -30,11 +30,11 @@ public class Table {
 
 	// ----------- << attribute.annotations@AAAAAAF9CW9z+E2D86M= >>
 	// ----------- >>
-	private Integer positionX;
+	private Double positionX;
 
 	// ----------- << attribute.annotations@AAAAAAF9CW+1Xk20/84= >>
 	// ----------- >>
-	private Integer positionY;
+	private Double positionY;
 
 	// ----------- << attribute.annotations@AAAAAAF9CW/SyE3ltLQ= >>
 	// ----------- >>
@@ -60,11 +60,11 @@ public class Table {
 		return floor;
 	}
 
-	public Integer getPositionX() {
+	public Double getPositionX() {
 		return positionX;
 	}
 
-	public Integer getPositionY() {
+	public Double getPositionY() {
 		return positionY;
 	}
 
@@ -92,11 +92,11 @@ public class Table {
 		this.floor = floor;
 	}
 
-	public void setPositionX(Integer positionX) {
+	public void setPositionX(Double positionX) {
 		this.positionX = positionX;
 	}
 
-	public void setPositionY(Integer positionY) {
+	public void setPositionY(Double positionY) {
 		this.positionY = positionY;
 	}
 

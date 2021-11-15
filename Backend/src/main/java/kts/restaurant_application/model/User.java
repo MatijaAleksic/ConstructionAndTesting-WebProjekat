@@ -31,7 +31,7 @@ public abstract class User {
 	private Long salary;
 
 	@Column(unique = false, nullable = false)
-	private Boolean isDeleted;
+	private boolean isDeleted;
 
 	public User(Long id, String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, Boolean isDeleted) {
 		this.id = id;
@@ -46,6 +46,16 @@ public abstract class User {
 
 	public User() {
 
+	}
+
+	public User(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, Boolean isDeleted) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.dateOfBirth = dateOfBirth;
+		this.salary = salary;
+		this.isDeleted = isDeleted;
 	}
 
 	public Long getId() {
@@ -76,7 +86,7 @@ public abstract class User {
 		return salary;
 	}
 
-	public Boolean getIsDeleted() {
+	public boolean getIsDeleted() {
 		return isDeleted;
 	}
 
@@ -108,7 +118,7 @@ public abstract class User {
 		this.salary = salary;
 	}
 
-	public void setIsDeleted(Boolean isDeleted) {
+	public void setIsDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 

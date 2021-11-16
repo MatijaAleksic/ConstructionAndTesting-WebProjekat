@@ -1,4 +1,5 @@
-package Backend.src.main.java.kts.restaurant_application.model;
+package kts.restaurant_application.model;
+
 
 
 import java.util.Date;
@@ -6,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="waiter_table")

@@ -3,7 +3,8 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package Backend.src.main.java.kts.restaurant_application.model;
+package kts.restaurant_application.model;
+
 
 // ----------- << imports@AAAAAAF9CYNzuFNUgjE= >>
 // ----------- >>

@@ -1,4 +1,4 @@
-package Backend.src.main.java.kts.restaurant_application.controller;
+package kts.restaurant_application.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import Backend.src.main.java.kts.restaurant_application.dto.AdminDTO;
-import Backend.src.main.java.kts.restaurant_application.helper.AdminMapper;
-import Backend.src.main.java.kts.restaurant_application.model.Admin;
-import Backend.src.main.java.kts.restaurant_application.service.AdminService;
+import kts.restaurant_application.dto.AdminDTO;
+import kts.restaurant_application.helper.AdminMapper;
+import kts.restaurant_application.model.Admin;
+import kts.restaurant_application.service.AdminService;
 
 @RestController
 @RequestMapping(value =  "/api/admin", produces = MediaType.APPLICATION_JSON_VALUE)

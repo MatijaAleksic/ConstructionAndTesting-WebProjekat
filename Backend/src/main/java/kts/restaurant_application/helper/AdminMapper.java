@@ -1,7 +1,7 @@
-package Backend.src.main.java.kts.restaurant_application.helper;
+package kts.restaurant_application.helper;
 
-import Backend.src.main.java.kts.restaurant_application.dto.AdminDTO;
-import Backend.src.main.java.kts.restaurant_application.model.Admin;
+import kts.restaurant_application.dto.AdminDTO;
+import kts.restaurant_application.model.Admin;
 
 public class AdminMapper implements MapperInterface<Admin, AdminDTO> {
 

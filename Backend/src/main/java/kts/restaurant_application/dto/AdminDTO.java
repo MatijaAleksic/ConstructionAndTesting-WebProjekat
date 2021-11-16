@@ -1,4 +1,4 @@
-package Backend.src.main.java.kts.restaurant_application.dto;
+package kts.restaurant_application.dto;
 
 import java.util.Date;
 

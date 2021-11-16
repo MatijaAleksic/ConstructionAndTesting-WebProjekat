@@ -1,9 +1,10 @@
-package Backend.src.main.java.kts.restaurant_application.model;
+package kts.restaurant_application.model;
 
 
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="cook_table")

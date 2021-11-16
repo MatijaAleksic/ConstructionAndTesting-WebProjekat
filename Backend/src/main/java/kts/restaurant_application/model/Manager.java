@@ -17,5 +17,6 @@ public class Manager extends User {
     }
 
     public Manager(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, boolean deleted) {
+        super(firstName, lastName, username, password, dateOfBirth, salary, deleted);
     }
 }

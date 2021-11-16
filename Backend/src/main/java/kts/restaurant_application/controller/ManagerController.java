@@ -47,6 +47,7 @@ public class ManagerController {
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ManagerDTO> createUser(@RequestBody ManagerDTO managerDTO){
         Manager user;
+        System.out.println(managerDTO.getDateOfBirth() + "" + managerDTO.getDeleted());
         try {
             user = managerService.create(managerMapper.toEntity(managerDTO));
         } catch (Exception e) {

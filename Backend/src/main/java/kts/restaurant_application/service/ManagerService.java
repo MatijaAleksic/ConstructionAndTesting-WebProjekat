@@ -27,7 +27,7 @@ public class ManagerService implements ServiceInterface<Manager> {
     @Override
     public Manager create(Manager entity) throws Exception {
         if(managerRepository.findByUsername(entity.getUsername()) != null){
-            throw new Exception("Admin with given username address already exists");
+            throw new Exception("Manager with given username address already exists");
         }
         return managerRepository.save(entity);
     }

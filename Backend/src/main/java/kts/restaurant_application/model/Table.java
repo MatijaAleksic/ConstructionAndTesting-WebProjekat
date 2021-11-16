@@ -5,13 +5,6 @@
 */
 package kts.restaurant_application.model;
 
-
-
-import java.util.HashSet;
-import java.util.Set;
-
-
-
 // ----------- << imports@AAAAAAF9CW0q1EmSAHg= >>
 // ----------- >>
 
@@ -48,7 +41,7 @@ public class Table {
 
 	// ----------- << attribute.annotations@AAAAAAF9CW2TFkppPQk= >>
 	// ----------- >>
-	private Set<Order> orders = new HashSet<>();
+	// private Set<Order> orders = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -78,9 +71,9 @@ public class Table {
 		return isDeleted;
 	}
 
-	public Set<Order> getOrders() {
-		return orders;
-	}
+	// public Set<Order> getOrders() {
+	// 	return orders;
+	// }
 
 	public void setId(Long id) {
 		this.id = id;

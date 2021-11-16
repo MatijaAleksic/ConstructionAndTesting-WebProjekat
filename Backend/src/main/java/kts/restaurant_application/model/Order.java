@@ -5,13 +5,6 @@
 */
 package kts.restaurant_application.model;
 
-
-
-import java.util.HashSet;
-import java.util.Set;
-
-
-
 // ----------- << imports@AAAAAAF9CWhJt0S1yrc= >>
 // ----------- >>
 
@@ -36,7 +29,7 @@ public class Order {
 
 	// ----------- << attribute.annotations@AAAAAAF9CZJa8W89CLk= >>
 	// ----------- >>
-	private Set<OrderedItem> food = new HashSet<>();
+	// private Set<OrderedItem> food = new HashSet<>();
 
 	public Double getPrice() {
 		return price;
@@ -69,6 +62,10 @@ public class Order {
 	public void setTable(Table table) {
 		this.table = table;
 	}
+
+	// public Set<OrderedItem> getFood(){
+	// 	return food;
+	// }
 
 // ----------- << class.extras@AAAAAAF9CWhJt0S1yrc= >>
 // ----------- >>

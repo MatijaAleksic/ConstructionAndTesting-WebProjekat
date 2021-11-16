@@ -20,6 +20,10 @@ public class Order {
 	// ----------- >>
 	private Double price;
 
+	// ----------- << attribute.annotations@AAAAAAF9CteoARWarSA= >>
+	// ----------- >>
+	private String note;
+
 	// ----------- << attribute.annotations@AAAAAAF9CWhJ5kTfmuo= >>
 	// ----------- >>
 	private Waiter waiter;
@@ -28,13 +32,16 @@ public class Order {
 	// ----------- >>
 	private Table table;
 
-
 	// ----------- << attribute.annotations@AAAAAAF9CZJa8W89CLk= >>
 	// ----------- >>
 	private Set<OrderedItem> food = new HashSet<>();
 
 	public Double getPrice() {
 		return price;
+	}
+
+	public String getNote() {
+		return note;
 	}
 
 	public Waiter getWaiter() {
@@ -47,6 +54,10 @@ public class Order {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public void setWaiter(Waiter waiter) {

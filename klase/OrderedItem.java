@@ -24,6 +24,14 @@ public class OrderedItem {
 	// ----------- >>
 	private Status status;
 
+	// ----------- << attribute.annotations@AAAAAAF9Ct0EpCrKZrs= >>
+	// ----------- >>
+	private Integer number;
+
+	// ----------- << attribute.annotations@AAAAAAF9Ct2UpivQ38g= >>
+	// ----------- >>
+	private LocalDateTime dateTime;
+
 	// ----------- << attribute.annotations@AAAAAAF9CZSVQnOWt9A= >>
 	// ----------- >>
 	private Item item;
@@ -40,6 +48,14 @@ public class OrderedItem {
 		return status;
 	}
 
+	public Integer getNumber() {
+		return number;
+	}
+
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
 	public Item getItem() {
 		return item;
 	}
@@ -54,6 +70,14 @@ public class OrderedItem {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public void setItem(Item item) {

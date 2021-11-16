@@ -6,37 +6,90 @@
 package kts.restaurant_application.model;
 
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import io.swagger.annotations.ApiModel;
+
 // ----------- << imports@AAAAAAF9CXDQAE7PULE= >>
 // ----------- >>
 
+@Entity
+@Table(name = "_items")
+@Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+		use = JsonTypeInfo.Id.NAME,
+		property = "type"
+)
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Food.class, name = "food"),
+		@JsonSubTypes.Type(value = Drink.class, name = "drink")
+})
+@ApiModel(description = "")
 // ----------- << class.annotations@AAAAAAF9CXDQAE7PULE= >>
 // ----------- >>
-public class Item {
-	// ----------- << attribute.annotations@AAAAAAF9CX8dkk81xo0= >>
+public abstract class Item {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	// ----------- << id.annotations@AAAAAAF9CXDQAE7PULE= >>
 	// ----------- >>
 	private Long id;
 
+	@Version
+	// ----------- << version.annotations@AAAAAAF9CXDQAE7PULE= >>
+	// ----------- >>
+	private Long version;
+
+	@NotNull
+	@Column(nullable = false)
 	// ----------- << attribute.annotations@AAAAAAF9CX8wfk9mP/U= >>
 	// ----------- >>
 	private Double price;
 
+	@NotNull
+	@Column(nullable = false)
 	// ----------- << attribute.annotations@AAAAAAF9CX/L7VDv7lE= >>
 	// ----------- >>
 	private Byte priority;
 
+	@NotNull
+	@Column(nullable = false)
 	// ----------- << attribute.annotations@AAAAAAF9CYJVzFIUNmo= >>
 	// ----------- >>
 	private String subcategory;
 
+	@NotNull
+	@Column(nullable = false)
 	// ----------- << attribute.annotations@AAAAAAF9CYKyxVJFCAE= >>
 	// ----------- >>
 	private String description;
 
+	@NotNull
+	@Column(nullable = false)
 	// ----------- << attribute.annotations@AAAAAAF9CYZLHluBVmQ= >>
 	// ----------- >>
 	private Boolean isDeleted;
 
-	public Long getId() {
+	@NotNull
+	@Column(nullable = false)
+	// ----------- << attribute.annotations@AAAAAAF9KMCEXrsYSmk= >>
+	// ----------- >>
+	private String name;
+
+	// ----------- << getId.annotations@AAAAAAF9CXDQAE7PULE= >>
+	// ----------- >>
+	public Long getId(){
 		return id;
 	}
 
@@ -60,28 +113,54 @@ public class Item {
 		return isDeleted;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public String getName() {
+		return name;
 	}
 
-	public void setPrice(Double price) {
+	public Item setPrice(Double price) {
 		this.price = price;
+		return this;
 	}
 
-	public void setPriority(Byte priority) {
+	public Item setPriority(Byte priority) {
 		this.priority = priority;
+		return this;
 	}
 
-	public void setSubcategory(String subcategory) {
+	public Item setSubcategory(String subcategory) {
 		this.subcategory = subcategory;
+		return this;
 	}
 
-	public void setDescription(String description) {
+	public Item setDescription(String description) {
 		this.description = description;
+		return this;
 	}
 
-	public void setIsDeleted(Boolean isDeleted) {
+	public Item setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+		return this;
+	}
+
+	public Item setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	// ----------- << equals.annotations@AAAAAAF9CXDQAE7PULE= >>
+	// ----------- >>
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) return true;
+		if (getId() == null) return false;
+		return obj instanceof Item && (getId().equals(((Item) obj).getId()));
+	}
+
+	// ----------- << hashCode.annotations@AAAAAAF9CXDQAE7PULE= >>
+	// ----------- >>
+	@Override
+	public int hashCode() {
+		return 293;
 	}
 
 // ----------- << class.extras@AAAAAAF9CXDQAE7PULE= >>

@@ -5,12 +5,35 @@
 */
 package kts.restaurant_application.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
 // ----------- << imports@AAAAAAF9CYN2iVPKx34= >>
 // ----------- >>
 
+@Entity
+@Table(name = "_drinks")
 // ----------- << class.annotations@AAAAAAF9CYN2iVPKx34= >>
 // ----------- >>
 public class Drink extends Item {
+	// ----------- << equals.annotations@AAAAAAF9CYN2iVPKx34= >>
+	// ----------- >>
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) return true;
+		if (getId() == null) return false;
+		return obj instanceof Drink && (getId().equals(((Drink) obj).getId()));
+	}
+
+	// ----------- << hashCode.annotations@AAAAAAF9CYN2iVPKx34= >>
+	// ----------- >>
+	@Override
+	public int hashCode() {
+		return 211;
+	}
+
 // ----------- << class.extras@AAAAAAF9CYN2iVPKx34= >>
 // ----------- >>
 }

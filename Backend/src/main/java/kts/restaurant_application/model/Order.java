@@ -5,31 +5,83 @@
 */
 package kts.restaurant_application.model;
 
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+
+import io.swagger.annotations.ApiModel;
+
+
 // ----------- << imports@AAAAAAF9CWhJt0S1yrc= >>
 // ----------- >>
 
+@Entity
+@Table(name = "_orders")
+@ApiModel(description = "")
 // ----------- << class.annotations@AAAAAAF9CWhJt0S1yrc= >>
 // ----------- >>
 public class Order {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	// ----------- << id.annotations@AAAAAAF9CWhJt0S1yrc= >>
+	// ----------- >>
+	private Long id;
+
+	@Version
+	// ----------- << version.annotations@AAAAAAF9CWhJt0S1yrc= >>
+	// ----------- >>
+	private Long version;
+
+	@NotNull
+	@Column(nullable = false)
 	// ----------- << attribute.annotations@AAAAAAF9CWwwakcrAN4= >>
 	// ----------- >>
 	private Double price;
 
+	@NotNull
+	@Column(nullable = false)
 	// ----------- << attribute.annotations@AAAAAAF9CteoARWarSA= >>
 	// ----------- >>
 	private String note;
 
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "waiter_id")
 	// ----------- << attribute.annotations@AAAAAAF9CWhJ5kTfmuo= >>
 	// ----------- >>
 	private Waiter waiter;
 
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "table_id")
 	// ----------- << attribute.annotations@AAAAAAF9CW2TFkpq5yI= >>
 	// ----------- >>
-	private Table table;
+	private RestourantTables table;
 
+	@OneToMany
+	@JoinColumn(name = "_id")
 	// ----------- << attribute.annotations@AAAAAAF9CZJa8W89CLk= >>
 	// ----------- >>
-	// private Set<OrderedItem> food = new HashSet<>();
+	private Set<OrderedItem> food = new HashSet<>();
+
+	// ----------- << getId.annotations@AAAAAAF9CWhJt0S1yrc= >>
+	// ----------- >>
+	public Long getId(){
+		return id;
+	}
 
 	public Double getPrice() {
 		return price;
@@ -43,29 +95,104 @@ public class Order {
 		return waiter;
 	}
 
-	public Table getTable() {
+	public RestourantTables getTable() {
 		return table;
 	}
 
-	public void setPrice(Double price) {
+	public Set<OrderedItem> getFood() {
+		return food;
+	}
+
+	public Order setPrice(Double price) {
 		this.price = price;
+		return this;
 	}
 
-	public void setNote(String note) {
+	public Order setNote(String note) {
 		this.note = note;
+		return this;
 	}
 
-	public void setWaiter(Waiter waiter) {
+	public Order setWaiter(Waiter waiter) {
 		this.waiter = waiter;
+		return this;
 	}
 
-	public void setTable(Table table) {
+	public Order setTable(RestourantTables table) {
 		this.table = table;
+		return this;
 	}
 
-	// public Set<OrderedItem> getFood(){
-	// 	return food;
-	// }
+	public Order linkWaiter(Waiter _waiter) {
+		if (_waiter != null) {
+			_waiter.getOrders().add(this);
+		}
+
+		unlinkWaiter();
+		setWaiter(_waiter);
+		return this;
+	}
+
+	public Order linkTable(RestourantTables _table) {
+		if (_table != null) {
+			_table.getOrders().add(this);
+		}
+
+		unlinkTable();
+		setTable(_table);
+		return this;
+	}
+
+	public Order linkFood(OrderedItem _food) {
+		if (_food != null) {
+			getFood().add(_food);
+		}
+		return this;
+	}
+
+	public Order unlinkWaiter() {
+		if (getWaiter() != null) {
+			getWaiter().getOrders().remove(this);
+			setWaiter(null);
+		}
+		return this;
+	}
+
+	public Order unlinkTable() {
+		if (getTable() != null) {
+			getTable().getOrders().remove(this);
+			setTable(null);
+		}
+		return this;
+	}
+
+	public Order unlinkFood(OrderedItem _food) {
+		if (_food != null) {
+			getFood().remove(_food);
+		}
+		return this;
+	}
+
+	public Order unlinkFood(Iterator<OrderedItem> it) {
+		it.remove();
+		return this;
+	}
+
+	// ----------- << equals.annotations@AAAAAAF9CWhJt0S1yrc= >>
+	// ----------- >>
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) return true;
+		if (getId() == null) return false;
+		return obj instanceof Order && (getId().equals(((Order) obj).getId()));
+	}
+
+	// ----------- << hashCode.annotations@AAAAAAF9CWhJt0S1yrc= >>
+	// ----------- >>
+	@Override
+	public int hashCode() {
+		return 152;
+	}
 
 // ----------- << class.extras@AAAAAAF9CWhJt0S1yrc= >>
 // ----------- >>

@@ -5,7 +5,6 @@
 */
 package kts.restaurant_application.model;
 
-
 // ----------- << imports@AAAAAAF9CYSjsVU7Zgg= >>
 // ----------- >>
 

@@ -1,14 +1,7 @@
-package kts.restaurant_application.controller;
+package Backend.src.main.java.kts.restaurant_application.controller;
 
-import kts.restaurant_application.dto.AdminDTO;
-import kts.restaurant_application.helper.AdminMapper;
-import kts.restaurant_application.model.Admin;
-import kts.restaurant_application.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.List;
+import Backend.src.main.java.kts.restaurant_application.dto.AdminDTO;
+import Backend.src.main.java.kts.restaurant_application.helper.AdminMapper;
+import Backend.src.main.java.kts.restaurant_application.model.Admin;
+import Backend.src.main.java.kts.restaurant_application.service.AdminService;
 
 @RestController
 @RequestMapping(value =  "/api/admin", produces = MediaType.APPLICATION_JSON_VALUE)

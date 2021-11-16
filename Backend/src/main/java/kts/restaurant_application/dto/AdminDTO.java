@@ -1,10 +1,10 @@
-package kts.restaurant_application.dto;
+package Backend.src.main.java.kts.restaurant_application.dto;
+
+import java.util.Date;
+
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.Column;
-import java.util.Date;
-import javax.validation.constraints.NotBlank;
 
 public class AdminDTO {
 

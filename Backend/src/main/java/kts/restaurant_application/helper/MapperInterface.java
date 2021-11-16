@@ -1,4 +1,4 @@
-package kts.restaurant_application.helper;
+package Backend.src.main.java.kts.restaurant_application.helper;
 
 public interface MapperInterface<T,U> {
 

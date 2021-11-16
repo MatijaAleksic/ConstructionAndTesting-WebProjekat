@@ -1,11 +1,12 @@
 package kts.restaurant_application.service;
 
-import kts.restaurant_application.model.Admin;
-import kts.restaurant_application.repository.AdminRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import Backend.src.main.java.kts.restaurant_application.model.Admin;
+import Backend.src.main.java.kts.restaurant_application.repository.AdminRepository;
 
 @Service
 public class AdminService implements ServiceInterface<Admin> {

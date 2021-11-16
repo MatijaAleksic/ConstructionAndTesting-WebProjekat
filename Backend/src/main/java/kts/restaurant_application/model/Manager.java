@@ -1,8 +1,9 @@
-package kts.restaurant_application.model;
+package Backend.src.main.java.kts.restaurant_application.model;
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name="manager_table")

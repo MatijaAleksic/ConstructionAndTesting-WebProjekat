@@ -1,12 +1,9 @@
 package kts.restaurant_application.controller;
 
-import kts.restaurant_application.dto.AdminDTO;
+
 import kts.restaurant_application.dto.ManagerDTO;
-import kts.restaurant_application.helper.AdminMapper;
 import kts.restaurant_application.helper.ManagerMapper;
-import kts.restaurant_application.model.Admin;
 import kts.restaurant_application.model.Manager;
-import kts.restaurant_application.service.AdminService;
 import kts.restaurant_application.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

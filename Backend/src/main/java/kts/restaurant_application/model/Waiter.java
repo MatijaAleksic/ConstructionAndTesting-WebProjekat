@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="waiter_table")
 public class Waiter extends User {
 
-	// private Set<Order> orders = new HashSet<>();
+	//private Set<Order> orders = new HashSet<>();
 
 	public Waiter(Long id, String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, Boolean isDeleted) {
 		super(id, firstName, lastName, username, password, dateOfBirth, salary, isDeleted);

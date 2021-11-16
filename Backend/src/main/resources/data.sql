@@ -17,4 +17,8 @@ INSERT INTO manager_table (id, username,password, is_deleted) VALUES (20,'slavko
 INSERT INTO waiter_table (id, username,password, is_deleted) VALUES (21,'ognjen@maildrop.cc','ognjen', false);
 INSERT INTO waiter_table (id, username,password, is_deleted) VALUES (22,'todor@maildrop.cc','todor', false);
 
+INSERT INTO food_table (id, price, name,is_deleted) VALUES (101, 1234,'Snicla' ,false);
+INSERT INTO food_table (id, price, name,is_deleted) VALUES (102, 3214, 'Supa' ,false);
+INSERT INTO food_table (id, price, name,is_deleted) VALUES (103, 5234,'Torta', false);
+
 

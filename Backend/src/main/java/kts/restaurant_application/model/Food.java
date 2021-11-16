@@ -6,12 +6,17 @@
 package kts.restaurant_application.model;
 
 
-// ----------- << imports@AAAAAAF9CYNzuFNUgjE= >>
-// ----------- >>
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-// ----------- << class.annotations@AAAAAAF9CYNzuFNUgjE= >>
-// ----------- >>
+@Entity
+@Table(name="food_table")
 public class Food extends Item {
-// ----------- << class.extras@AAAAAAF9CYNzuFNUgjE= >>
-// ----------- >>
+
+    public Food(Long id, Double price,String name, Byte priority, String subcategory, String description, boolean isDeleted) {
+        super(id, price,name, priority, subcategory, description, isDeleted);
+    }
+
+    public Food() {
+    }
 }

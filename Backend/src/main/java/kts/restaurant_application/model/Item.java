@@ -6,35 +6,55 @@
 package kts.restaurant_application.model;
 
 
-// ----------- << imports@AAAAAAF9CXDQAE7PULE= >>
-// ----------- >>
 
-// ----------- << class.annotations@AAAAAAF9CXDQAE7PULE= >>
-// ----------- >>
-public class Item {
-	// ----------- << attribute.annotations@AAAAAAF9CX8dkk81xo0= >>
-	// ----------- >>
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Item {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 
-	// ----------- << attribute.annotations@AAAAAAF9CX8wfk9mP/U= >>
-	// ----------- >>
+	@Column(unique = false, nullable = false)
+	private String name;
+
+	@Column(unique = false, nullable = true)
 	private Double price;
 
-	// ----------- << attribute.annotations@AAAAAAF9CX/L7VDv7lE= >>
-	// ----------- >>
+	@Column(unique = false, nullable = true)
 	private Byte priority;
 
-	// ----------- << attribute.annotations@AAAAAAF9CYJVzFIUNmo= >>
-	// ----------- >>
+	@Column(unique = false, nullable = true)
 	private String subcategory;
 
-	// ----------- << attribute.annotations@AAAAAAF9CYKyxVJFCAE= >>
-	// ----------- >>
+	@Column(unique = false, nullable = true)
 	private String description;
 
-	// ----------- << attribute.annotations@AAAAAAF9CYZLHluBVmQ= >>
-	// ----------- >>
-	private Boolean isDeleted;
+	@Column(unique = false, nullable = false)
+	private boolean isDeleted;
+
+	public Item(Long id, Double price, String name, Byte priority, String subcategory, String description, boolean isDeleted) {
+		this.id = id;
+		this.price = price;
+		this.name = name;
+		this.priority = priority;
+		this.subcategory = subcategory;
+		this.description = description;
+		this.isDeleted = isDeleted;
+	}
+
+	public Item() {
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public Long getId() {
 		return id;
@@ -56,7 +76,7 @@ public class Item {
 		return description;
 	}
 
-	public Boolean getIsDeleted() {
+	public boolean getIsDeleted() {
 		return isDeleted;
 	}
 
@@ -80,10 +100,9 @@ public class Item {
 		this.description = description;
 	}
 
-	public void setIsDeleted(Boolean isDeleted) {
+	public void setIsDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 
-// ----------- << class.extras@AAAAAAF9CXDQAE7PULE= >>
-// ----------- >>
+
 }

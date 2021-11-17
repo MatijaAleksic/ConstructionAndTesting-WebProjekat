@@ -7,6 +7,7 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.OrderedItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,19 @@ public class TableService {
 
     public RestourantTables save(RestourantTables entity) {
         return repository.save(entity);
+    }
+
+    public RestourantTables update(RestourantTables entity){
+        RestourantTables existingRestourantTables= findOne(entity.getId());
+
+        existingRestourantTables.setIsDeleted(entity.getIsDeleted());
+        existingRestourantTables.setFloor(entity.getFloor());
+        existingRestourantTables.setTableNumber(entity.getTableNumber());
+        existingRestourantTables.setPositionX(entity.getPositionX());
+        existingRestourantTables.setPositionY(entity.getPositionY());
+        existingRestourantTables.setState(entity.getState());
+
+        return save(existingRestourantTables);
     }
 
     public void delete(RestourantTables entity) {

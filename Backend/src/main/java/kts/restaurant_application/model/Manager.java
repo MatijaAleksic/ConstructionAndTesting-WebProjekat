@@ -1,4 +1,3 @@
-
 package kts.restaurant_application.model;
 
 import javax.persistence.Entity;

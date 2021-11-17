@@ -6,6 +6,7 @@
 
 package kts.restaurant_application.services;
 
+import kts.restaurant_application.model.Food;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,19 @@ public class ItemService {
 
     public Item save(Item entity) {
         return repository.save(entity);
+    }
+
+    public Item update(Item entity){
+        Item existingItem = findOne(entity.getId());
+
+        existingItem.setName(entity.getName());
+        existingItem.setDescription(entity.getDescription());
+        existingItem.setPrice(entity.getPrice());
+        existingItem.setPriority(entity.getPriority());
+        existingItem.setSubcategory(entity.getSubcategory());
+        existingItem.setIsDeleted(entity.getIsDeleted());
+
+        return save(existingItem);
     }
 
     public void delete(Item entity) {

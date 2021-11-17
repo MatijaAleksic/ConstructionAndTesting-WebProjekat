@@ -7,6 +7,8 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Barman;
+import kts.restaurant_application.model.MainCook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,19 @@ public class ManagerService {
 
     public Manager save(Manager entity) {
         return repository.save(entity);
+    }
+
+    public Manager update(Manager entity){
+        Manager existingManager = findOne(entity.getId());
+
+        existingManager.setFirstName(entity.getFirstName());
+        existingManager.setLastName(entity.getLastName());
+        existingManager.setPassword(entity.getPassword());
+        existingManager.setDateOfBirth(entity.getDateOfBirth());
+        existingManager.setSalary(entity.getSalary());
+        existingManager.setIsDeleted(entity.getIsDeleted());
+
+        return save(existingManager);
     }
 
     public void delete(Manager entity) {

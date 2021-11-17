@@ -7,6 +7,7 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,19 @@ public class WaiterService {
 
     public void delete(Waiter entity) {
         repository.delete(entity);
+    }
+
+    public Waiter update(Waiter entity){
+        Waiter existingWaiter = findOne(entity.getId());
+
+        existingWaiter.setFirstName(entity.getFirstName());
+        existingWaiter.setLastName(entity.getLastName());
+        existingWaiter.setPassword(entity.getPassword());
+        existingWaiter.setDateOfBirth(entity.getDateOfBirth());
+        existingWaiter.setSalary(entity.getSalary());
+        existingWaiter.setIsDeleted(entity.getIsDeleted());
+
+        return save(existingWaiter);
     }
 
     public void delete(Long id) {

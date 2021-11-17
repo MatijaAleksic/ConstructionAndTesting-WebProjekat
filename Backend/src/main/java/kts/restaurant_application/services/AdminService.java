@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -40,6 +41,19 @@ public class AdminService {
 
     public Admin save(Admin entity) {
         return repository.save(entity);
+    }
+
+    public Admin update(Admin entity){
+        Admin existingAdmin = findOne(entity.getId());
+
+        existingAdmin.setFirstName(entity.getFirstName());
+        existingAdmin.setLastName(entity.getLastName());
+        existingAdmin.setPassword(entity.getPassword());
+        existingAdmin.setDateOfBirth(entity.getDateOfBirth());
+        existingAdmin.setSalary(entity.getSalary());
+        existingAdmin.setIsDeleted(entity.getIsDeleted());
+
+        return save(existingAdmin);
     }
 
     public void delete(Admin entity) {

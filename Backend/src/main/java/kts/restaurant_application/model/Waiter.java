@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "_waiters")
 @PrimaryKeyJoinColumn(name = "user")

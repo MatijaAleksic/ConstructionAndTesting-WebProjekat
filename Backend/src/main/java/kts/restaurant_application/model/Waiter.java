@@ -10,12 +10,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "_waiters")
 @PrimaryKeyJoinColumn(name = "user")
 
 public class Waiter extends User {
 	@OneToMany(mappedBy = "waiter")
+	@JsonIgnore
 	private Set<Order> orders = new HashSet<>();
 
 	public Waiter(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,

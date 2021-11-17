@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
 
 @Entity
@@ -54,6 +56,7 @@ public class RestourantTables {
 	@Column(nullable = false)
 	private Boolean isDeleted;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "restourantTable")
 	private Set<Order> orders = new HashSet<>();
 

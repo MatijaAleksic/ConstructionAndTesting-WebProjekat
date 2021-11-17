@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
 
 
@@ -49,6 +51,7 @@ public class Order {
 
 	@NotNull
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "restourantTable_id")
 	private RestourantTables restourantTable;
 

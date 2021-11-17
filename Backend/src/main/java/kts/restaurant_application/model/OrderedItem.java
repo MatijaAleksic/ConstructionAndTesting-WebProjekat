@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(description = "")
 public class OrderedItem {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private Long id;
 

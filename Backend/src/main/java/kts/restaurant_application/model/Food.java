@@ -1,12 +1,14 @@
 package kts.restaurant_application.model;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 // ----------- << imports@AAAAAAF9CYNzuFNUgjE= >>
 // ----------- >>
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "_foods")
+@PrimaryKeyJoinColumn(name = "item")
 public class Food extends Item {
 
 	public Food(Long id, Long version, Double price, Byte priority,String subcategory, String description,

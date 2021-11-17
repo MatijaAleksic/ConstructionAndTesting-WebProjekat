@@ -55,3 +55,16 @@ INSERT INTO _waiters (user) VALUES (13);
 
 
 
+INSERT INTO _items (description, is_deleted, name,price, priority, subcategory, version) VALUES ('Deskripcija1', false, 'Jelo1',100, 1, 'subcategory1', 1);
+INSERT INTO _drinks (item) VALUES (1);
+INSERT INTO _items (description, is_deleted, name,price, priority, subcategory, version) VALUES ('Deskripcija2', false, 'Jelo2',100, 1, 'subcategory2', 1);
+INSERT INTO _drinks (item) VALUES (2);
+INSERT INTO _items (description, is_deleted, name,price, priority, subcategory, version) VALUES ('Deskripcija3', false, 'Jelo3',100, 1, 'subcategory3', 1);
+INSERT INTO _drinks (item) VALUES (3);
+
+INSERT INTO _items (description, is_deleted, name,price, priority, subcategory, version) VALUES ('Deskripcija4', false, 'Jelo4',100, 1, 'subcategory4', 1);
+INSERT INTO _drinks (item) VALUES (4);
+INSERT INTO _items (description, is_deleted, name,price, priority, subcategory, version) VALUES ('Deskripcija5', false, 'Jelo5',100, 1, 'subcategory5', 1);
+INSERT INTO _drinks (item) VALUES (5);
+INSERT INTO _items (description, is_deleted, name,price, priority, subcategory, version) VALUES ('Deskripcija6', false, 'Jelo6',100, 1, 'subcategory6', 1);
+INSERT INTO _drinks (item) VALUES (6);

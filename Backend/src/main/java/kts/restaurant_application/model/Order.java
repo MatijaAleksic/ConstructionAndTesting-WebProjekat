@@ -25,60 +25,55 @@ import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiModel;
 
 
-// ----------- << imports@AAAAAAF9CWhJt0S1yrc= >>
-// ----------- >>
-
 @Entity
 @Table(name = "_orders")
 @ApiModel(description = "")
-// ----------- << class.annotations@AAAAAAF9CWhJt0S1yrc= >>
-// ----------- >>
+
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	// ----------- << id.annotations@AAAAAAF9CWhJt0S1yrc= >>
-	// ----------- >>
+
 	private Long id;
 
 	@Version
-	// ----------- << version.annotations@AAAAAAF9CWhJt0S1yrc= >>
-	// ----------- >>
 	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
-	// ----------- << attribute.annotations@AAAAAAF9CWwwakcrAN4= >>
-	// ----------- >>
+
 	private Double price;
 
 	@NotNull
 	@Column(nullable = false)
-	// ----------- << attribute.annotations@AAAAAAF9CteoARWarSA= >>
-	// ----------- >>
 	private String note;
 
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "waiter_id")
-	// ----------- << attribute.annotations@AAAAAAF9CWhJ5kTfmuo= >>
-	// ----------- >>
 	private Waiter waiter;
 
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "table_id")
-	// ----------- << attribute.annotations@AAAAAAF9CW2TFkpq5yI= >>
-	// ----------- >>
 	private RestourantTables table;
 
 	@OneToMany
 	@JoinColumn(name = "_id")
-	// ----------- << attribute.annotations@AAAAAAF9CZJa8W89CLk= >>
-	// ----------- >>
 	private Set<OrderedItem> food = new HashSet<>();
 
-	// ----------- << getId.annotations@AAAAAAF9CWhJt0S1yrc= >>
-	// ----------- >>
+	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food) {
+		this.id = id;
+		this.version = version;
+		this.price = price;
+		this.note = note;
+		this.waiter = waiter;
+		this.table = table;
+		this.food = food;
+	}
+
+	public Order() {
+	}
+
 	public Long getId(){
 		return id;
 	}

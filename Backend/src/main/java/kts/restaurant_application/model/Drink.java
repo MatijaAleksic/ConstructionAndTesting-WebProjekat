@@ -10,16 +10,18 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
-// ----------- << imports@AAAAAAF9CYN2iVPKx34= >>
-// ----------- >>
-
 @Entity
 @Table(name = "_drinks")
-// ----------- << class.annotations@AAAAAAF9CYN2iVPKx34= >>
-// ----------- >>
+
 public class Drink extends Item {
-	// ----------- << equals.annotations@AAAAAAF9CYN2iVPKx34= >>
-	// ----------- >>
+
+	public Drink() {
+	}
+
+	public Drink(Long id, Long version, Double price, Byte priority, String subcategory, String description,
+				 boolean isDeleted, String name) {
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) return true;
@@ -27,13 +29,9 @@ public class Drink extends Item {
 		return obj instanceof Drink && (getId().equals(((Drink) obj).getId()));
 	}
 
-	// ----------- << hashCode.annotations@AAAAAAF9CYN2iVPKx34= >>
-	// ----------- >>
 	@Override
 	public int hashCode() {
 		return 211;
 	}
 
-// ----------- << class.extras@AAAAAAF9CYN2iVPKx34= >>
-// ----------- >>
 }

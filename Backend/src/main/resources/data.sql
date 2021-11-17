@@ -68,3 +68,12 @@ INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) 
 INSERT INTO _drinks (item) VALUES (5);
 INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) VALUES ('Deskripcija6', false, 'Jelo6',100, 1, 'subcategory6');
 INSERT INTO _drinks (item) VALUES (6);
+
+INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (1, 1, 1.0, 2.0, "free", false);
+INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (2, 4, 30.0, 2.0, "free", false);
+
+INSERT INTO _orders (price, note, waiter_id, restourant_table_id) VALUES (100.0, "asd", 12, 1);
+INSERT INTO _orders (price, note, waiter_id, restourant_table_id) VALUES (200.0, "asdasd", 13, 2);
+
+INSERT INTO _ordered_items (status, state, number, date_time, item_id, staff_id) VALUES ("free", "active", 2, "2012-12-12 11:11:11", 1, 5);
+INSERT INTO _ordered_items (status, state, number, date_time, item_id, staff_id) VALUES ("free", "active", 2, "2012-12-12 11:11:11", 4, 6);

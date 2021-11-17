@@ -49,8 +49,8 @@ public class Order {
 
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "table_id")
-	private RestourantTables table;
+	@JoinColumn(name = "restourantTable_id")
+	private RestourantTables restourantTable;
 
 	@OneToMany
 	@JoinColumn(name = "_id")
@@ -62,7 +62,7 @@ public class Order {
 		this.price = price;
 		this.note = note;
 		this.waiter = waiter;
-		this.table = table;
+		this.restourantTable = table;
 		this.food = food;
 	}
 
@@ -86,7 +86,7 @@ public class Order {
 	}
 
 	public RestourantTables getTable() {
-		return table;
+		return restourantTable;
 	}
 
 	public Set<OrderedItem> getFood() {
@@ -109,7 +109,7 @@ public class Order {
 	}
 
 	public Order setTable(RestourantTables table) {
-		this.table = table;
+		this.restourantTable = table;
 		return this;
 	}
 

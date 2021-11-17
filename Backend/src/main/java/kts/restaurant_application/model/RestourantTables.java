@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +23,7 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(description = "")
 public class RestourantTables {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Version
@@ -44,6 +46,7 @@ public class RestourantTables {
 	private Double positionY;
 
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private State state;
 
@@ -51,7 +54,7 @@ public class RestourantTables {
 	@Column(nullable = false)
 	private Boolean isDeleted;
 
-	@OneToMany(mappedBy = "table")
+	@OneToMany(mappedBy = "restourantTable")
 	private Set<Order> orders = new HashSet<>();
 
 	public Long getId(){

@@ -9,12 +9,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "_staff")
 @PrimaryKeyJoinColumn(name = "user")
 public abstract class Staff extends User {
 
 	@OneToMany(mappedBy = "staff")
+	@JsonIgnore
 	private Set<OrderedItem> processed = new HashSet<>();
 
 	public Set<OrderedItem> getProcessed() {

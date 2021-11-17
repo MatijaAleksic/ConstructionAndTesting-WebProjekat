@@ -42,11 +42,11 @@ public abstract class User {
 	private Long version;
 
 	@NotNull
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String firstName;
 
 	@NotNull
-	@Column(nullable = true)
+	@Column(nullable = false)
 
 	private String lastName;
 
@@ -59,11 +59,11 @@ public abstract class User {
 	private String password;
 
 	@NotNull
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private Date dateOfBirth;
 
 	@NotNull
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private Long salary;
 
 	@NotNull

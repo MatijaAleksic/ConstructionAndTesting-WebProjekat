@@ -1,7 +1,5 @@
 package kts.restaurant_application.model;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,53 +9,73 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import io.swagger.annotations.ApiModel;
 
 @Entity
-//@Table(name = "user_table")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "_users")
+@Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+		use = JsonTypeInfo.Id.NAME,
+		property = "type"
+)
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Manager.class, name = "manager"),
+		@JsonSubTypes.Type(value = Waiter.class, name = "waiter"),
+		@JsonSubTypes.Type(value = Admin.class, name = "admin"),
+		@JsonSubTypes.Type(value = MainCook.class, name = "mainCook"),
+		@JsonSubTypes.Type(value = Barman.class, name = "barman")
+})
+@ApiModel(description = "")
 public abstract class User {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique = false, nullable = true)
+	@Version
+	private Long version;
+
+	@NotNull
+	@Column(nullable = false)
 	private String firstName;
 
-	@Column(unique = false, nullable = true)
+	@NotNull
+	@Column(nullable = false)
+
 	private String lastName;
 
-	@Column(unique = true, nullable = false)
+	@NotNull
+	@Column(nullable = false, unique = true)
 	private String username;
 
-	@Column(unique = false, nullable = true)
+	@NotNull
+	@Column(nullable = false)
 	private String password;
 
-	@Column(unique = false, nullable = true)
+	@NotNull
+	@Column(nullable = false)
 	private Date dateOfBirth;
 
-	@Column(unique = false, nullable = true)
+	@NotNull
+	@Column(nullable = false)
 	private Long salary;
 
-	@Column(unique = false, nullable = false)
-	private boolean isDeleted;
-
-	public User(Long id, String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, Boolean isDeleted) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.dateOfBirth = dateOfBirth;
-		this.salary = salary;
-		this.isDeleted = isDeleted;
-	}
+	@NotNull
+	@Column(nullable = false)
+	private Boolean isDeleted;
 
 	public User() {
-
 	}
 
-	public User(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, Boolean isDeleted) {
+	public User(Long id, Long version, @NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password, @NotNull Date dateOfBirth, @NotNull Long salary, @NotNull Boolean isDeleted) {
+		this.id = id;
+		this.version = version;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -67,7 +85,7 @@ public abstract class User {
 		this.isDeleted = isDeleted;
 	}
 
-	public Long getId() {
+	public Long getId(){
 		return id;
 	}
 
@@ -95,40 +113,55 @@ public abstract class User {
 		return salary;
 	}
 
-	public boolean getIsDeleted() {
+	public Boolean getIsDeleted() {
 		return isDeleted;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setFirstName(String firstName) {
+	public User setFirstName(String firstName) {
 		this.firstName = firstName;
+		return this;
 	}
 
-	public void setLastName(String lastName) {
+	public User setLastName(String lastName) {
 		this.lastName = lastName;
+		return this;
 	}
 
-	public void setUsername(String username) {
+	public User setUsername(String username) {
 		this.username = username;
+		return this;
 	}
 
-	public void setPassword(String password) {
+	public User setPassword(String password) {
 		this.password = password;
+		return this;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public User setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+		return this;
 	}
 
-	public void setSalary(Long salary) {
+	public User setSalary(Long salary) {
 		this.salary = salary;
+		return this;
 	}
 
-	public void setIsDeleted(boolean isDeleted) {
+	public User setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+		return this;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) return true;
+		if (getId() == null) return false;
+		return obj instanceof User && (getId().equals(((User) obj).getId()));
+	}
+
+	@Override
+	public int hashCode() {
+		return 218;
 	}
 
 }

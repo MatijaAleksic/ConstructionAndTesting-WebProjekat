@@ -1,6 +1,7 @@
 package kts.restaurant_application.model;
 
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -27,22 +28,17 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(description = "")
 
 public class Order {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Long id;
 
-	@Version
-	private Long version;
+//	@Version
+//	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
-
 	private Double price;
-
-	@NotNull
-	@Column(nullable = false)
-	private String note;
 
 	@NotNull
 	@ManyToOne
@@ -55,18 +51,23 @@ public class Order {
 	@JoinColumn(name = "restourantTable_id")
 	private RestourantTables restourantTable;
 
-	@OneToMany
-	@JoinColumn(name = "_id")
-	private Set<OrderedItem> food = new HashSet<>();
+	@NotNull
+	@Column(nullable = false)
+	private LocalDateTime dateTime;
 
-	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food) {
+//	@OneToMany
+//	@JoinColumn(name = "_id")
+//	private Set<OrderedItem> food = new HashSet<>();
+
+	//public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food) {
+	public Order(Long id, @NotNull Double price, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food, @NotNull LocalDateTime dateTime) {
 		this.id = id;
-		this.version = version;
+		//this.version = version;
 		this.price = price;
-		this.note = note;
 		this.waiter = waiter;
 		this.restourantTable = table;
-		this.food = food;
+		//this.food = food;
+		this.dateTime = dateTime;
 	}
 
 	public Order() {
@@ -80,9 +81,6 @@ public class Order {
 		return price;
 	}
 
-	public String getNote() {
-		return note;
-	}
 
 	public Waiter getWaiter() {
 		return waiter;
@@ -92,19 +90,15 @@ public class Order {
 		return restourantTable;
 	}
 
-	public Set<OrderedItem> getFood() {
-		return food;
-	}
+//	public Set<OrderedItem> getFood() {
+//		return food;
+//	}
 
 	public Order setPrice(Double price) {
 		this.price = price;
 		return this;
 	}
 
-	public Order setNote(String note) {
-		this.note = note;
-		return this;
-	}
 
 	public Order setWaiter(Waiter waiter) {
 		this.waiter = waiter;
@@ -114,6 +108,22 @@ public class Order {
 	public Order setTable(RestourantTables table) {
 		this.restourantTable = table;
 		return this;
+	}
+
+	public RestourantTables getRestourantTable() {
+		return restourantTable;
+	}
+
+	public void setRestourantTable(RestourantTables restourantTable) {
+		this.restourantTable = restourantTable;
+	}
+
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public Order linkWaiter(Waiter _waiter) {
@@ -136,12 +146,12 @@ public class Order {
 		return this;
 	}
 
-	public Order linkFood(OrderedItem _food) {
-		if (_food != null) {
-			getFood().add(_food);
-		}
-		return this;
-	}
+//	public Order linkFood(OrderedItem _food) {
+//		if (_food != null) {
+//			getFood().add(_food);
+//		}
+//		return this;
+//	}
 
 	public Order unlinkWaiter() {
 		if (getWaiter() != null) {
@@ -159,12 +169,12 @@ public class Order {
 		return this;
 	}
 
-	public Order unlinkFood(OrderedItem _food) {
-		if (_food != null) {
-			getFood().remove(_food);
-		}
-		return this;
-	}
+//	public Order unlinkFood(OrderedItem _food) {
+//		if (_food != null) {
+//			getFood().remove(_food);
+//		}
+//		return this;
+//	}
 
 	public Order unlinkFood(Iterator<OrderedItem> it) {
 		it.remove();

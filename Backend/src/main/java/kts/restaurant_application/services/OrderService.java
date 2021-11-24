@@ -49,8 +49,8 @@ public class OrderService {
 
         existingOrder.setPrice(entity.getPrice());
         existingOrder.setWaiter(entity.getWaiter());
-        existingOrder.setNote(entity.getNote());
         existingOrder.setTable(entity.getTable());
+
 
         return save(existingOrder);
     }

@@ -24,18 +24,13 @@ import io.swagger.annotations.ApiModel;
 @Table(name = "_orderedItems")
 @ApiModel(description = "")
 public class OrderedItem {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Long id;
 
-	@Version
-	private Long version;
-
-	@Enumerated(EnumType.STRING)
-	@NotNull
-	@Column(nullable = false)
-	private State state;
+//	@Version
+//	private Long version;
 
 	@Enumerated(EnumType.STRING)
 	@NotNull
@@ -60,27 +55,29 @@ public class OrderedItem {
 	@JoinColumn(name = "staff_id")
 	private Staff staff;
 
+	@NotNull
+	@Column(nullable = false)
+	private String note;
+
 	public OrderedItem() {
 	}
 
-	public OrderedItem(Long id, Long version, @NotNull State state, @NotNull Status status, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
+	//public OrderedItem(Long id, Long version, @NotNull State state, @NotNull Status status, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
+	public OrderedItem(Long id, @NotNull String note, @NotNull Status status, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
 		this.id = id;
-		this.version = version;
-		this.state = state;
+		//this.version = version;
 		this.status = status;
 		this.number = number;
 		this.dateTime = dateTime;
 		this.item = item;
 		this.staff = staff;
+		this.note = note;
 	}
 
 	public Long getId(){
 		return id;
 	}
 
-	public State getState() {
-		return state;
-	}
 
 	public Status getStatus() {
 		return status;
@@ -102,10 +99,6 @@ public class OrderedItem {
 		return staff;
 	}
 
-	public OrderedItem setState(State state) {
-		this.state = state;
-		return this;
-	}
 
 	public OrderedItem setStatus(Status status) {
 		this.status = status;
@@ -130,6 +123,14 @@ public class OrderedItem {
 	public OrderedItem setStaff(Staff staff) {
 		this.staff = staff;
 		return this;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public OrderedItem linkItem(Item _item) {

@@ -28,8 +28,8 @@ public class RestourantTables {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Version
-	private Long version;
+//	@Version
+//	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
@@ -50,7 +50,7 @@ public class RestourantTables {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private State state;
+	private TableStatus state;
 
 	@NotNull
 	@Column(nullable = false)
@@ -80,7 +80,7 @@ public class RestourantTables {
 		return positionY;
 	}
 
-	public State getState() {
+	public TableStatus getState() {
 		return state;
 	}
 
@@ -95,9 +95,10 @@ public class RestourantTables {
 	public RestourantTables() {
 	}
 
-	public RestourantTables(Long id, Long version, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull State state, @NotNull Boolean isDeleted, Set<Order> orders) {
+	//public RestourantTables(Long id, Long version, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull State state, @NotNull Boolean isDeleted, Set<Order> orders) {
+	public RestourantTables(Long id, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted, Set<Order> orders) {
 		this.id = id;
-		this.version = version;
+		//this.version = version;
 		this.tableNumber = tableNumber;
 		this.floor = floor;
 		this.positionX = positionX;
@@ -127,7 +128,7 @@ public class RestourantTables {
 		return this;
 	}
 
-	public RestourantTables setState(State state) {
+	public RestourantTables setState(TableStatus state) {
 		this.state = state;
 		return this;
 	}

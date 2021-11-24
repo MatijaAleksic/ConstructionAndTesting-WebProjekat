@@ -38,8 +38,8 @@ public abstract class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Version
-	private Long version;
+//	@Version
+//	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
@@ -73,9 +73,11 @@ public abstract class User {
 	public User() {
 	}
 
+	//public User(Long id, Long version, @NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password, @NotNull Date dateOfBirth, @NotNull Long salary, @NotNull Boolean isDeleted) {
 	public User(Long id, Long version, @NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password, @NotNull Date dateOfBirth, @NotNull Long salary, @NotNull Boolean isDeleted) {
+
 		this.id = id;
-		this.version = version;
+		//this.version = version;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;

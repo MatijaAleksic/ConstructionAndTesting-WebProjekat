@@ -51,8 +51,8 @@ public class OrderedItemService {
         existingOrderedItem.setDateTime(entity.getDateTime());
         existingOrderedItem.setNumber(entity.getNumber());
         existingOrderedItem.setStaff(entity.getStaff());
-        existingOrderedItem.setState(entity.getState());
         existingOrderedItem.setStatus(entity.getStatus());
+        existingOrderedItem.setNote(entity.getNote());
 
         return save(existingOrderedItem);
     }

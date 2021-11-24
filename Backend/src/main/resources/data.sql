@@ -53,25 +53,25 @@ INSERT INTO _waiters (user) VALUES (13);
 
 
 
-INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) VALUES ('Deskripcija1', false, 'Jelo1',100, 1, 'subcategory1');
+INSERT INTO _items (description, is_deleted, name, status,price, priority, subcategory) VALUES ('Deskripcija1', false, 'Pice1', "active",100, 1, 'subcategory1');
 INSERT INTO _drinks (item) VALUES (1);
-INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) VALUES ('Deskripcija2', false, 'Jelo2',100, 1, 'subcategory2');
+INSERT INTO _items (description, is_deleted, name, status,price, priority, subcategory) VALUES ('Deskripcija2', false, 'Pice2', "active",100, 1, 'subcategory2');
 INSERT INTO _drinks (item) VALUES (2);
-INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) VALUES ('Deskripcija3', false, 'Jelo3',100, 1, 'subcategory3');
+INSERT INTO _items (description, is_deleted, name, status,price, priority, subcategory) VALUES ('Deskripcija3', false, 'Pice3', "active",100, 1, 'subcategory3');
 INSERT INTO _drinks (item) VALUES (3);
 
-INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) VALUES ('Deskripcija4', false, 'Jelo4',100, 1, 'subcategory4');
+INSERT INTO _items (description, is_deleted, name, status, price, priority, subcategory) VALUES ('Deskripcija4', false, 'Jelo1', "active", 100, 1, 'subcategory4');
 INSERT INTO _foods (item) VALUES (4);
-INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) VALUES ('Deskripcija5', false, 'Jelo5',100, 1, 'subcategory5');
+INSERT INTO _items (description, is_deleted, name, status,price, priority, subcategory) VALUES ('Deskripcija5', false, 'Jelo2', "active",100, 1, 'subcategory5');
 INSERT INTO _foods (item) VALUES (5);
-INSERT INTO _items (description, is_deleted, name,price, priority, subcategory) VALUES ('Deskripcija6', false, 'Jelo6',100, 1, 'subcategory6');
+INSERT INTO _items (description, is_deleted, name, status,price, priority, subcategory) VALUES ('Deskripcija6', false, 'Jelo3', "active",100, 1, 'subcategory6');
 INSERT INTO _foods (item) VALUES (6);
 
 INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (1, 1, 1.0, 2.0, "free", false);
 INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (2, 4, 30.0, 2.0, "free", false);
 
-INSERT INTO _orders (price, note, waiter_id, restourant_table_id) VALUES (100.0, "asd", 12, 1);
-INSERT INTO _orders (price, note, waiter_id, restourant_table_id) VALUES (200.0, "asdasd", 13, 2);
+INSERT INTO _orders (price, waiter_id, restourant_table_id,date_time) VALUES (100.0, 12, 1, "2012-12-12 11:11:11");
+INSERT INTO _orders (price, waiter_id, restourant_table_id, date_time) VALUES (200.0, 13, 2, "2012-12-12 11:11:11");
 
-INSERT INTO _ordered_items (status, state, number, date_time, item_id, staff_id) VALUES ("free", "active", 2, "2012-12-12 11:11:11", 1, 5);
-INSERT INTO _ordered_items (status, state, number, date_time, item_id, staff_id) VALUES ("free", "active", 2, "2012-12-12 11:11:11", 4, 6);
+INSERT INTO _ordered_items (status, number, note,  date_time, item_id, staff_id) VALUES ("ordered", 2, 'alergija na kikiriki', "2012-12-12 11:11:11", 1, 5);
+INSERT INTO _ordered_items (status, number, note,  date_time, item_id, staff_id) VALUES ("ordered", 2, 'alergija na nesto', "2012-12-12 11:11:11", 4, 6);

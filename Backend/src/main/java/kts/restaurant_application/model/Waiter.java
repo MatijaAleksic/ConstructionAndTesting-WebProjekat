@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @PrimaryKeyJoinColumn(name = "user")
 
 public class Waiter extends User {
+
 	@OneToMany(mappedBy = "waiter")
 	@JsonIgnore
 	private Set<Order> orders = new HashSet<>();

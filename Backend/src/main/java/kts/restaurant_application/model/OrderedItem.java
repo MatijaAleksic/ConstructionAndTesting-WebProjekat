@@ -29,8 +29,9 @@ public class OrderedItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	@Version
-//	private Long version;
+	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
+	private Long version;
 
 	@Enumerated(EnumType.STRING)
 	@NotNull
@@ -62,10 +63,9 @@ public class OrderedItem {
 	public OrderedItem() {
 	}
 
-	//public OrderedItem(Long id, Long version, @NotNull State state, @NotNull Status status, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
-	public OrderedItem(Long id, @NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
+	public OrderedItem(Long id, Long version, @NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
 		this.id = id;
-		//this.version = version;
+		this.version = version;
 		this.state = state;
 		this.number = number;
 		this.dateTime = dateTime;

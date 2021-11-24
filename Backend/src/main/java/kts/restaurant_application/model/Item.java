@@ -1,7 +1,17 @@
 package kts.restaurant_application.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -27,8 +37,9 @@ public abstract class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	@Version
-//	private Long version;
+	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
+	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
@@ -87,11 +98,10 @@ public abstract class Item {
 		return name;
 	}
 
-	//public Item(Long id, Long version, @NotNull Double price, @NotNull Byte priority, @NotNull String subcategory, @NotNull String description, @NotNull Boolean isDeleted, @NotNull String name) {
-	public Item(Long id, @NotNull Double price, @NotNull Byte priority, @NotNull String subcategory, @NotNull String description, @NotNull Boolean isDeleted, @NotNull String name) {
+	public Item(Long id, Long version, @NotNull Double price, @NotNull Byte priority, @NotNull String subcategory, @NotNull String description, @NotNull Boolean isDeleted, @NotNull String name) {
 
 		this.id = id;
-		//this.version = version;
+		this.version = version;
 		this.price = price;
 		this.priority = priority;
 		this.subcategory = subcategory;

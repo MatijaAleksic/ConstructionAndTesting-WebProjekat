@@ -28,8 +28,9 @@ public class RestourantTables {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	@Version
-//	private Long version;
+	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
+	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
@@ -95,10 +96,9 @@ public class RestourantTables {
 	public RestourantTables() {
 	}
 
-	//public RestourantTables(Long id, Long version, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull State state, @NotNull Boolean isDeleted, Set<Order> orders) {
-	public RestourantTables(Long id, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted, Set<Order> orders) {
+	public RestourantTables(Long id, Long version, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted, Set<Order> orders) {
 		this.id = id;
-		//this.version = version;
+		this.version = version;
 		this.tableNumber = tableNumber;
 		this.floor = floor;
 		this.positionX = positionX;

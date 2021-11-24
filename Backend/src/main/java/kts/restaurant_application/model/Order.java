@@ -33,8 +33,9 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	@Version
-//	private Long version;
+	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
+	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
@@ -55,18 +56,17 @@ public class Order {
 	@Column(nullable = false)
 	private LocalDateTime dateTime;
 
-//	@OneToMany
-//	@JoinColumn(name = "_id")
-//	private Set<OrderedItem> food = new HashSet<>();
+	@OneToMany
+	@JoinColumn(name = "_id")
+	private Set<OrderedItem> food = new HashSet<>();
 
-	//public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food) {
-	public Order(Long id, @NotNull Double price, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food, @NotNull LocalDateTime dateTime) {
+	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food, @NotNull LocalDateTime dateTime) {
 		this.id = id;
-		//this.version = version;
+		this.version = version;
 		this.price = price;
 		this.waiter = waiter;
 		this.restourantTable = table;
-		//this.food = food;
+		this.food = food;
 		this.dateTime = dateTime;
 	}
 
@@ -91,9 +91,9 @@ public class Order {
 		return restourantTable;
 	}
 
-//	public Set<OrderedItem> getFood() {
-//		return food;
-//	}
+	public Set<OrderedItem> getFood() {
+		return food;
+	}
 
 	public Order setPrice(Double price) {
 		this.price = price;
@@ -147,12 +147,12 @@ public class Order {
 		return this;
 	}
 
-//	public Order linkFood(OrderedItem _food) {
-//		if (_food != null) {
-//			getFood().add(_food);
-//		}
-//		return this;
-//	}
+	public Order linkFood(OrderedItem _food) {
+		if (_food != null) {
+			getFood().add(_food);
+		}
+		return this;
+	}
 
 	public Order unlinkWaiter() {
 		if (getWaiter() != null) {
@@ -170,12 +170,12 @@ public class Order {
 		return this;
 	}
 
-//	public Order unlinkFood(OrderedItem _food) {
-//		if (_food != null) {
-//			getFood().remove(_food);
-//		}
-//		return this;
-//	}
+	public Order unlinkFood(OrderedItem _food) {
+		if (_food != null) {
+			getFood().remove(_food);
+		}
+		return this;
+	}
 
 	public Order unlinkFood(Iterator<OrderedItem> it) {
 		it.remove();

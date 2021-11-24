@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kts.restaurant_application.model.Order;
 import kts.restaurant_application.model.RestourantTables;
 import kts.restaurant_application.model.Waiter;
+import kts.restaurant_application.services.ItemService;
 import kts.restaurant_application.services.OrderService;
 import kts.restaurant_application.services.TableService;
 import kts.restaurant_application.services.WaiterService;
@@ -39,12 +40,14 @@ public class OrderController {
     private final OrderService service;
     private final TableService tableService;
     private final WaiterService waiterService;
+    private final ItemService itemService;
 
     @Autowired
-    public OrderController(OrderService service, TableService t, WaiterService w) {
+    public OrderController(OrderService service, TableService t, WaiterService w, ItemService itemService) {
         this.service = service;
         this.tableService = t;
         this.waiterService = w;
+        this.itemService = itemService;
     }
 
     @GetMapping
@@ -62,6 +65,7 @@ public class OrderController {
 
         RestourantTables t = tableService.findOne(entity.getTable().getId());
         Waiter w = waiterService.findOne(entity.getWaiter().getId());
+        
         entity.setTable(t);
         entity.setWaiter(w);
         return service.save(entity);
@@ -69,6 +73,10 @@ public class OrderController {
 
     @PutMapping
     public Order update(@RequestBody Order entity){
+        RestourantTables t = tableService.findOne(entity.getTable().getId());
+        Waiter w = waiterService.findOne(entity.getWaiter().getId());
+        entity.setTable(t);
+        entity.setWaiter(w);
         return service.update(entity);
     }
 

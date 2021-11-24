@@ -1,9 +1,10 @@
 package kts.restaurant_application.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name = "_managers")

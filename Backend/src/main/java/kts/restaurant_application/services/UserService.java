@@ -7,6 +7,7 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Manager;
 import kts.restaurant_application.model.Staff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,8 +58,10 @@ public class UserService {
         return save(existingUser);
     }
 
-    public void delete(User entity) {
-        repository.delete(entity);
+    public User delete(User entity) {
+        User existingUser = findOne(entity.getId());
+        existingUser.setIsDeleted(true);
+        return save(existingUser);
     }
 
     public void delete(Long id) {

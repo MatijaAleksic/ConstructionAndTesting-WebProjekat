@@ -53,8 +53,10 @@ public class ItemService {
         return save(existingItem);
     }
 
-    public void delete(Item entity) {
-        repository.delete(entity);
+    public Item delete(Item entity) {
+        Item existingItem = findOne(entity.getId());
+        existingItem.setIsDeleted(true);
+        return save(existingItem);
     }
 
     public void delete(Long id) {

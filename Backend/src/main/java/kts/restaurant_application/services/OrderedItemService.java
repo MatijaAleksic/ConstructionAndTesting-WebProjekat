@@ -8,6 +8,7 @@ package kts.restaurant_application.services;
 
 
 import kts.restaurant_application.model.Drink;
+import kts.restaurant_application.model.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,14 +52,18 @@ public class OrderedItemService {
         existingOrderedItem.setDateTime(entity.getDateTime());
         existingOrderedItem.setNumber(entity.getNumber());
         existingOrderedItem.setStaff(entity.getStaff());
-        existingOrderedItem.setStatus(entity.getStatus());
+        existingOrderedItem.setState(entity.getState());
         existingOrderedItem.setNote(entity.getNote());
 
         return save(existingOrderedItem);
     }
 
     public void delete(OrderedItem entity) {
-        repository.delete(entity);
+        if(entity.getState() == State.ordered)
+        {
+            repository.delete(entity);
+        }
+
     }
 
     public void delete(Long id) {

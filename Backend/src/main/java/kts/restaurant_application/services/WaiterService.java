@@ -44,8 +44,10 @@ public class WaiterService {
         return repository.save(entity);
     }
 
-    public void delete(Waiter entity) {
-        repository.delete(entity);
+    public Waiter delete(Waiter entity) {
+        Waiter existingWaiter = findOne(entity.getId());
+        existingWaiter.setIsDeleted(true);
+        return save(existingWaiter);
     }
 
     public Waiter update(Waiter entity){

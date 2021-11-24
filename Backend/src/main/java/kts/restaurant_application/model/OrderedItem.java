@@ -35,7 +35,7 @@ public class OrderedItem {
 	@Enumerated(EnumType.STRING)
 	@NotNull
 	@Column(nullable = false)
-	private Status status;
+	private State state;
 
 	@NotNull
 	@Column(nullable = false)
@@ -63,10 +63,10 @@ public class OrderedItem {
 	}
 
 	//public OrderedItem(Long id, Long version, @NotNull State state, @NotNull Status status, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
-	public OrderedItem(Long id, @NotNull String note, @NotNull Status status, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
+	public OrderedItem(Long id, @NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
 		this.id = id;
 		//this.version = version;
-		this.status = status;
+		this.state = state;
 		this.number = number;
 		this.dateTime = dateTime;
 		this.item = item;
@@ -79,9 +79,6 @@ public class OrderedItem {
 	}
 
 
-	public Status getStatus() {
-		return status;
-	}
 
 	public Integer getNumber() {
 		return number;
@@ -99,10 +96,12 @@ public class OrderedItem {
 		return staff;
 	}
 
+	public State getState() {
+		return state;
+	}
 
-	public OrderedItem setStatus(Status status) {
-		this.status = status;
-		return this;
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	public OrderedItem setNumber(Integer number) {

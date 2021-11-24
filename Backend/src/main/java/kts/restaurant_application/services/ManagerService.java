@@ -58,8 +58,10 @@ public class ManagerService {
         return save(existingManager);
     }
 
-    public void delete(Manager entity) {
-        repository.delete(entity);
+    public Manager delete(Manager entity) {
+        Manager existingManager = findOne(entity.getId());
+        existingManager.setIsDeleted(true);
+        return save(existingManager);
     }
 
     public void delete(Long id) {

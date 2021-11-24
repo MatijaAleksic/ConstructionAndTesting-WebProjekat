@@ -9,6 +9,7 @@ package kts.restaurant_application.services;
 
 import kts.restaurant_application.model.Barman;
 import kts.restaurant_application.model.Cook;
+import kts.restaurant_application.model.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +59,11 @@ public class MainCookService {
         return save(existingMainCook);
     }
 
-    public void delete(MainCook entity) {
-        repository.delete(entity);
+    public MainCook delete(MainCook entity) {
+        MainCook existingMainCook = findOne(entity.getId());
+        existingMainCook.setIsDeleted(true);
+        return save(existingMainCook);
+
     }
 
     public void delete(Long id) {

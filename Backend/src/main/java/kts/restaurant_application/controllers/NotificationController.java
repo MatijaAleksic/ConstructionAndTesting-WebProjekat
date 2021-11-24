@@ -32,7 +32,7 @@ public class NotificationController {
     }
 
     @GetMapping()
-    public Iterable<Notification> findAll(@RequestBody String type) {
+    public Iterable<Notification> findAll(@RequestParam String type) {
         return service.findAll(type);
     }
 

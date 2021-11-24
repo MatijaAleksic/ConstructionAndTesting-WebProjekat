@@ -30,7 +30,6 @@ public class NotificationService {
         Iterable<Notification> allNotifications = repository.findAll();
 
         List<Notification> returnNotifications = new ArrayList<>();
-
         for(Notification notification : allNotifications){
             if(notification.getUserType().toString().equals(type)){
                 returnNotifications.add(notification);

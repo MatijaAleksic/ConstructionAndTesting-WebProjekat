@@ -45,8 +45,7 @@ public class OrderedItem {
 	@Column(nullable = false)
 	private Integer number;
 
-	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer price;
 
 	@NotNull

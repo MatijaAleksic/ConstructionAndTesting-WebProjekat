@@ -1,13 +1,16 @@
 package kts.restaurant_application.model;
 
-import kts.restaurant_application.model.Item;
-import kts.restaurant_application.model.Manager;
-import kts.restaurant_application.model.Staff;
-import kts.restaurant_application.model.State;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "_notifications")

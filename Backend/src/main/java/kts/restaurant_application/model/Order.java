@@ -197,4 +197,8 @@ public class Order {
 		return 152;
 	}
 
+	public void setFood(Set<OrderedItem> food) {
+		this.food = food;
+	}
+
 }

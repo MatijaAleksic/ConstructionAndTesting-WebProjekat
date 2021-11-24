@@ -11,6 +11,8 @@ package kts.restaurant_application.controllers;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -29,10 +31,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kts.restaurant_application.model.DateDTO;
 import kts.restaurant_application.model.Order;
+import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.RestourantTables;
 import kts.restaurant_application.model.Waiter;
-import kts.restaurant_application.services.ItemService;
 import kts.restaurant_application.services.OrderService;
+import kts.restaurant_application.services.OrderedItemService;
 import kts.restaurant_application.services.TableService;
 import kts.restaurant_application.services.WaiterService;
 
@@ -45,14 +48,14 @@ public class OrderController {
     private final OrderService service;
     private final TableService tableService;
     private final WaiterService waiterService;
-    private final ItemService itemService;
+    private final OrderedItemService orderedItemService;
 
     @Autowired
-    public OrderController(OrderService service, TableService t, WaiterService w, ItemService itemService) {
+    public OrderController(OrderService service, TableService t, WaiterService w, OrderedItemService itemService) {
         this.service = service;
         this.tableService = t;
         this.waiterService = w;
-        this.itemService = itemService;
+        this.orderedItemService = itemService;
     }
 
     @GetMapping
@@ -70,7 +73,13 @@ public class OrderController {
 
         RestourantTables t = tableService.findOne(entity.getTable().getId());
         Waiter w = waiterService.findOne(entity.getWaiter().getId());
-        
+        Set<OrderedItem> food = new HashSet<OrderedItem>();
+
+        for(OrderedItem item : entity.getFood()){
+            OrderedItem foundItem = orderedItemService.findOne(item.getId());
+            food.add(foundItem);
+        }
+        entity.setFood(food);
         entity.setTable(t);
         entity.setWaiter(w);
         return service.save(entity);

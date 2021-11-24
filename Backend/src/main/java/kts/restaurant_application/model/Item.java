@@ -66,8 +66,7 @@ public abstract class Item {
 	private String name;
 
 	@Enumerated(EnumType.STRING)
-	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Status status;
 
 	public Long getId(){

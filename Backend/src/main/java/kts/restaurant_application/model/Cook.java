@@ -1,19 +1,34 @@
+
 package kts.restaurant_application.model;
 
-
-import java.util.Date;
-
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name="cook_table")
+@Table(name = "_cooks")
+@PrimaryKeyJoinColumn(name = "staff")
 public class Cook extends Staff {
-    public Cook(Long id, String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, Boolean isDeleted) {
-        super(id, firstName, lastName, username, password, dateOfBirth, salary, isDeleted);
-    }
 
-    public Cook() {
-        super();
-    }
+	public Cook() {
+	}
+
+	public Cook(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,
+				boolean deleted, Set<OrderedItem> processed) {
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) return true;
+		if (getId() == null) return false;
+		return obj instanceof Cook && (getId().equals(((Cook) obj).getId()));
+	}
+
+	@Override
+	public int hashCode() {
+		return 611;
+	}
+
 }

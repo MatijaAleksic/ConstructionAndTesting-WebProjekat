@@ -1,25 +1,34 @@
 package kts.restaurant_application.model;
 
-
-
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 @Entity
-@Table(name="manager_table")
+@Table(name = "_managers")
+@PrimaryKeyJoinColumn(name = "user")
+
 public class Manager extends User {
 
-    public Manager(Long id, String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, Boolean isDeleted) {
-        super(id, firstName, lastName, username, password, dateOfBirth, salary, isDeleted);
-    }
+	public Manager(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,
+				   boolean deleted){
+	}
 
-    public Manager() {
+	public Manager() {
+	}
 
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) return true;
+		if (getId() == null) return false;
+		return obj instanceof Manager && (getId().equals(((Manager) obj).getId()));
+	}
 
-    public Manager(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, boolean deleted) {
-        super(firstName, lastName, username, password, dateOfBirth, salary, deleted);
-    }
+	@Override
+	public int hashCode() {
+		return 18;
+	}
+
+
 }

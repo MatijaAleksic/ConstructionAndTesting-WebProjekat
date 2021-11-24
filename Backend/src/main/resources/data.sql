@@ -7,15 +7,9 @@ INSERT INTO _admins (user) VALUES (2);
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('milanmilanovic@maildrop.cc','milanmilanovic', false, "2012-12-12", "Pera", "Peric", 20000);
 INSERT INTO _admins (user) VALUES (3);
 
-
-
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('savosavic@maildrop.cc','MarkoMarkovic12', false, "2012-12-12", "Pera", "Peric", 20000);
 INSERT INTO _staff (user) VALUES (4);
 INSERT INTO _barmen (staff) VALUES (4);
-
-INSERT INTO food_table (id, price, name,is_deleted) VALUES (101, 1234,'Snicla' ,false);
-INSERT INTO food_table (id, price, name,is_deleted) VALUES (102, 3214, 'Supa' ,false);
-INSERT INTO food_table (id, price, name,is_deleted) VALUES (103, 5234,'Torta', false);
 
 
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('pavlepavlovic@maildrop.cc','peraperic', false, "2012-12-12", "Pera", "Peric", 20000);

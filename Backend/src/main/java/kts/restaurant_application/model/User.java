@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -61,6 +63,7 @@ public abstract class User {
 
 	@NotNull
 	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
 	@NotNull

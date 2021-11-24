@@ -1,7 +1,7 @@
 package kts.restaurant_application.model;
 
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -54,13 +56,14 @@ public class Order {
 
 	@NotNull
 	@Column(nullable = false)
-	private LocalDateTime dateTime;
+	@Temporal(TemporalType.DATE)
+	private Date dateTime;
 
 	@OneToMany
 	@JoinColumn(name = "_id")
 	private Set<OrderedItem> food = new HashSet<>();
 
-	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food, @NotNull LocalDateTime dateTime) {
+	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food, @NotNull Date dateTime) {
 		this.id = id;
 		this.version = version;
 		this.price = price;
@@ -119,11 +122,11 @@ public class Order {
 		this.restourantTable = restourantTable;
 	}
 
-	public LocalDateTime getDateTime() {
+	public Date getDateTime() {
 		return dateTime;
 	}
 
-	public void setDateTime(LocalDateTime dateTime) {
+	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
 

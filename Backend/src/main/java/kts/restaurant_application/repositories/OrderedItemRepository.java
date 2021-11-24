@@ -6,6 +6,9 @@
 
 package kts.restaurant_application.repositories;
 
+import java.util.Collection;
+import java.util.Date;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +16,9 @@ import kts.restaurant_application.model.OrderedItem;
 
 @Repository
 public interface OrderedItemRepository extends CrudRepository<OrderedItem, Long> {
+
+    Collection<OrderedItem> findAllByItemId(Long id);
+    Collection<OrderedItem> findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(Date dateFrom, Date dateTo);
+
 
 }

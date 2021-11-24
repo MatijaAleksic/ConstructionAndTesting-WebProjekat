@@ -8,6 +8,10 @@ package kts.restaurant_application.controllers;
 
 
 
+
+import java.util.Collection;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kts.restaurant_application.model.DateDTO;
 import kts.restaurant_application.model.Order;
 import kts.restaurant_application.model.RestourantTables;
 import kts.restaurant_application.model.Waiter;
@@ -78,6 +83,16 @@ public class OrderController {
         entity.setTable(t);
         entity.setWaiter(w);
         return service.update(entity);
+    }
+
+    @GetMapping("getOrdersByDate")
+    public Collection<Order> getOrdersByDate(@RequestBody DateDTO data){
+        System.out.println("AAAAAAAAAAA");
+        Date dateFrom = data.dateFrom;
+        Date dateTo = data.dateTo;
+
+        return service.getOrdersByDate(dateFrom, dateTo);
+        
     }
 
     @DeleteMapping("/{id}")

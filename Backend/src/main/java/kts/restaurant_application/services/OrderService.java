@@ -7,6 +7,9 @@
 package kts.restaurant_application.services;
 
 
+import java.util.Collection;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +63,9 @@ public class OrderService {
 
     public void delete(Long id) {
         delete(findOne(id));
+    }
+
+    public Collection<Order> getOrdersByDate(Date dateFrom, Date dateTo) {
+        return repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
     }
 }

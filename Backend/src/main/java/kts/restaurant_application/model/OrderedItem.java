@@ -1,7 +1,8 @@
 package kts.restaurant_application.model;
 
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -44,7 +47,12 @@ public class OrderedItem {
 
 	@NotNull
 	@Column(nullable = false)
-	private LocalDateTime dateTime;
+	private Integer price;
+
+	@NotNull
+	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date dateTime;
 
 	@NotNull
 	@OneToOne
@@ -63,7 +71,7 @@ public class OrderedItem {
 	public OrderedItem() {
 	}
 
-	public OrderedItem(Long id, Long version, @NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull LocalDateTime dateTime, @NotNull Item item, @NotNull Staff staff) {
+	public OrderedItem(Long id, Long version, @NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull Date dateTime, @NotNull Item item, @NotNull Staff staff, @NotNull Integer price) {
 		this.id = id;
 		this.version = version;
 		this.state = state;
@@ -72,6 +80,7 @@ public class OrderedItem {
 		this.item = item;
 		this.staff = staff;
 		this.note = note;
+		this.price = price;
 	}
 
 	public Long getId(){
@@ -84,7 +93,7 @@ public class OrderedItem {
 		return number;
 	}
 
-	public LocalDateTime getDateTime() {
+	public Date getDateTime() {
 		return dateTime;
 	}
 
@@ -109,7 +118,7 @@ public class OrderedItem {
 		return this;
 	}
 
-	public OrderedItem setDateTime(LocalDateTime dateTime) {
+	public OrderedItem setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 		return this;
 	}

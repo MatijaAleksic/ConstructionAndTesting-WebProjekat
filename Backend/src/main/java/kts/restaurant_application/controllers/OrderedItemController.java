@@ -8,6 +8,9 @@
 package kts.restaurant_application.controllers;
 
 
+import java.util.Collection;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kts.restaurant_application.model.DateDTO;
 import kts.restaurant_application.model.Item;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.Staff;
@@ -81,4 +85,24 @@ public class OrderedItemController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+
+
+    @GetMapping("getOrderedItemsByItem")
+    public Collection<OrderedItem> getOrderedItemsByItem(@RequestBody Long itemId){
+        
+
+        return service.getOrderedItemsByItem(itemId);
+        
+    }
+
+    @GetMapping("getOrderedItemsByDate")
+    public Collection<OrderedItem> getOrdersByDate(@RequestBody DateDTO data){
+        System.out.println("AAAAAAAAAAA");
+        Date dateFrom = data.dateFrom;
+        Date dateTo = data.dateTo;
+
+        return service.getOrderedItemsByDate(dateFrom, dateTo);
+        
+    }
+
 }

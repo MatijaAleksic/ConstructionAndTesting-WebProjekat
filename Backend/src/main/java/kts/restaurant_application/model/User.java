@@ -16,17 +16,16 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import io.swagger.annotations.ApiModel;
 
 @Entity
 @Table(name = "_users")
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(
-		use = JsonTypeInfo.Id.NAME,
-		property = "type"
-)
+// @JsonTypeInfo(
+// 		use = JsonTypeInfo.Id.NAME,
+// 		property = "type"
+// )
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Manager.class, name = "manager"),
 		@JsonSubTypes.Type(value = Waiter.class, name = "waiter"),

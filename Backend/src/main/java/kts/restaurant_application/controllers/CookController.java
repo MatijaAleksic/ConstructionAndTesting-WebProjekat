@@ -10,12 +10,16 @@ package kts.restaurant_application.controllers;
 
 import javax.validation.Valid;
 
-import kts.restaurant_application.model.Admin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import kts.restaurant_application.model.Cook;
 import kts.restaurant_application.services.CookService;
@@ -48,12 +52,12 @@ public class CookController {
         return service.save(entity);
     }
 
-    @PutMapping
+    @PostMapping("/update")
     public Cook update(@RequestBody Cook entity){
         return service.update(entity);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

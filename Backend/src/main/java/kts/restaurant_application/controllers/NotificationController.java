@@ -1,20 +1,21 @@
 package kts.restaurant_application.controllers;
 
-import kts.restaurant_application.model.Notification;
-import kts.restaurant_application.model.Order;
-import kts.restaurant_application.model.RestourantTables;
-import kts.restaurant_application.model.Waiter;
-import kts.restaurant_application.services.NotificationService;
-import kts.restaurant_application.services.OrderService;
-import kts.restaurant_application.services.TableService;
-import kts.restaurant_application.services.WaiterService;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import kts.restaurant_application.model.Notification;
+import kts.restaurant_application.services.NotificationService;
 
 @Transactional
 @RestController
@@ -47,7 +48,7 @@ public class NotificationController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

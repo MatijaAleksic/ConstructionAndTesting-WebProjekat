@@ -1,4 +1,4 @@
-package com.kts.cultural_content;
+package kts.restaurant_application;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiModel;
 		@JsonSubTypes.Type(value = Barman.class, name = "barman")
 })
 @ApiModel(description = "")
-public abstract class User {
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -174,6 +174,10 @@ public abstract class User {
 
 	public void setVersion(Long version) {
 		this.version = version;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

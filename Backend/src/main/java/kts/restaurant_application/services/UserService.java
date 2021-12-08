@@ -7,8 +7,6 @@
 package kts.restaurant_application.services;
 
 
-import kts.restaurant_application.model.Manager;
-import kts.restaurant_application.model.Staff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +52,7 @@ public class UserService {
         existingUser.setDateOfBirth(entity.getDateOfBirth());
         existingUser.setSalary(entity.getSalary());
         existingUser.setIsDeleted(entity.getIsDeleted());
+        existingUser.setUsername(entity.getUsername());
 
         return save(existingUser);
     }
@@ -64,7 +63,7 @@ public class UserService {
         return save(existingUser);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public User delete(Long id) {
+        return delete(findOne(id));
     }
 }

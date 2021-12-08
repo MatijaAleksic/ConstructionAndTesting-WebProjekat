@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiModel;
 		@JsonSubTypes.Type(value = Drink.class, name = "drink")
 })
 @ApiModel(description = "")
-public abstract class Item {
+public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

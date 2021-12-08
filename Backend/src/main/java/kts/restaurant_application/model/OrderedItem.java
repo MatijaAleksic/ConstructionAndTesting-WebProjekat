@@ -180,4 +180,12 @@ public class OrderedItem {
 		return 214;
 	}
 
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
 }

@@ -154,4 +154,12 @@ public abstract class Item {
 		return 293;
 	}
 
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 }

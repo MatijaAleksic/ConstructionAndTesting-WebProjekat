@@ -69,6 +69,7 @@ public class OrderedItemController {
         Staff staff = staffService.findOne(entity.getStaff().getId());
         entity.setItem(item);
         entity.setStaff(staff);
+        
         return service.save(entity);
     }
 

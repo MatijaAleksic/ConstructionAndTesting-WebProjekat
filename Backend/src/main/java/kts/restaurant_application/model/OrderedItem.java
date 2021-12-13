@@ -82,6 +82,14 @@ public class OrderedItem {
 		this.price = price;
 	}
 
+	public OrderedItem(@NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull Date dateTime, @NotNull Integer price) {
+		this.state = state;
+		this.number = number;
+		this.dateTime = dateTime;
+		this.note = note;
+		this.price = price;
+	}
+
 	public Long getId(){
 		return id;
 	}

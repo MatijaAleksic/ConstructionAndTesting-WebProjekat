@@ -89,6 +89,16 @@ public class User {
 		this.isDeleted = isDeleted;
 	}
 
+	public User(@NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password, @NotNull Date dateOfBirth, @NotNull Long salary, @NotNull Boolean isDeleted) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.dateOfBirth = dateOfBirth;
+		this.salary = salary;
+		this.isDeleted = isDeleted;
+	}
+
 	public Long getId(){
 		return id;
 	}

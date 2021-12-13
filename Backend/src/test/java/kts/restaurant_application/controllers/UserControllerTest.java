@@ -46,7 +46,8 @@ public class UserControllerTest {
 				"/users/delete/1", 1, User.class);
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
       User user = responseEntity.getBody();
-		assertEquals(user.getIsDeleted(), true);
+        assert user != null;
+        assertEquals(user.getIsDeleted(), true);
       responseEntity = restTemplate.postForEntity(
 				"/users/delete/999", 999, User.class);
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
@@ -62,7 +63,8 @@ public class UserControllerTest {
         User[] categories = responseEntity.getBody();
 
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-		assertEquals(Constants.NUM_OF_USERS, categories.length);
+        assert categories != null;
+        assertEquals(Constants.NUM_OF_USERS, categories.length);
 		assertEquals(Constants.ADMIN_USERNAME, categories[0].getUsername());
     }
 
@@ -80,7 +82,7 @@ public class UserControllerTest {
 
     @Test
     public void testUpdate() {
-        User newAdmin = new User(1L, 0L, "a", "a", "markoMarkovic@maildrop.cc", "123", new Date(), 100L, false);
+        User newAdmin = new User(1L, 0L, "ime1", "a", "markoMarkovic@maildrop.cc", "123", new Date(), 100L, false);
 		
 		ResponseEntity<User> responseEntity = restTemplate.postForEntity(
 				"/users/update", newAdmin, User.class);
@@ -91,21 +93,21 @@ public class UserControllerTest {
         assert response != null;
         assertEquals(newAdmin.getUsername(), response.getUsername());
 
-//        User newAdmin2 = new User(1L, 0L, "a", "a", "uniqueUsername1234", "123", new Date(), 100L, false);
-//        //assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-//
-//        responseEntity = restTemplate.postForEntity(
-//				"/users/update", newAdmin2, User.class);
-//        User response2 = responseEntity.getBody();
-//		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-//
-//        assert response2 != null;
-//        assertNotEquals(response2.getUsername(), response.getUsername());
-//
-//        User newAdmin3 = new User(50L, 0L, "a", "a", "uniqueUsername1234", "123", new Date(), 100L, false);
-//        responseEntity = restTemplate.postForEntity(
-//				"/users/update", newAdmin3, User.class);
-//		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+        User newAdmin2 = new User(1L, 0L, "ime2", "a", "markoMarkovic@maildrop.cc", "123", new Date(), 100L, false);
+        //assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+
+        responseEntity = restTemplate.postForEntity(
+				"/users/update", newAdmin2, User.class);
+        User response2 = responseEntity.getBody();
+		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+
+        assert response2 != null;
+        assertNotEquals(response2.getFirstName(), response.getFirstName());
+
+        User newAdmin3 = new User(50L, 0L, "a", "a", "uniqueUsername1234", "123", new Date(), 100L, false);
+        responseEntity = restTemplate.postForEntity(
+				"/users/update", newAdmin3, User.class);
+		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 
     
     }

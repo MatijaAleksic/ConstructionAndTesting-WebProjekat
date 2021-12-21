@@ -44,7 +44,7 @@ public class MainCookServiceIntegrationTest {
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testSave(){
         MainCook mainCook = new MainCook(NEW_MAIN_COOK_FIRSTNAME, NEW_MAIN_COOK_LASTNAME, NEW_MAIN_COOK_USERNAME,
                 NEW_MAIN_COOK_PASSWORD, NEW_MAIN_COOK_DATE_OF_BIRTH, NEW_MAIN_COOK_SALARY, NEW_MAIN_COOK_IS_DELETED);
 
@@ -54,13 +54,13 @@ public class MainCookServiceIntegrationTest {
     }
 
     @Test
-    public void testDelete1() throws Exception {
+    public void testDelete1() {
         MainCook mainCook = mainCookService.delete(DB_MAIN_COOK_ID);
         assertEquals(true, mainCook.getIsDeleted());
     }
 
     @Test
-    public void testDelete2() throws Exception {
+    public void testDelete2(){
         MainCook mainCook = new MainCook(DB_MAIN_COOK_FIRSTNAME, DB_MAIN_COOK_LASTNAME, DB_MAIN_COOK_USERNAME, DB_MAIN_COOK_PASSWORD, DB_MAIN_COOK_DATE_OF_BIRTH, DB_MAIN_COOK_SALARY, DB_MAIN_COOK_IS_DELETED);
         mainCook.setId(DB_MAIN_COOK_ID);
 

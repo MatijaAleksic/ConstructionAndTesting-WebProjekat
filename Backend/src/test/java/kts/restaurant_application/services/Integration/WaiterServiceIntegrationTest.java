@@ -45,7 +45,7 @@ public class WaiterServiceIntegrationTest {
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testSave(){
         Waiter waiter = new Waiter(NEW_WAITER_FIRSTNAME, NEW_WAITER_LASTNAME, NEW_WAITER_USERNAME,
                 NEW_WAITER_PASSWORD, NEW_WAITER_DATE_OF_BIRTH, NEW_WAITER_SALARY, NEW_WAITER_IS_DELETED);
 
@@ -55,13 +55,13 @@ public class WaiterServiceIntegrationTest {
     }
 
     @Test
-    public void testDelete1() throws Exception {
+    public void testDelete1(){
         Waiter waiter = WaiterService.delete(DB_WAITER_ID);
         assertEquals(true, waiter.getIsDeleted());
     }
 
     @Test
-    public void testDelete2() throws Exception {
+    public void testDelete2(){
         Waiter waiter = new Waiter(DB_WAITER_FIRSTNAME, DB_WAITER_LASTNAME, DB_WAITER_USERNAME, DB_WAITER_PASSWORD, DB_WAITER_DATE_OF_BIRTH, DB_WAITER_SALARY, DB_WAITER_IS_DELETED);
         waiter.setId(DB_WAITER_ID);
 

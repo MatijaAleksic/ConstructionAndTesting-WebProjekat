@@ -1,4 +1,4 @@
-INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('markoMarkovic@maildrop.cc','MarkoMarkovic12', false, '012-12-12', 'Pera', 'Peric', 20000);
+INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('markoMarkovic@maildrop.cc','MarkoMarkovic12', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _admins (user) VALUES (1);
 
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('peraperic@maildrop.cc','peraperic', false, '2012-12-11', 'Marko', 'Peric', 20000);

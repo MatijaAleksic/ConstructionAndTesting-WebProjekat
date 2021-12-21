@@ -44,7 +44,7 @@ public class ManagerServiceIntegrationTest {
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testSave(){
         Manager manager = new Manager(NEW_MANAGER_FIRSTNAME, NEW_MANAGER_LASTNAME, NEW_MANAGER_USERNAME,
                 NEW_MANAGER_PASSWORD, NEW_MANAGER_DATE_OF_BIRTH, NEW_MANAGER_SALARY, NEW_MANAGER_IS_DELETED);
 
@@ -54,13 +54,13 @@ public class ManagerServiceIntegrationTest {
     }
 
     @Test
-    public void testDelete1() throws Exception {
+    public void testDelete1(){
         Manager manager = managerService.delete(DB_MANAGER_ID);
         assertEquals(true, manager.getIsDeleted());
     }
 
     @Test
-    public void testDelete2() throws Exception {
+    public void testDelete2(){
         Manager manager = new Manager(DB_MANAGER_FIRSTNAME, DB_MANAGER_LASTNAME, DB_MANAGER_USERNAME, DB_MANAGER_PASSWORD, DB_MANAGER_DATE_OF_BIRTH, DB_MANAGER_SALARY, DB_MANAGER_IS_DELETED);
         manager.setId(DB_MANAGER_ID);
 

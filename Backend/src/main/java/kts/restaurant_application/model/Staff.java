@@ -32,6 +32,11 @@ public abstract class Staff extends User {
 		super(firstName,lastName,username,password,dateOfBirth,salary,deleted);
 	}
 
+	public Staff(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,boolean deleted, Set<OrderedItem> processed) {
+		super(firstName,lastName,username,password,dateOfBirth,salary,deleted);
+		this.processed = processed;
+	}
+
 	public Staff(Set<OrderedItem> processed) {
 		this.processed = processed;
 	}

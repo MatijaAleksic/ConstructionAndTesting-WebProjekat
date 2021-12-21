@@ -1,9 +1,5 @@
 package kts.restaurant_application.constants;
 
-import javax.validation.constraints.NotNull;
-import java.util.Calendar;
-import java.util.Date;
-
 public class ItemConstants {
 
     public static final int FIND_ALL_NUMBER_OF_ITEMS= 6;

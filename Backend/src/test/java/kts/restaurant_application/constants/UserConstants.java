@@ -22,7 +22,7 @@ public class UserConstants {
     public static final Long DB_USER_SALARY = 20000L;
     public static final Boolean DB_USER_IS_DELETED = false;
 
-    public static final int FIND_ALL_NUMBER_OF_ITEMS = 13;
+    public static final int FIND_ALL_NUMBER_OF_ITEMS = 1;
 
 
     public static final String NEW_USER_FIRSTNAME ="asdf";

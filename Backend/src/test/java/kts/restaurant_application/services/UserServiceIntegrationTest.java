@@ -5,15 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static kts.restaurant_application.constants.UserConstants.*;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -54,11 +49,17 @@ public class UserServiceIntegrationTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
-        userService.delete(DB_USER_ID_DELETE);
+    public void testDelete1() throws Exception {
+        User user = userService.delete(DB_USER_ID_DELETE);
+        assertEquals(true, user.getIsDeleted());
+    }
 
-//        User savedUser = new User(NEW_USER_FIRSTNAME, NEW_USER_LASTNAME, NEW_USER_USERNAME,
-//                NEW_USER_PASSWORD, NEW_USER_DATE_OF_BIRTH, NEW_USER_SALARY, NEW_USER_IS_DELETED);
-//        savedUser.setId(DB_USER_ID_DELETE);
+    @Test
+    public void testDelete2() throws Exception {
+        User user = new User(DB_USER_FIRSTNAME, DB_USER_LASTNAME, DB_USER_USERNAME, DB_USER_PASSWORD, DB_USER_DATE_OF_BIRTH, DB_USER_SALARY, DB_USER_IS_DELETED);
+        user.setId(2L);
+
+        User tested_user = userService.delete(user);
+        assertEquals(false, user.getIsDeleted());
     }
 }

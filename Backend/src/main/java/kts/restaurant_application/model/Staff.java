@@ -1,5 +1,6 @@
 package kts.restaurant_application.model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -25,6 +26,10 @@ public abstract class Staff extends User {
 	}
 
 	public Staff() {
+	}
+
+	public Staff(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,boolean deleted) {
+		super(firstName,lastName,username,password,dateOfBirth,salary,deleted);
 	}
 
 	public Staff(Set<OrderedItem> processed) {

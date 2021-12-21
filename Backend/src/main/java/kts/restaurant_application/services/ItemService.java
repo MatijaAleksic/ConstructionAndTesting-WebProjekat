@@ -59,7 +59,7 @@ public class ItemService {
         return save(existingItem);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Item delete(Long id) {
+        return delete(findOne(id));
     }
 }

@@ -61,7 +61,7 @@ public class Item {
 	private Boolean isDeleted;
 
 	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String name;
 
 	@Enumerated(EnumType.STRING)
@@ -108,6 +108,15 @@ public class Item {
 		this.name = name;
 	}
 
+	public Item(@NotNull Double price, @NotNull Byte priority, @NotNull String subcategory, @NotNull String description, @NotNull Boolean isDeleted, @NotNull String name) {
+		this.price = price;
+		this.priority = priority;
+		this.subcategory = subcategory;
+		this.description = description;
+		this.isDeleted = isDeleted;
+		this.name = name;
+	}
+
 	public Item() {
 	}
 
@@ -139,6 +148,26 @@ public class Item {
 	public Item setName(String name) {
 		this.name = name;
 		return this;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
 	}
 
 	@Override

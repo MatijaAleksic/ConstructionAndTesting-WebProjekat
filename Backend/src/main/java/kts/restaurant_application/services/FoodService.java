@@ -67,7 +67,7 @@ public class FoodService {
 
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Food delete(Long id) {
+        return delete(findOne(id));
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.constraints.NotNull;
 
 import static kts.restaurant_application.constants.ItemConstants.*;
 import static org.junit.Assert.assertEquals;

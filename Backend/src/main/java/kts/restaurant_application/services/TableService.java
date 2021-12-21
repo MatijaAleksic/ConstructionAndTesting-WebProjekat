@@ -7,6 +7,7 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Food;
 import kts.restaurant_application.model.OrderedItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,11 +58,13 @@ public class TableService {
         return save(existingRestourantTables);
     }
 
-    public void delete(RestourantTables entity) {
-        repository.delete(entity);
+    public RestourantTables delete(RestourantTables entity) {
+        RestourantTables existingTable = findOne(entity.getId());
+        existingTable.setIsDeleted(true);
+        return save(existingTable);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public RestourantTables delete(Long id) {
+        return delete(findOne(id));
     }
 }

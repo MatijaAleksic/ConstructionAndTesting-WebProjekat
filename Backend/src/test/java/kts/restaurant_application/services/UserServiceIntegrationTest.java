@@ -1,5 +1,6 @@
 package kts.restaurant_application.services;
 
+import kts.restaurant_application.model.MainCook;
 import kts.restaurant_application.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.server.ResponseStatusException;
 
 import static kts.restaurant_application.constants.UserConstants.*;
 
@@ -31,6 +33,11 @@ public class UserServiceIntegrationTest {
         assertEquals(FIND_ALL_NUMBER_OF_USERS, count);
     }
 
+
+    @Test(expected = ResponseStatusException.class)
+    public void testFindOneThrowsResponseStatusException() {
+        userService.findOne(DB_WRONG_USER_ID);
+    }
 
     @Test
     public void testFindOne() {

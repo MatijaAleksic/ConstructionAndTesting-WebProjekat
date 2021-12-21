@@ -8,6 +8,7 @@ public class MainCookConstants {
     public static final int FIND_ALL_NUMBER_OF_MAIN_COOKS= 2;
 
     public static final Long DB_MAIN_COOK_ID= 8L;
+    public static final Long DB_WRONG_MAIN_COOK_ID= 100L;
 
     public static final String DB_MAIN_COOK_FIRSTNAME ="Pera";
     public static final String DB_MAIN_COOK_LASTNAME ="Peric";
@@ -16,9 +17,6 @@ public class MainCookConstants {
     public static final Date DB_MAIN_COOK_DATE_OF_BIRTH = new Date(2012, Calendar.DECEMBER, 12);
     public static final Long DB_MAIN_COOK_SALARY = 20000L;
     public static final Boolean DB_MAIN_COOK_IS_DELETED = false;
-
-    public static final int FIND_ALL_NUMBER_OF_ITEMS = 1;
-
 
 
 

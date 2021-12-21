@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.Assert.assertEquals;
 import static kts.restaurant_application.constants.MainCookConstants.*;
@@ -30,6 +31,10 @@ public class MainCookServiceIntegrationTest {
         assertEquals(FIND_ALL_NUMBER_OF_MAIN_COOKS, count);
     }
 
+    @Test(expected = ResponseStatusException.class)
+    public void testFindOneThrowsResponseStatusException() {
+        mainCookService.findOne(DB_WRONG_MAIN_COOK_ID);
+    }
 
     @Test
     public void testFindOne() {

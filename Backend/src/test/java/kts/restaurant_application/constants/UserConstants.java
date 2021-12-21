@@ -12,6 +12,7 @@ public class UserConstants {
     public static final int FIND_ALL_NUMBER_OF_USERS= 13;
 
     public static final Long DB_USER_ID= 1L;
+    public static final Long DB_WRONG_USER_ID= 100L;
     public static final Long DB_USER_ID_DELETE= 2L;
 
     public static final String DB_USER_FIRSTNAME ="Marko";

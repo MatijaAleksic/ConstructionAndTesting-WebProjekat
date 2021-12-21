@@ -1,6 +1,7 @@
-package kts.restaurant_application.services;
+package kts.restaurant_application.services.Integration;
 
 import kts.restaurant_application.model.MainCook;
+import kts.restaurant_application.services.MainCookService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,6 @@ public class MainCookServiceIntegrationTest {
         mainCook.setId(DB_MAIN_COOK_ID);
 
         MainCook tested_main_cook = mainCookService.delete(mainCook);
-        assertEquals(false, mainCook.getIsDeleted());
+        assertEquals(true, tested_main_cook.getIsDeleted());
     }
 }

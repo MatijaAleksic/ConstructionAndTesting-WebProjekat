@@ -1,7 +1,8 @@
-package kts.restaurant_application.services;
+package kts.restaurant_application.services.Integration;
 
 import kts.restaurant_application.model.MainCook;
 import kts.restaurant_application.model.User;
+import kts.restaurant_application.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,6 @@ public class UserServiceIntegrationTest {
         user.setId(2L);
 
         User tested_user = userService.delete(user);
-        assertEquals(false, user.getIsDeleted());
+        assertEquals(true, tested_user.getIsDeleted());
     }
 }

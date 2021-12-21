@@ -7,8 +7,6 @@
 package kts.restaurant_application.services;
 
 
-import kts.restaurant_application.model.Barman;
-import kts.restaurant_application.model.MainCook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +62,7 @@ public class ManagerService {
         return save(existingManager);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Manager delete(Long id) {
+        return delete(findOne(id));
     }
 }

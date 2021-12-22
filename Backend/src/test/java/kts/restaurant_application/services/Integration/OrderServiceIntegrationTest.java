@@ -89,7 +89,7 @@ public class OrderServiceIntegrationTest {
         waiter.setId(DB_WAITER_ID);
 
         Order item = new Order(DB_ORDER_PRICE, DB_ORDER_NOTE, waiter, restorantTables, DB_ORDER_DATETIME);
-        item.setId(DB_ORDER_ID);
+        item.setId(DB_ORDER_ID + 1);
 
         boolean flag = orderService.delete(item);
         assertTrue(flag);

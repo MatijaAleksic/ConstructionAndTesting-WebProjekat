@@ -63,7 +63,7 @@ public class ItemServiceIntegrationTest {
     @Test
     public void testDelete2(){
         Item item = new Item(DB_ITEM_PRICE, DB_ITEM_PRIPRITY, DB_ITEM_SUBCATEGORY, DB_ITEM_DESCRIPTION, DB_ITEM_IS_DELETED, DB_ITEM_NAME);
-        item.setId(DB_ITEM_ID);
+        item.setId(DB_ITEM_ID + 1);
 
         Item tested_ITEM = ItemService.delete(item);
         assertEquals(true, tested_ITEM.getIsDeleted());

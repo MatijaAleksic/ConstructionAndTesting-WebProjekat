@@ -123,7 +123,7 @@ public class NotificationServiceIntegrationTest {
     @Test
     public void testDelete2(){
         Notification Notification = new Notification(DB_NOTIFICATION_TEXT, DB_NOTIFICATION_DATETIME, DB_NOTIFICATION_USER_TYPE);
-        Notification.setId(DB_NOTIFICATION_ID);
+        Notification.setId(DB_NOTIFICATION_ID + 1);
 
         boolean flag = notificationService.delete(Notification);
         assertTrue(flag);

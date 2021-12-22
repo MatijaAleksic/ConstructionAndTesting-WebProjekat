@@ -58,7 +58,7 @@ public class ItemController {
     }
 
     @PostMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
+    public Item delete(@PathVariable Long id) {
+        return service.delete(id);
     }
 }

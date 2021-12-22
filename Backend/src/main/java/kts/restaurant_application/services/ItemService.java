@@ -1,6 +1,7 @@
 package kts.restaurant_application.services;
 
-import kts.restaurant_application.model.Food;
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Item;
 import kts.restaurant_application.repositories.ItemRepository;
-
-import javax.transaction.Transactional;
 
 @Service
 @Transactional
@@ -59,7 +58,7 @@ public class ItemService {
         return save(existingItem);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Item delete(Long id) {
+        return delete(findOne(id));
     }
 }

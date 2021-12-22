@@ -48,8 +48,8 @@ public class UserControllerTest {
       User user = responseEntity.getBody();
 		assertEquals(user.getIsDeleted(), true);
       responseEntity = restTemplate.postForEntity(
-				"/users/delete/1", 999, User.class);
-		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+				"/users/delete/999", 999, User.class);
+		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
 
     }
 

@@ -175,4 +175,7 @@ public class RestourantTables {
 		return 115;
 	}
 
+    public void setId(long l) {
+    }
+
 }

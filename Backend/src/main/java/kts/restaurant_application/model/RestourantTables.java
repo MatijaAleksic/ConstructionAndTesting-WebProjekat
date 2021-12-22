@@ -33,7 +33,7 @@ public class RestourantTables {
 	private Long version;
 
 	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private Long tableNumber;
 
 	@NotNull
@@ -108,6 +108,15 @@ public class RestourantTables {
 		this.orders = orders;
 	}
 
+	public RestourantTables(@NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted) {
+		this.tableNumber = tableNumber;
+		this.floor = floor;
+		this.positionX = positionX;
+		this.positionY = positionY;
+		this.state = state;
+		this.isDeleted = isDeleted;
+	}
+
 	public RestourantTables setTableNumber(Long tableNumber) {
 		this.tableNumber = tableNumber;
 		return this;
@@ -168,6 +177,30 @@ public class RestourantTables {
 		if (super.equals(obj)) return true;
 		if (getId() == null) return false;
 		return obj instanceof RestourantTables && (getId().equals(((RestourantTables) obj).getId()));
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 
 	@Override

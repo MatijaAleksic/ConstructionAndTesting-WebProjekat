@@ -66,7 +66,7 @@ public class DrinkService {
         return save(existingDrink);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Drink delete(Long id) {
+        return delete(findOne(id));
     }
 }

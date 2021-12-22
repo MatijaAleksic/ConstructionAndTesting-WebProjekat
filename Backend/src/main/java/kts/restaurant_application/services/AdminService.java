@@ -62,7 +62,7 @@ public class AdminService {
         return save(existingAdmin);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Admin delete(Long id) {
+        return delete(findOne(id));
     }
 }

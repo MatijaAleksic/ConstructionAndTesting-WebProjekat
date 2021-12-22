@@ -63,7 +63,7 @@ public class WaiterService {
         return save(existingWaiter);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Waiter delete(Long id) {
+        return delete(findOne(id));
     }
 }

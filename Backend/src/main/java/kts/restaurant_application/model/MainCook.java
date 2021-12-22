@@ -20,6 +20,10 @@ public class MainCook extends Cook {
 		super(firstName, lastName, username, password, dateOfBirth, salary, deleted, processed);
 	}
 
+	public MainCook(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary, boolean deleted) {
+		super(firstName, lastName, username, password, dateOfBirth, salary, deleted);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) return true;

@@ -64,7 +64,7 @@ public class CookService {
         return save(existingCook);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Cook delete(Long id) {
+        return delete(findOne(id));
     }
 }

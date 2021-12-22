@@ -42,6 +42,12 @@ public class Notification {
         this.userType = userType;
     }
 
+    public Notification(@NotNull String text, @NotNull LocalDateTime dateTime, @NotNull UserTypes userType) {
+        this.text = text;
+        this.dateTime = dateTime;
+        this.userType = userType;
+    }
+
     public Notification() {
     }
 

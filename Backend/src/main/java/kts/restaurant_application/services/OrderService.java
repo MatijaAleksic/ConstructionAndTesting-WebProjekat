@@ -66,12 +66,17 @@ public class OrderService {
         return save(existingOrder);
     }
 
-    public void delete(Order entity) {
-        repository.delete(entity);
+    public boolean delete(Order entity) {
+        if(findOne(entity.getId()) != null) {
+            repository.delete(entity);
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public boolean delete(Long id) {
+        return delete(findOne(id));
     }
 
     public Collection<Order> getOrdersByDate(Date dateFrom, Date dateTo) {

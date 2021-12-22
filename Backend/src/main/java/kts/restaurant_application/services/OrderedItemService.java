@@ -60,16 +60,17 @@ public class OrderedItemService {
         return save(existingOrderedItem);
     }
 
-    public void delete(OrderedItem entity) {
+    public boolean delete(OrderedItem entity) {
         if(entity.getState() == State.ordered)
         {
             repository.delete(entity);
+            return true;
         }
-
+        return false;
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public boolean delete(Long id) {
+        return delete(findOne(id));
     }
 
     public Collection<OrderedItem> getOrderedItemsByItem(Long itemId) {

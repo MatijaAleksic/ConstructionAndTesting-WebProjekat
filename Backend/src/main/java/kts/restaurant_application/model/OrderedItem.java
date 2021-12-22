@@ -94,7 +94,17 @@ public class OrderedItem {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
 
 	public Integer getNumber() {
 		return number;

@@ -6,12 +6,15 @@
 
 package kts.restaurant_application.repositories;
 
+import com.fasterxml.jackson.annotation.OptBoolean;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import kts.restaurant_application.model.Admin;
 
+import java.util.Optional;
+
 @Repository
 public interface AdminRepository extends CrudRepository<Admin, Long> {
-
+    Optional<Admin> findByUsername(String username);
 }

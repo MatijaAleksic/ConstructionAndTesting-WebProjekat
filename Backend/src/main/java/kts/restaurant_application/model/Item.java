@@ -66,7 +66,7 @@ public class Item {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = true)
-	private Status status;
+	private ItemStatus itemStatus;
 
 	public Long getId(){
 		return id;
@@ -182,12 +182,20 @@ public class Item {
 		return 293;
 	}
 
-	public Status getStatus() {
-		return status;
+	public ItemStatus gettemStatus() {
+		return itemStatus;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setItemStatus(ItemStatus itemStatus) {
+		this.itemStatus = itemStatus;
+	}
+
+	public ItemStatus gettemstatus() {
+		return itemStatus;
+	}
+
+	public void setItemstatus(ItemStatus itemStatus) {
+		this.itemStatus = itemStatus;
 	}
 
 }

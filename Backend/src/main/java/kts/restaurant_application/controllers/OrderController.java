@@ -69,7 +69,7 @@ public class OrderController {
     @PostMapping
     public Order create(@RequestBody @Valid Order entity) {
 
-        RestourantTables t = tableService.findOne(entity.getTable().getId());
+        RestourantTables t = tableService.findOne(entity.getRestourantTable().getId());
         Waiter w = waiterService.findOne(entity.getWaiter().getId());
         Set<OrderedItem> food = new HashSet<OrderedItem>();
 
@@ -78,21 +78,21 @@ public class OrderController {
             food.add(foundItem);
         }
         entity.setFood(food);
-        entity.setTable(t);
+        entity.setRestourantTable(t);
         entity.setWaiter(w);
         return service.save(entity);
     }
 
     @PostMapping("/update")
     public Order update(@RequestBody Order entity){
-        RestourantTables t = tableService.findOne(entity.getTable().getId());
+        RestourantTables t = tableService.findOne(entity.getRestourantTable().getId());
         Waiter w = waiterService.findOne(entity.getWaiter().getId());
-        entity.setTable(t);
+        entity.setRestourantTable(t);
         entity.setWaiter(w);
         return service.update(entity);
     }
 
-    @GetMapping("getOrdersByDate")
+    @PostMapping("getOrdersByDate")
     public Collection<Order> getOrdersByDate(@RequestBody DateDTO data){
         System.out.println("AAAAAAAAAAA");
         Date dateFrom = data.dateFrom;

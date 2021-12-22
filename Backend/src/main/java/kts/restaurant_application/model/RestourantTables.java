@@ -61,10 +61,6 @@ public class RestourantTables {
 	@OneToMany(mappedBy = "restourantTable")
 	private Set<Order> orders = new HashSet<>();
 
-	public Long getId(){
-		return id;
-	}
-
 	public Long getTableNumber() {
 		return tableNumber;
 	}
@@ -116,6 +112,7 @@ public class RestourantTables {
 		this.state = state;
 		this.isDeleted = isDeleted;
 	}
+	
 
 	public RestourantTables setTableNumber(Long tableNumber) {
 		this.tableNumber = tableNumber;
@@ -150,7 +147,7 @@ public class RestourantTables {
 	public RestourantTables linkOrders(Order _orders) {
 		if (_orders != null) {
 			_orders.unlinkTable();
-			_orders.setTable(this);
+			_orders.setRestourantTable(this);
 			getOrders().add(_orders);
 		}
 		return this;
@@ -158,7 +155,7 @@ public class RestourantTables {
 
 	public RestourantTables unlinkOrders(Order _orders) {
 		if (_orders != null) {
-			_orders.setTable(null);
+			_orders.setRestourantTable(null);
 			getOrders().remove(_orders);
 		}
 		return this;
@@ -166,7 +163,7 @@ public class RestourantTables {
 
 	public RestourantTables unlinkOrders(Order _orders, Iterator<Order> it) {
 		if (_orders != null) {
-			_orders.setTable(null);
+			_orders.setRestourantTable(null);
 			it.remove();
 		}
 		return this;
@@ -177,10 +174,6 @@ public class RestourantTables {
 		if (super.equals(obj)) return true;
 		if (getId() == null) return false;
 		return obj instanceof RestourantTables && (getId().equals(((RestourantTables) obj).getId()));
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Long getVersion() {
@@ -208,7 +201,14 @@ public class RestourantTables {
 		return 115;
 	}
 
-    public void setId(long l) {
-    }
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 }

@@ -63,12 +63,12 @@ public class Order {
 	@JoinColumn(name = "_id")
 	private Set<OrderedItem> food = new HashSet<>();
 
-	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food, @NotNull Date dateTime) {
+	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables restourantTable, Set<OrderedItem> food, @NotNull Date dateTime) {
 		this.id = id;
 		this.version = version;
 		this.price = price;
 		this.waiter = waiter;
-		this.restourantTable = table;
+		this.restourantTable = restourantTable;
 		this.food = food;
 		this.dateTime = dateTime;
 	}
@@ -90,9 +90,7 @@ public class Order {
 		return waiter;
 	}
 
-	public RestourantTables getTable() {
-		return restourantTable;
-	}
+
 
 	public Set<OrderedItem> getFood() {
 		return food;
@@ -109,10 +107,15 @@ public class Order {
 		return this;
 	}
 
-	public Order setTable(RestourantTables table) {
-		this.restourantTable = table;
-		return this;
+
+	public RestourantTables getRestouranttable() {
+		return restourantTable;
 	}
+
+	public void setRestouranttable(RestourantTables restourantTable) {
+		this.restourantTable = restourantTable;
+	}
+
 
 	public RestourantTables getRestourantTable() {
 		return restourantTable;
@@ -146,7 +149,7 @@ public class Order {
 		}
 
 		unlinkTable();
-		setTable(_table);
+		setRestourantTable(_table);
 		return this;
 	}
 
@@ -166,9 +169,9 @@ public class Order {
 	}
 
 	public Order unlinkTable() {
-		if (getTable() != null) {
-			getTable().getOrders().remove(this);
-			setTable(null);
+		if (getRestourantTable() != null) {
+			getRestourantTable().getOrders().remove(this);
+			setRestourantTable(null);
 		}
 		return this;
 	}
@@ -200,5 +203,19 @@ public class Order {
 	public void setFood(Set<OrderedItem> food) {
 		this.food = food;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+	
+
 
 }

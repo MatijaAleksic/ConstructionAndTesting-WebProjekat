@@ -1,5 +1,7 @@
 package kts.restaurant_application.services;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -29,10 +31,12 @@ public class ItemService {
     }
 
     public Item findOne(Long id) {
-        return repository
-                .findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Cannot find Item by " + id));
+        Optional<Item> item = repository.findById(id);
+        if(item.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "Cannot find Item by " + id);
+        }
+        return item.get();
     }
 
     public Item save(Item entity) {
@@ -59,6 +63,7 @@ public class ItemService {
     }
 
     public Item delete(Long id) {
-        return delete(findOne(id));
+        Item item = findOne(id);
+        return delete(item);
     }
 }

@@ -38,9 +38,10 @@ public class ItemControllerTest {
     assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     Item user = responseEntity.getBody();
     assertEquals(user.getIsDeleted(), true);
-  responseEntity = restTemplate.postForEntity(
-            "/items/delete/999", 999, Item.class);
-    assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+    ResponseEntity<Object> responseEntity2;
+    responseEntity2 = restTemplate.postForEntity(
+            "/items/delete/999", 999, Object.class);
+    assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity2.getStatusCode()); // tries to interprate HTTP.STATUS as a itemStatus enum
     }
 
     @Test
@@ -90,6 +91,6 @@ public class ItemControllerTest {
         Item newAdmin3 = new Item(99991l, 0l, 22.22, (byte)1, "sub", "description", false, "name12345");
     responseEntity = restTemplate.postForEntity(
 				"/items/update", newAdmin3, Item.class);
-		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
 }

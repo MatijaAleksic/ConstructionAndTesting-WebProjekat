@@ -1,7 +1,24 @@
 package kts.restaurant_application.services.Integration;
 
-import kts.restaurant_application.model.Admin;
-import kts.restaurant_application.services.AdminService;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_DATE_OF_BIRTH;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_FIRSTNAME;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_ID;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_IS_DELETED;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_LASTNAME;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_PASSWORD;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_SALARY;
+import static kts.restaurant_application.constants.AdminConstants.DB_ADMIN_USERNAME;
+import static kts.restaurant_application.constants.AdminConstants.DB_WRONG_ADMIN_ID;
+import static kts.restaurant_application.constants.AdminConstants.FIND_ALL_NUMBER_OF_ADMINS;
+import static kts.restaurant_application.constants.AdminConstants.NEW_ADMIN_DATE_OF_BIRTH;
+import static kts.restaurant_application.constants.AdminConstants.NEW_ADMIN_FIRSTNAME;
+import static kts.restaurant_application.constants.AdminConstants.NEW_ADMIN_IS_DELETED;
+import static kts.restaurant_application.constants.AdminConstants.NEW_ADMIN_LASTNAME;
+import static kts.restaurant_application.constants.AdminConstants.NEW_ADMIN_PASSWORD;
+import static kts.restaurant_application.constants.AdminConstants.NEW_ADMIN_SALARY;
+import static kts.restaurant_application.constants.AdminConstants.NEW_ADMIN_USERNAME;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +27,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import static kts.restaurant_application.constants.AdminConstants.*;
-import static org.junit.Assert.assertEquals;
+import kts.restaurant_application.model.Admin;
+import kts.restaurant_application.services.AdminService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

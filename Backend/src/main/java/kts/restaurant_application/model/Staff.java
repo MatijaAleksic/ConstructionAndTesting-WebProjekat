@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "_staff")
 @PrimaryKeyJoinColumn(name = "user")
-public abstract class Staff extends User {
+public class Staff extends User {
 
 	@OneToMany(mappedBy = "staff")
 	@JsonIgnore

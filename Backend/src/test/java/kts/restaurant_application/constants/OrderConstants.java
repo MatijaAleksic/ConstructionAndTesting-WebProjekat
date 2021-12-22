@@ -27,4 +27,16 @@ public class OrderConstants {
 
     public static final Double NEW_ORDER_PRICE =999.0;
     public static final String NEW_ORDER_DATETIME = "active";
+
+    public static final Double DB_ORDER_PRICE_UNIT1 =100.0;
+    public static final String DB_ORDER_NOTE_UNIT1 = "Hello";
+    public static final Date DB_ORDER_DATETIME_UNIT1 = new Date(2012, Calendar.DECEMBER, 12);
+
+    public static final Double DB_ORDER_PRICE_UNIT2 =100.0;
+    public static final String DB_ORDER_NOTE_UNIT2 = "Hello";
+    public static final Date DB_ORDER_DATETIME_UNIT2 = new Date(2012, Calendar.DECEMBER, 12);
+
+    public static final int FIND_ALL_NUMBER_OF_ORDER_TABLE_UNIT = 3;
+    public static final Long DB_SAVED_ORDER_ID_UNIT= 2L;
+    public static final Boolean DB_ORDER_IS_DELETED_UNIT = true;
 }

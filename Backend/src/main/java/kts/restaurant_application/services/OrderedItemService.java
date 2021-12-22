@@ -61,7 +61,7 @@ public class OrderedItemService {
     }
 
     public boolean delete(OrderedItem entity) {
-        if(entity.getState() == State.ordered)
+        if(findOne(entity.getId()) != null && entity.getState() == State.ordered)
         {
             repository.delete(entity);
             return true;

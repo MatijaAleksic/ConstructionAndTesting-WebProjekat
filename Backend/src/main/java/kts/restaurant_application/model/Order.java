@@ -219,6 +219,8 @@ public class Order {
 		return obj instanceof Order && (getId().equals(((Order) obj).getId()));
 	}
 
+
+
 	@Override
 	public int hashCode() {
 		return 152;

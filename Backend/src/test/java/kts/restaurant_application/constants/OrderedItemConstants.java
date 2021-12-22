@@ -45,5 +45,20 @@ public class OrderedItemConstants {
     public static final Long DB_O_STAFF_ID= 5L;
     public static final Long DB_ID_ID= 1L;
 
+    public static final State DB_ORDERED_ITEM_STATE_UNIT1= State.ordered;
+    public static final Integer DB_ORDERED_ITEM_NUMBER_UNIT1= 2;
+    public static final Date DB_ORDERED_ITEM_DATETIME_UNIT1= new Date(2021, Calendar.DECEMBER, 12);
+    public static final String DB_ORDERED_ITEM_NOTE_UNIT1= "alergija na kikiriki";
+    public static final Integer DB_ORDERED_ITEM_PRICE_UNIT1= 50;
+
+    public static final State DB_ORDERED_ITEM_STATE_UNIT2= State.ordered;
+    public static final Integer DB_ORDERED_ITEM_NUMBER_UNIT2= 2;
+    public static final Date DB_ORDERED_ITEM_DATETIME_UNIT2= new Date(2021, Calendar.DECEMBER, 12);
+    public static final String DB_ORDERED_ITEM_NOTE_UNIT2= "alergija na kikiriki";
+    public static final Integer DB_ORDERED_ITEM_PRICE_UNIT2= 50;
+
+    public static final int DB_SAVED_ORDERED_ITEM_ID_UNIT= 3;
+    public static final Boolean DB_ORDERED_ITEM_IS_DELETED_UNIT = true;
+
 
 }

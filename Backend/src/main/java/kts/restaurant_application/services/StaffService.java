@@ -62,10 +62,10 @@ public class StaffService {
     public Staff delete(Staff entity) {
         Staff existingStaff = findOne(entity.getId());
         existingStaff.setIsDeleted(true);
-        return save(existingStaff   );
+        return save(existingStaff);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Staff delete(Long id) {
+        return delete(findOne(id));
     }
 }

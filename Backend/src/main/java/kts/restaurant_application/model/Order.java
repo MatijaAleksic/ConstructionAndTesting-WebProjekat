@@ -73,9 +73,33 @@ public class Order {
 		this.dateTime = dateTime;
 	}
 
+	public Order(@NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, @NotNull Date dateTime) {
+		this.price = price;
+		this.waiter = waiter;
+		this.restourantTable = table;
+		this.dateTime = dateTime;
+	}
+
+	public Order(@NotNull Double price, @NotNull Date dateTime) {
+		this.price = price;
+		this.dateTime = dateTime;
+	}
+
+
 	public Order() {
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
 
 	public Long getId(){
 		return id;

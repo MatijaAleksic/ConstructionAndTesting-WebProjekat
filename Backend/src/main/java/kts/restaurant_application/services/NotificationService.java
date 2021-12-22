@@ -49,11 +49,12 @@ public class NotificationService {
         return repository.save(entity);
     }
 
-    public void delete(Notification entity) {
+    public boolean delete(Notification entity) {
         repository.delete(entity);
+        return true;
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public boolean delete(Long id) {
+        return delete(findOne(id));
     }
 }

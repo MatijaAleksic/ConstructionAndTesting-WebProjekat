@@ -60,6 +60,7 @@ public class OrderServiceIntegrationTest {
 //        waiter.setId(DB_WAITER_ID);
 
         Order item = new Order(DB_ORDER_PRICE, DB_ORDER_DATETIME);
+        item.setId(10L);
 
         Order created = orderService.save(item);
 

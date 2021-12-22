@@ -44,6 +44,9 @@ public class OrderedItemService {
     }
 
     public OrderedItem save(OrderedItem entity) {
+        if(repository.existsById(entity.getId())){
+            throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, "Ordered item with that id already exists: " + entity.getId());
+        }
         return repository.save(entity);
     }
 
@@ -56,8 +59,9 @@ public class OrderedItemService {
         existingOrderedItem.setStaff(entity.getStaff());
         existingOrderedItem.setState(entity.getState());
         existingOrderedItem.setNote(entity.getNote());
-
-        return save(existingOrderedItem);
+        existingOrderedItem.setPrice(entity.getPrice());
+        
+        return repository.save(existingOrderedItem);
     }
 
     public boolean delete(OrderedItem entity) {

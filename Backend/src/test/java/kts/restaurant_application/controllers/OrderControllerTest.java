@@ -101,8 +101,9 @@ public class OrderControllerTest {
 
     @Test
     public void testGetOrdersByDate() throws ParseException {
+      
       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-      DateDTO dto = new DateDTO(format.parse("2020-12-12"), format.parse("2021-12-12"));
+      DateDTO dto = new DateDTO(format.parse("2020-12-12"), format.parse("2021-12-12")); //cannot accept the DateDTO for some reason
       ResponseEntity<Order[]> responseEntity = restTemplate
 				.postForEntity("/getOrdersByDate/", dto, Order[].class);
       assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -123,6 +124,24 @@ public class OrderControllerTest {
 
     @Test
     public void testUpdate() {
-
+      Order o = new Order();
+        o.setId(1l);
+        o.setDateTime(new Date());
+        o.setPrice(22.22);
+        o.setVersion(0l);
+        o.setWaiter(waiterRepository.findById(12l).get());
+        HashSet<OrderedItem> set = new HashSet<OrderedItem>();
+        set.add(orderedItemRepository.findById(1l).get());
+        o.setFood(set);
+        o.setRestourantTable(tableRepository.findById(1l).get());
+        ResponseEntity<Order> responseEntity = restTemplate.getForEntity(
+        "/orders/1", Order.class);
+        Order order2 = responseEntity.getBody();
+        responseEntity = restTemplate.postForEntity(
+                  "/orders/update", o, Order.class);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+      responseEntity = restTemplate.getForEntity(
+        "/orders/1", Order.class);
+          assertEquals(false, responseEntity.getBody().getPrice() == order2.getPrice()); // save does not work for some reason
     }
 }

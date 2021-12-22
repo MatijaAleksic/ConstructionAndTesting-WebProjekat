@@ -63,7 +63,7 @@ public class OrderService {
         existingOrder.setRestourantTable(entity.getRestourantTable());
 
 
-        return save(existingOrder);
+        return repository.save(existingOrder);
     }
 
     public boolean delete(Order entity) {

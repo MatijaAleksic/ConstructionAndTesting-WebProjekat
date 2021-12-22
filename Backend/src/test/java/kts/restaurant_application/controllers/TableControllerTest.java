@@ -1,11 +1,10 @@
 package kts.restaurant_application.controllers;
 
-import kts.restaurant_application.constants.Constants;
-import kts.restaurant_application.constants.ResourantTablesConstants;
-import kts.restaurant_application.model.Item;
-import kts.restaurant_application.model.Order;
-import kts.restaurant_application.model.RestourantTables;
-import kts.restaurant_application.model.TableStatus;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Collections;
+import java.util.Set;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.validation.constraints.NotNull;
-
-import java.util.Collections;
-import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
+import kts.restaurant_application.constants.ResourantTablesConstants;
+import kts.restaurant_application.model.Order;
+import kts.restaurant_application.model.RestourantTables;
+import kts.restaurant_application.model.TableStatus;
 
 
 @RunWith(SpringRunner.class)
@@ -93,11 +90,12 @@ public class TableControllerTest {
         RestourantTables table = new RestourantTables(1l, 5l, 12l, 1, 321.22, 3213.22, TableStatus.free, false, EmptySet);
 
         ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
-                "/items/update", table, RestourantTables.class);
+                "/tables/update", table, RestourantTables.class);
 
         RestourantTables response = responseEntity.getBody();
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        
 
     }
 }

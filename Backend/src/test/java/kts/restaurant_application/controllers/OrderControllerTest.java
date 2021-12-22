@@ -105,18 +105,18 @@ public class OrderControllerTest {
       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
       DateDTO dto = new DateDTO(format.parse("2020-12-12"), format.parse("2021-12-12")); //cannot accept the DateDTO for some reason
       ResponseEntity<Order[]> responseEntity = restTemplate
-				.postForEntity("/getOrdersByDate/", dto, Order[].class);
+				.postForEntity("/orders/getOrdersByDate", dto, Order[].class);
       assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
       assertEquals(0, responseEntity.getBody().length);
       dto = new DateDTO(format.parse("2000-12-12"), format.parse("2021-12-12"));
       responseEntity = restTemplate
-				.postForEntity("/getOrdersByDate/", dto, Order[].class);
+				.postForEntity("/orders/getOrdersByDate", dto, Order[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(2, responseEntity.getBody().length);
 
         dto = new DateDTO(format.parse("2012-11-15"), format.parse("2012-12-15"));
         responseEntity = restTemplate
-          .postForEntity("/getOrdersByDate/", dto, Order[].class);
+          .postForEntity("/orders/getOrdersByDate", dto, Order[].class);
           assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
           assertEquals(1, responseEntity.getBody().length);
       

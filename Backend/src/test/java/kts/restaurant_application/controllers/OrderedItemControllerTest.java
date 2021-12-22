@@ -20,6 +20,7 @@ import kts.restaurant_application.model.DateDTO;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.State;
 import kts.restaurant_application.repositories.ItemRepository;
+import kts.restaurant_application.repositories.OrderedItemRepository;
 import kts.restaurant_application.repositories.StaffRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -39,6 +40,9 @@ public class OrderedItemControllerTest {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private OrderedItemRepository orderedItemRepository;
 
     @Test
     public void testCreate() {
@@ -104,18 +108,18 @@ public class OrderedItemControllerTest {
       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
       DateDTO dto = new DateDTO(format.parse("2020-12-12"), format.parse("2021-12-12")); //cannot accept the DateDTO for some reason
       ResponseEntity<OrderedItem[]> responseEntity = restTemplate
-				.postForEntity("/getOrdersByDate/", dto, OrderedItem[].class);
+				.postForEntity("/orderedItems/getOrderedItemsByDate", dto, OrderedItem[].class);
       assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
       assertEquals(0, responseEntity.getBody().length);
       dto = new DateDTO(format.parse("2000-12-12"), format.parse("2021-12-12"));
       responseEntity = restTemplate
-				.postForEntity("/getOrdersByDate/", dto, OrderedItem[].class);
+				.postForEntity("/orderedItems/getOrderedItemsByDate", dto, OrderedItem[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(2, responseEntity.getBody().length);
 
         dto = new DateDTO(format.parse("2012-11-15"), format.parse("2012-12-15"));
         responseEntity = restTemplate
-          .postForEntity("/getOrdersByDate/", dto, OrderedItem[].class);
+          .postForEntity("/orderedItems/getOrderedItemsByDate", dto, OrderedItem[].class);
           assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
           assertEquals(1, responseEntity.getBody().length);
       
@@ -151,5 +155,18 @@ public class OrderedItemControllerTest {
     @Test
     public void testGetOrderedItemsByItem() {
 
+        OrderedItem item1 = orderedItemRepository.findById(1l).get();
+        OrderedItem item2 = orderedItemRepository.findById(2l).get();
+
+        ResponseEntity<OrderedItem[]> responseEntity = restTemplate.getForEntity("/orderedItems/getOrderedItemsByItem/1", OrderedItem[].class);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(item1.getId(), responseEntity.getBody()[0].getId());
+
+        responseEntity = restTemplate.getForEntity("/orderedItems/getOrderedItemsByItem/4", OrderedItem[].class);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(item2.getId(), responseEntity.getBody()[0].getId());
+        responseEntity = restTemplate.getForEntity("/orderedItems/getOrderedItemsByItem/2", OrderedItem[].class);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(0, responseEntity.getBody().length);
     }
 }

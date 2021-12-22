@@ -86,15 +86,15 @@ public class OrderedItemController {
     }
 
 
-    @GetMapping("getOrderedItemsByItem")
-    public Collection<OrderedItem> getOrderedItemsByItem(@RequestBody Long itemId){
+    @GetMapping("/getOrderedItemsByItem/{itemId}")
+    public Collection<OrderedItem> getOrderedItemsByItem(@PathVariable Long itemId){
         
 
         return service.getOrderedItemsByItem(itemId);
         
     }
 
-    @GetMapping("getOrderedItemsByDate")
+    @PostMapping("/getOrderedItemsByDate")
     public Collection<OrderedItem> getOrdersByDate(@RequestBody DateDTO data){
         System.out.println("AAAAAAAAAAA");
         Date dateFrom = data.dateFrom;

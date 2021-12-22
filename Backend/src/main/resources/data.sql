@@ -71,7 +71,7 @@ INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_delete
 INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (2, 4, 30.0, 2.0, 'free', false);
 
 INSERT INTO _orders (price, waiter_id, restourant_table_id,date_time) VALUES (100.0, 12, 1, '2012-12-12');
-INSERT INTO _orders (price, waiter_id, restourant_table_id, date_time) VALUES (200.0, 13, 2, '2012-12-12');
+INSERT INTO _orders (price, waiter_id, restourant_table_id, date_time) VALUES (200.0, 13, 2, '2012-11-11');
 
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na kikiriki', '2012-12-12', 1, 5, 50, 1);
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na nesto', '2012-11-11', 4, 6, 100, 2);

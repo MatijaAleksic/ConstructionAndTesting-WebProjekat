@@ -92,7 +92,7 @@ public class OrderController {
         return service.update(entity);
     }
 
-    @PostMapping("getOrdersByDate")
+    @PostMapping("/getOrdersByDate")
     public Collection<Order> getOrdersByDate(@RequestBody DateDTO data){
         System.out.println("AAAAAAAAAAA");
         Date dateFrom = data.dateFrom;

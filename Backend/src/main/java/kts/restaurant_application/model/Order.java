@@ -219,18 +219,5 @@ public class Order {
 		this.food = food;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
-	}
-	
-
 
 }

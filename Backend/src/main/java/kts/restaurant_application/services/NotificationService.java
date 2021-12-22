@@ -50,8 +50,11 @@ public class NotificationService {
     }
 
     public boolean delete(Notification entity) {
-        repository.delete(entity);
-        return true;
+        if(findOne(entity.getId()) != null){
+            repository.delete(entity);
+            return true;
+        }
+        return false;
     }
 
     public boolean delete(Long id) {

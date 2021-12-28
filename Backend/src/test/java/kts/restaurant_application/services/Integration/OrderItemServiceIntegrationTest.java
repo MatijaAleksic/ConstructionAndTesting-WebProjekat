@@ -1,27 +1,27 @@
 package kts.restaurant_application.services.Integration;
 
-import kts.restaurant_application.model.OrderedItem;
-import kts.restaurant_application.model.Item;
-import kts.restaurant_application.model.Staff;
-import kts.restaurant_application.services.OrderedItemService;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_ORDERED_ITEM_ID;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_WRONG_ORDERED_ITEM_ID;
+import static kts.restaurant_application.constants.OrderedItemConstants.FIND_ALL_NUMBER_OF_ORDERED_ITEMS;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_DATETIME;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_ID;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_NOTE;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_NUMBER;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_PRICE;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_STATE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import static kts.restaurant_application.constants.ItemConstants.*;
-import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_NAME;
-import static kts.restaurant_application.constants.OrderedItemConstants.*;
-
-
-import static kts.restaurant_application.constants.StaffConstants.*;
-import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_ID;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import kts.restaurant_application.model.OrderedItem;
+import kts.restaurant_application.services.OrderedItemService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -56,7 +56,7 @@ public class OrderItemServiceIntegrationTest {
     @Test
     public void testSave(){
         OrderedItem item = new OrderedItem(NEW_ORDERED_ITEM_NOTE, NEW_ORDERED_ITEM_STATE, NEW_ORDERED_ITEM_NUMBER, NEW_ORDERED_ITEM_DATETIME, NEW_ORDERED_ITEM_PRICE);
-
+        item.setId(999l);
         OrderedItem created = orderedItemService.save(item);
 
         assertEquals(NEW_ORDERED_ITEM_ID, created.getId());

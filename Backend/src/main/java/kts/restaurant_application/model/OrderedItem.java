@@ -90,73 +90,7 @@ public class OrderedItem {
 		this.price = price;
 	}
 
-	public Long getId(){
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
-	}
-
-	public Integer getNumber() {
-		return number;
-	}
-
-	public Date getDateTime() {
-		return dateTime;
-	}
-
-	public Item getItem() {
-		return item;
-	}
-
-	public Staff getStaff() {
-		return staff;
-	}
-
-	public State getState() {
-		return state;
-	}
-
-	public void setState(State state) {
-		this.state = state;
-	}
-
-	public OrderedItem setNumber(Integer number) {
-		this.number = number;
-		return this;
-	}
-
-	public OrderedItem setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
-		return this;
-	}
-
-	public OrderedItem setItem(Item item) {
-		this.item = item;
-		return this;
-	}
-
-	public OrderedItem setStaff(Staff staff) {
-		this.staff = staff;
-		return this;
-	}
-
-	public String getNote() {
-		return note;
-	}
-
-	public void setNote(String note) {
-		this.note = note;
-	}
+	
 
 	public OrderedItem linkItem(Item _item) {
 		setItem(_item);
@@ -198,6 +132,38 @@ public class OrderedItem {
 		return 214;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
 	public Integer getPrice() {
 		return price;
 	}
@@ -205,5 +171,45 @@ public class OrderedItem {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
+	public Date getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	
+
+
+
+
+
+	
 
 }

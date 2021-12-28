@@ -12,6 +12,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
+
 import static kts.restaurant_application.constants.OrderConstants.*;
 import static kts.restaurant_application.constants.ResourantTablesConstants.*;
 import static kts.restaurant_application.constants.WaiterConstants.*;
@@ -23,6 +25,7 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("classpath:application-test.properties")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@Transactional
 public class OrderServiceIntegrationTest {
 
     @Autowired
@@ -89,7 +92,7 @@ public class OrderServiceIntegrationTest {
         waiter.setId(DB_WAITER_ID);
 
         Order item = new Order(DB_ORDER_PRICE, DB_ORDER_NOTE, waiter, restorantTables, DB_ORDER_DATETIME);
-        item.setId(DB_ORDER_ID);
+        item.setId(DB_ORDER_ID + 1);
 
         boolean flag = orderService.delete(item);
         assertTrue(flag);

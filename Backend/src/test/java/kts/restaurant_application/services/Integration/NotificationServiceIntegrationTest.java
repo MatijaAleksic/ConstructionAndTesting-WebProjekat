@@ -10,12 +10,15 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
+
 import static kts.restaurant_application.constants.NotificationConstants.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("classpath:application-test.properties")
+@Transactional
 public class NotificationServiceIntegrationTest {
 
     @Autowired
@@ -123,7 +126,7 @@ public class NotificationServiceIntegrationTest {
     @Test
     public void testDelete2(){
         Notification Notification = new Notification(DB_NOTIFICATION_TEXT, DB_NOTIFICATION_DATETIME, DB_NOTIFICATION_USER_TYPE);
-        Notification.setId(DB_NOTIFICATION_ID);
+        Notification.setId(DB_NOTIFICATION_ID + 1);
 
         boolean flag = notificationService.delete(Notification);
         assertTrue(flag);

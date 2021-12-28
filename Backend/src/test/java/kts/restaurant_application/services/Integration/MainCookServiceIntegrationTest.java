@@ -10,12 +10,15 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
+
 import static org.junit.Assert.assertEquals;
 import static kts.restaurant_application.constants.MainCookConstants.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("classpath:application-test.properties")
+@Transactional
 public class MainCookServiceIntegrationTest {
 
     @Autowired

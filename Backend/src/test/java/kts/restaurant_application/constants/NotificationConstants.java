@@ -13,7 +13,7 @@ public class NotificationConstants {
 
     public static final int FIND_ALL_NUMBER_OF_NOTIFICATIONS_ADMIN = 3;
     public static final int FIND_ALL_NUMBER_OF_NOTIFICATIONS_MANAGER = 2;
-    public static final int FIND_ALL_NUMBER_OF_NOTIFICATIONS_COOK = 3;
+    public static final int FIND_ALL_NUMBER_OF_NOTIFICATIONS_COOK = 2;
     public static final int FIND_ALL_NUMBER_OF_NOTIFICATIONS_MAINCOOK = 2;
     public static final int FIND_ALL_NUMBER_OF_NOTIFICATIONS_BARMAN = 2;
     public static final int FIND_ALL_NUMBER_OF_NOTIFICATIONS_WAITER = 2;

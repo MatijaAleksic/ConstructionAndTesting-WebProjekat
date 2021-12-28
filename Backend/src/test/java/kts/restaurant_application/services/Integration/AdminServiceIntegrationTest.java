@@ -30,9 +30,12 @@ import org.springframework.web.server.ResponseStatusException;
 import kts.restaurant_application.model.Admin;
 import kts.restaurant_application.services.AdminService;
 
+import javax.transaction.Transactional;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("classpath:application-test.properties")
+@Transactional
 public class AdminServiceIntegrationTest {
 
     @Autowired

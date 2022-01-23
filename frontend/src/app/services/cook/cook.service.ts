@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs/index";
-import { ApiResponse } from '../model/api.response';
-import { Cook } from '../model/cook.model';
+import { ApiResponse } from '../../model/api.response'; //'../model/api.response';
+import { Cook } from '../../model/cook.model';
 
 @Injectable()
 export class CookService {

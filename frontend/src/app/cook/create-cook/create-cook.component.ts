@@ -1,4 +1,4 @@
-import { CookService } from 'src/app/service/cook.service';
+import { CookService } from 'src/app/services/cook/cook.service';
 import { Cook } from 'src/app/model/cook.model';
 
 import { Component, OnInit } from '@angular/core';

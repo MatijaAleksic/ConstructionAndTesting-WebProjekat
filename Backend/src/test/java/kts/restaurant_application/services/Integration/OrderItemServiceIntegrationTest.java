@@ -1,29 +1,51 @@
 package kts.restaurant_application.services.Integration;
 
-import kts.restaurant_application.model.OrderedItem;
-import kts.restaurant_application.model.Item;
-import kts.restaurant_application.model.Staff;
-import kts.restaurant_application.services.OrderedItemService;
+import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_DESCRIPTION;
+import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_ID;
+import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_IS_DELETED;
+import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_NAME;
+import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_PRICE;
+import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_PRIPRITY;
+import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_SUBCATEGORY;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_ORDERED_ITEM_DATETIME;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_ORDERED_ITEM_ID;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_ORDERED_ITEM_NOTE;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_ORDERED_ITEM_NUMBER;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_ORDERED_ITEM_PRICE;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_ORDERED_ITEM_STATE;
+import static kts.restaurant_application.constants.OrderedItemConstants.DB_WRONG_ORDERED_ITEM_ID;
+import static kts.restaurant_application.constants.OrderedItemConstants.FIND_ALL_NUMBER_OF_ORDERED_ITEMS;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_DATETIME;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_ID;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_NOTE;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_NUMBER;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_PRICE;
+import static kts.restaurant_application.constants.OrderedItemConstants.NEW_ORDERED_ITEM_STATE;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_DATE_OF_BIRTH;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_FIRSTNAME;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_ID;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_IS_DELETED_UNIT;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_LASTNAME;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_PASSWORD;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_SALARY;
+import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_USERNAME;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.transaction.Transactional;
-
-import static kts.restaurant_application.constants.ItemConstants.*;
-import static kts.restaurant_application.constants.ItemConstants.DB_ITEM_NAME;
-import static kts.restaurant_application.constants.OrderedItemConstants.*;
-
-
-import static kts.restaurant_application.constants.StaffConstants.*;
-import static kts.restaurant_application.constants.StaffConstants.DB_STAFF_ID;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import kts.restaurant_application.model.Item;
+import kts.restaurant_application.model.OrderedItem;
+import kts.restaurant_application.model.Staff;
+import kts.restaurant_application.services.OrderedItemService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

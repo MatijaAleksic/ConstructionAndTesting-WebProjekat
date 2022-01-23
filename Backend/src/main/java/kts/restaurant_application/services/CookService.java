@@ -7,6 +7,7 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Admin;
 import kts.restaurant_application.model.Barman;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,11 +58,13 @@ public class CookService {
         return save(existingCook);
     }
 
-    public void delete(Cook entity) {
-        repository.delete(entity);
+    public Cook delete(Cook entity) {
+        Cook existingCook = findOne(entity.getId());
+        existingCook.setIsDeleted(true);
+        return save(existingCook);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Cook delete(Long id) {
+        return delete(findOne(id));
     }
 }

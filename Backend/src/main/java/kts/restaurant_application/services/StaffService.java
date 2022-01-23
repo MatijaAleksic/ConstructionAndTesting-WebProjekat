@@ -9,6 +9,7 @@ package kts.restaurant_application.services;
 
 import kts.restaurant_application.model.Barman;
 import kts.restaurant_application.model.Manager;
+import kts.restaurant_application.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +59,13 @@ public class StaffService {
         return save(existingManager);
     }
 
-    public void delete(Staff entity) {
-        repository.delete(entity);
+    public Staff delete(Staff entity) {
+        Staff existingStaff = findOne(entity.getId());
+        existingStaff.setIsDeleted(true);
+        return save(existingStaff);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Staff delete(Long id) {
+        return delete(findOne(id));
     }
 }

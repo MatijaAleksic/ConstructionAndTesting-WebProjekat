@@ -3,6 +3,8 @@ package kts.restaurant_application.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +15,6 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import io.swagger.annotations.ApiModel;
 
@@ -21,21 +22,22 @@ import io.swagger.annotations.ApiModel;
 @Entity
 @Table(name = "_items")
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(
-		use = JsonTypeInfo.Id.NAME,
-		property = "type"
-)
+// @JsonTypeInfo(
+// 		use = JsonTypeInfo.Id.NAME,
+// 		property = "type"
+// )
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Food.class, name = "food"),
 		@JsonSubTypes.Type(value = Drink.class, name = "drink")
 })
 @ApiModel(description = "")
-public abstract class Item {
+public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
 	private Long version;
 
 	@NotNull
@@ -59,8 +61,12 @@ public abstract class Item {
 	private Boolean isDeleted;
 
 	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String name;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = true)
+	private ItemStatus itemStatus;
 
 	public Long getId(){
 		return id;
@@ -91,8 +97,18 @@ public abstract class Item {
 	}
 
 	public Item(Long id, Long version, @NotNull Double price, @NotNull Byte priority, @NotNull String subcategory, @NotNull String description, @NotNull Boolean isDeleted, @NotNull String name) {
+
 		this.id = id;
 		this.version = version;
+		this.price = price;
+		this.priority = priority;
+		this.subcategory = subcategory;
+		this.description = description;
+		this.isDeleted = isDeleted;
+		this.name = name;
+	}
+
+	public Item(@NotNull Double price, @NotNull Byte priority, @NotNull String subcategory, @NotNull String description, @NotNull Boolean isDeleted, @NotNull String name) {
 		this.price = price;
 		this.priority = priority;
 		this.subcategory = subcategory;
@@ -134,6 +150,26 @@ public abstract class Item {
 		return this;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) return true;
@@ -144,6 +180,22 @@ public abstract class Item {
 	@Override
 	public int hashCode() {
 		return 293;
+	}
+
+	public ItemStatus gettemStatus() {
+		return itemStatus;
+	}
+
+	public void setItemStatus(ItemStatus itemStatus) {
+		this.itemStatus = itemStatus;
+	}
+
+	public ItemStatus gettemstatus() {
+		return itemStatus;
+	}
+
+	public void setItemstatus(ItemStatus itemStatus) {
+		this.itemStatus = itemStatus;
 	}
 
 }

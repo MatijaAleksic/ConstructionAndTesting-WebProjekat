@@ -10,21 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import io.swagger.annotations.ApiModel;
 
 @Entity
 @Table(name = "_users")
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonTypeInfo(
-		use = JsonTypeInfo.Id.NAME,
-		property = "type"
-)
+// @JsonTypeInfo(
+// 		use = JsonTypeInfo.Id.NAME,
+// 		property = "type"
+// )
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Manager.class, name = "manager"),
 		@JsonSubTypes.Type(value = Waiter.class, name = "waiter"),
@@ -33,12 +34,13 @@ import io.swagger.annotations.ApiModel;
 		@JsonSubTypes.Type(value = Barman.class, name = "barman")
 })
 @ApiModel(description = "")
-public abstract class User {
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
 	private Long version;
 
 	@NotNull
@@ -60,6 +62,7 @@ public abstract class User {
 
 	@NotNull
 	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
 	@NotNull
@@ -74,8 +77,19 @@ public abstract class User {
 	}
 
 	public User(Long id, Long version, @NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password, @NotNull Date dateOfBirth, @NotNull Long salary, @NotNull Boolean isDeleted) {
+
 		this.id = id;
 		this.version = version;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.dateOfBirth = dateOfBirth;
+		this.salary = salary;
+		this.isDeleted = isDeleted;
+	}
+
+	public User(@NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password, @NotNull Date dateOfBirth, @NotNull Long salary, @NotNull Boolean isDeleted) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -163,5 +177,20 @@ public abstract class User {
 	public int hashCode() {
 		return 218;
 	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	
 
 }

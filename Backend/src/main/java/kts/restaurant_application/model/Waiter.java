@@ -17,13 +17,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @PrimaryKeyJoinColumn(name = "user")
 
 public class Waiter extends User {
+
 	@OneToMany(mappedBy = "waiter")
 	@JsonIgnore
 	private Set<Order> orders = new HashSet<>();
 
 	public Waiter(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,
 				  boolean deleted,Set<Order> orders) {
+		super(firstName,lastName,username,password,dateOfBirth,salary,deleted);
 		this.orders = orders;
+	}
+
+	public Waiter(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,
+				  boolean deleted) {
+		super(firstName,lastName,username,password,dateOfBirth,salary,deleted);
 	}
 
 	public Waiter() {

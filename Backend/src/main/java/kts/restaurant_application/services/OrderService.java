@@ -7,7 +7,12 @@
 package kts.restaurant_application.services;
 
 
-import kts.restaurant_application.model.Drink;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +44,15 @@ public class OrderService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Cannot find Order by " + id));
     }
-
+    @Transactional
     public Order save(Order entity) {
+        Optional<Order> o = repository.findById(entity.getId());
+        if(o.isPresent()){
+            throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED,
+                        "order already exists: " + entity.getId());
+        }
         return repository.save(entity);
+
     }
 
     public Order update(Order entity){
@@ -49,17 +60,26 @@ public class OrderService {
 
         existingOrder.setPrice(entity.getPrice());
         existingOrder.setWaiter(entity.getWaiter());
-        existingOrder.setNote(entity.getNote());
-        existingOrder.setTable(entity.getTable());
+        existingOrder.setRestourantTable(entity.getRestourantTable());
 
-        return save(existingOrder);
+
+        return repository.save(existingOrder);
     }
 
-    public void delete(Order entity) {
-        repository.delete(entity);
+    public boolean delete(Order entity) {
+        if(findOne(entity.getId()) != null) {
+            repository.delete(entity);
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public boolean delete(Long id) {
+        return delete(findOne(id));
+    }
+
+    public Collection<Order> getOrdersByDate(Date dateFrom, Date dateTo) {
+        return repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
     }
 }

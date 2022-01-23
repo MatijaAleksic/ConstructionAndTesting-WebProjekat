@@ -14,6 +14,7 @@ import javax.persistence.Table;
 public class Admin extends User {
 	public Admin(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,
             boolean deleted) {
+		super(firstName, lastName, username, password, dateOfBirth, salary, deleted);
     }
 
 	public Admin() {

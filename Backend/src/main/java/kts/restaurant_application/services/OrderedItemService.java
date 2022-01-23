@@ -7,7 +7,9 @@
 package kts.restaurant_application.services;
 
 
-import kts.restaurant_application.model.Drink;
+import java.util.Collection;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.OrderedItem;
+import kts.restaurant_application.model.State;
 import kts.restaurant_application.repositories.OrderedItemRepository;
 
 @Service
@@ -41,6 +44,9 @@ public class OrderedItemService {
     }
 
     public OrderedItem save(OrderedItem entity) {
+        if(repository.existsById(entity.getId())){
+            throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, "Ordered item with that id already exists: " + entity.getId());
+        }
         return repository.save(entity);
     }
 
@@ -52,16 +58,30 @@ public class OrderedItemService {
         existingOrderedItem.setNumber(entity.getNumber());
         existingOrderedItem.setStaff(entity.getStaff());
         existingOrderedItem.setState(entity.getState());
-        existingOrderedItem.setStatus(entity.getStatus());
-
-        return save(existingOrderedItem);
+        existingOrderedItem.setNote(entity.getNote());
+        existingOrderedItem.setPrice(entity.getPrice());
+        
+        return repository.save(existingOrderedItem);
     }
 
-    public void delete(OrderedItem entity) {
-        repository.delete(entity);
+    public boolean delete(OrderedItem entity) {
+        if(findOne(entity.getId()) != null && entity.getState() == State.ordered)
+        {
+            repository.delete(entity);
+            return true;
+        }
+        return false;
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public boolean delete(Long id) {
+        return delete(findOne(id));
+    }
+
+    public Collection<OrderedItem> getOrderedItemsByItem(Long itemId) {
+        return repository.findAllByItemId(itemId);
+    }
+
+    public Collection<OrderedItem> getOrderedItemsByDate(Date dateFrom, Date dateTo) {
+        return repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
     }
 }

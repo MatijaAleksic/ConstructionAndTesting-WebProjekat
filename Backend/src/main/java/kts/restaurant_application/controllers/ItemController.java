@@ -10,12 +10,19 @@ package kts.restaurant_application.controllers;
 
 import javax.validation.Valid;
 
-import kts.restaurant_application.model.Cook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Item;
 import kts.restaurant_application.services.ItemService;
@@ -48,13 +55,19 @@ public class ItemController {
         return service.save(entity);
     }
 
-    @PutMapping
+    @PostMapping("/update")
     public Item update(@RequestBody Item entity){
         return service.update(entity);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<Item> delete(@PathVariable Long id) {
+        Item item = null;
+        try{
+            item = service.delete(id);
+        } catch(ResponseStatusException e){
+            return new ResponseEntity<>(item, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(item, HttpStatus.OK);
     }
 }

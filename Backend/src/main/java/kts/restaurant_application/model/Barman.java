@@ -18,6 +18,12 @@ public class Barman extends Staff {
 
 	public Barman(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,
 				  boolean deleted, Set<OrderedItem> processed) {
+		super(firstName, lastName, username, password, dateOfBirth, salary, deleted, processed);
+	}
+
+	public Barman(String firstName, String lastName, String username, String password, Date dateOfBirth, Long salary,
+				  boolean deleted) {
+		super(firstName, lastName, username, password, dateOfBirth, salary, deleted);
 	}
 
 	@Override

@@ -1,10 +1,14 @@
 package kts.restaurant_application.model;
 
-public enum State {
-	free,
-	ordered,
-	processing,
-	finished,
-	delivered;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public enum State {
+	@JsonProperty("ordered")
+	ordered,
+	@JsonProperty("inMaking")
+	inMaking,
+	@JsonProperty("finished")
+	finished,
+	@JsonProperty("delivered")
+	delivered;
 }

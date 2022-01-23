@@ -1,6 +1,7 @@
 package kts.restaurant_application.model;
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -14,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -27,22 +30,18 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(description = "")
 
 public class Order {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Long id;
 
 	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
 	private Long version;
 
 	@NotNull
 	@Column(nullable = false)
-
 	private Double price;
-
-	@NotNull
-	@Column(nullable = false)
-	private String note;
 
 	@NotNull
 	@ManyToOne
@@ -55,22 +54,41 @@ public class Order {
 	@JoinColumn(name = "restourantTable_id")
 	private RestourantTables restourantTable;
 
+	@NotNull
+	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date dateTime;
+
 	@OneToMany
 	@JoinColumn(name = "_id")
 	private Set<OrderedItem> food = new HashSet<>();
 
-	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, Set<OrderedItem> food) {
+	public Order(Long id, Long version, @NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables restourantTable, Set<OrderedItem> food, @NotNull Date dateTime) {
 		this.id = id;
 		this.version = version;
 		this.price = price;
-		this.note = note;
+		this.waiter = waiter;
+		this.restourantTable = restourantTable;
+		this.food = food;
+		this.dateTime = dateTime;
+	}
+
+	public Order(@NotNull Double price, @NotNull String note, @NotNull Waiter waiter, @NotNull RestourantTables table, @NotNull Date dateTime) {
+		this.price = price;
 		this.waiter = waiter;
 		this.restourantTable = table;
-		this.food = food;
+		this.dateTime = dateTime;
 	}
+
+	public Order(@NotNull Double price, @NotNull Date dateTime) {
+		this.price = price;
+		this.dateTime = dateTime;
+	}
+
 
 	public Order() {
 	}
+
 
 	public Long getId(){
 		return id;
@@ -80,17 +98,12 @@ public class Order {
 		return price;
 	}
 
-	public String getNote() {
-		return note;
-	}
 
 	public Waiter getWaiter() {
 		return waiter;
 	}
 
-	public RestourantTables getTable() {
-		return restourantTable;
-	}
+
 
 	public Set<OrderedItem> getFood() {
 		return food;
@@ -101,19 +114,36 @@ public class Order {
 		return this;
 	}
 
-	public Order setNote(String note) {
-		this.note = note;
-		return this;
-	}
 
 	public Order setWaiter(Waiter waiter) {
 		this.waiter = waiter;
 		return this;
 	}
 
-	public Order setTable(RestourantTables table) {
-		this.restourantTable = table;
-		return this;
+
+	public RestourantTables getRestouranttable() {
+		return restourantTable;
+	}
+
+	public void setRestouranttable(RestourantTables restourantTable) {
+		this.restourantTable = restourantTable;
+	}
+
+
+	public RestourantTables getRestourantTable() {
+		return restourantTable;
+	}
+
+	public void setRestourantTable(RestourantTables restourantTable) {
+		this.restourantTable = restourantTable;
+	}
+
+	public Date getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public Order linkWaiter(Waiter _waiter) {
@@ -132,7 +162,7 @@ public class Order {
 		}
 
 		unlinkTable();
-		setTable(_table);
+		setRestourantTable(_table);
 		return this;
 	}
 
@@ -152,9 +182,9 @@ public class Order {
 	}
 
 	public Order unlinkTable() {
-		if (getTable() != null) {
-			getTable().getOrders().remove(this);
-			setTable(null);
+		if (getRestourantTable() != null) {
+			getRestourantTable().getOrders().remove(this);
+			setRestourantTable(null);
 		}
 		return this;
 	}
@@ -178,9 +208,28 @@ public class Order {
 		return obj instanceof Order && (getId().equals(((Order) obj).getId()));
 	}
 
+
+
 	@Override
 	public int hashCode() {
 		return 152;
 	}
+
+	public void setFood(Set<OrderedItem> food) {
+		this.food = food;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
 
 }

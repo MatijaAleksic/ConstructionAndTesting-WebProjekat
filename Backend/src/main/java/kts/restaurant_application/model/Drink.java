@@ -15,6 +15,14 @@ public class Drink extends Item {
 
 	public Drink(Long id, Long version, Double price, Byte priority, String subcategory, String description,
 				 boolean isDeleted, String name) {
+
+		super(id,version,price,priority,subcategory,description,isDeleted,name);
+	}
+
+	public Drink(Double price, Byte priority, String subcategory, String description,
+				 boolean isDeleted, String name) {
+
+		super(price,priority,subcategory,description,isDeleted,name);
 	}
 
 	@Override

@@ -58,11 +58,13 @@ public class BarmanService {
         return save(existingBarman);
     }
 
-    public void delete(Barman entity) {
-        repository.delete(entity);
+    public Barman delete(Barman entity) {
+        Barman existingBarman = findOne(entity.getId());
+        existingBarman.setIsDeleted(true);
+        return save(existingBarman);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Barman delete(Long id) {
+        return delete(findOne(id));
     }
 }

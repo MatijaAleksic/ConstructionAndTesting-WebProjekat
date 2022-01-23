@@ -56,11 +56,13 @@ public class AdminService {
         return save(existingAdmin);
     }
 
-    public void delete(Admin entity) {
-        repository.delete(entity);
+    public Admin delete(Admin entity) {
+        Admin existingAdmin = findOne(entity.getId());
+        existingAdmin.setIsDeleted(true);
+        return save(existingAdmin);
     }
 
-    public void delete(Long id) {
-        delete(findOne(id));
+    public Admin delete(Long id) {
+        return delete(findOne(id));
     }
 }

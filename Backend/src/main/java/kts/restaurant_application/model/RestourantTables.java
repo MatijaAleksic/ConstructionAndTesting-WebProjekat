@@ -29,10 +29,11 @@ public class RestourantTables {
 	private Long id;
 
 	@Version
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
 	private Long version;
 
 	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private Long tableNumber;
 
 	@NotNull
@@ -50,7 +51,7 @@ public class RestourantTables {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private State state;
+	private TableStatus state;
 
 	@NotNull
 	@Column(nullable = false)
@@ -59,10 +60,6 @@ public class RestourantTables {
 	@JsonIgnore
 	@OneToMany(mappedBy = "restourantTable")
 	private Set<Order> orders = new HashSet<>();
-
-	public Long getId(){
-		return id;
-	}
 
 	public Long getTableNumber() {
 		return tableNumber;
@@ -80,7 +77,7 @@ public class RestourantTables {
 		return positionY;
 	}
 
-	public State getState() {
+	public TableStatus getState() {
 		return state;
 	}
 
@@ -95,7 +92,7 @@ public class RestourantTables {
 	public RestourantTables() {
 	}
 
-	public RestourantTables(Long id, Long version, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull State state, @NotNull Boolean isDeleted, Set<Order> orders) {
+	public RestourantTables(Long id, Long version, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted, Set<Order> orders) {
 		this.id = id;
 		this.version = version;
 		this.tableNumber = tableNumber;
@@ -106,6 +103,16 @@ public class RestourantTables {
 		this.isDeleted = isDeleted;
 		this.orders = orders;
 	}
+
+	public RestourantTables(@NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted) {
+		this.tableNumber = tableNumber;
+		this.floor = floor;
+		this.positionX = positionX;
+		this.positionY = positionY;
+		this.state = state;
+		this.isDeleted = isDeleted;
+	}
+	
 
 	public RestourantTables setTableNumber(Long tableNumber) {
 		this.tableNumber = tableNumber;
@@ -127,7 +134,7 @@ public class RestourantTables {
 		return this;
 	}
 
-	public RestourantTables setState(State state) {
+	public RestourantTables setState(TableStatus state) {
 		this.state = state;
 		return this;
 	}
@@ -140,7 +147,7 @@ public class RestourantTables {
 	public RestourantTables linkOrders(Order _orders) {
 		if (_orders != null) {
 			_orders.unlinkTable();
-			_orders.setTable(this);
+			_orders.setRestourantTable(this);
 			getOrders().add(_orders);
 		}
 		return this;
@@ -148,7 +155,7 @@ public class RestourantTables {
 
 	public RestourantTables unlinkOrders(Order _orders) {
 		if (_orders != null) {
-			_orders.setTable(null);
+			_orders.setRestourantTable(null);
 			getOrders().remove(_orders);
 		}
 		return this;
@@ -156,7 +163,7 @@ public class RestourantTables {
 
 	public RestourantTables unlinkOrders(Order _orders, Iterator<Order> it) {
 		if (_orders != null) {
-			_orders.setTable(null);
+			_orders.setRestourantTable(null);
 			it.remove();
 		}
 		return this;
@@ -169,9 +176,39 @@ public class RestourantTables {
 		return obj instanceof RestourantTables && (getId().equals(((RestourantTables) obj).getId()));
 	}
 
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
 	@Override
 	public int hashCode() {
 		return 115;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 }

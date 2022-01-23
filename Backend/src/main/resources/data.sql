@@ -1,4 +1,5 @@
-INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('markoMarkovic@maildrop.cc','MarkoMarkovic12', false, '2012-12-12', 'Pera', 'Peric', 20000);
+--password = 'MarkoMarkovic12'
+INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('markoMarkovic@maildrop.cc','$2a$12$63zSqkhynYHqacIvDEPzSOxOHXZldg/U5U0/T9X63YZSg7PbUjbSe', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _admins (user) VALUES (1);
 
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('peraperic@maildrop.cc','peraperic', false, '2012-12-11', 'Marko', 'Peric', 20000);
@@ -50,6 +51,62 @@ INSERT INTO _waiters (user) VALUES (12);
 
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('todor@maildrop.cc','todor', false, '2012-12-12', 'Pera', 'eric', 20000);
 INSERT INTO _waiters (user) VALUES (13);
+
+
+INSERT INTO authority (name) VALUES ('ROLE_USER');
+INSERT INTO authority (name) VALUES ('ROLE_STAFF');
+
+
+INSERT INTO authority (name) VALUES ('ROLE_ADMIN');
+INSERT INTO authority (name) VALUES ('ROLE_MANAGER');
+INSERT INTO authority (name) VALUES ('ROLE_BARMAN');
+INSERT INTO authority (name) VALUES ('ROLE_COOK');
+INSERT INTO authority (name) VALUES ('ROLE_MAINCOOK');
+INSERT INTO authority (name) VALUES ('ROLE_WAITER');
+
+
+insert into user_authority (user_id, authority_id) values (1, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (2, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (3, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (4, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (5, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (6, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (7, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (8, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (9, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (10, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (11, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (12, 1); -- admin has ROLE_USER
+insert into user_authority (user_id, authority_id) values (13, 1); -- admin has ROLE_USER
+
+
+insert into user_authority (user_id, authority_id) values (4, 2); -- user has ROLE_STAFF
+insert into user_authority (user_id, authority_id) values (5, 2); -- user has ROLE_STAFF
+insert into user_authority (user_id, authority_id) values (6, 2); -- user has ROLE_STAFF
+insert into user_authority (user_id, authority_id) values (7, 2); -- user has ROLE_STAFF
+insert into user_authority (user_id, authority_id) values (8, 2); -- user has ROLE_STAFF
+insert into user_authority (user_id, authority_id) values (9, 2); -- user has ROLE_STAFF
+
+insert into user_authority (user_id, authority_id) values (1, 3); -- user has ROLE_ADMIN
+insert into user_authority (user_id, authority_id) values (2, 3); -- user has ROLE_ADMIN
+insert into user_authority (user_id, authority_id) values (3, 3); -- user has ROLE_ADMIN
+
+insert into user_authority (user_id, authority_id) values (10, 4); -- user has ROLE_MANAGER
+insert into user_authority (user_id, authority_id) values (11, 4); -- user has ROLE_MANAGER
+
+insert into user_authority (user_id, authority_id) values (4, 5); -- user has ROLE_BARMAN
+insert into user_authority (user_id, authority_id) values (5, 5); -- user has ROLE_BARMAN
+
+insert into user_authority (user_id, authority_id) values (6, 6); -- user has ROLE_COOKS
+insert into user_authority (user_id, authority_id) values (7, 6); -- user has ROLE_COOKS
+insert into user_authority (user_id, authority_id) values (8, 6); -- user has ROLE_COOKS
+insert into user_authority (user_id, authority_id) values (9, 6); -- user has ROLE_COOKS
+
+insert into user_authority (user_id, authority_id) values (8, 7); -- user has ROLE_MAINCOOK
+insert into user_authority (user_id, authority_id) values (9, 7); -- user has ROLE_MAINCOOK
+
+insert into user_authority (user_id, authority_id) values (12, 8); -- user has ROLE_WAITER
+insert into user_authority (user_id, authority_id) values (13, 8); -- user has ROLE_WAITER
 
 
 

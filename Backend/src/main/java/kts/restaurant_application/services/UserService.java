@@ -7,21 +7,31 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Authority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.User;
 import kts.restaurant_application.repositories.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository repository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthorityService authService;
 
     @Autowired
     public UserService(UserRepository repository) {
@@ -39,11 +49,21 @@ public class UserService {
                         "Cannot find User by " + id));
     }
 
-    public User save(User entity) {
+    public User save(User entity) throws Exception {
+        if(repository.findByUsername(entity.getUsername()).isPresent()){
+            throw new Exception("User with given username address already exists");
+        }
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+
+        List<Authority> auth = authService.findByName("ROLE_USER");
+
+        // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
+        entity.setAuthorities(auth);
+
         return repository.save(entity);
     }
 
-    public User update(User entity){
+    public User update(User entity) throws Exception {
         User existingUser = findOne(entity.getId());
 
         existingUser.setFirstName(entity.getFirstName());
@@ -57,13 +77,17 @@ public class UserService {
         return save(existingUser);
     }
 
-    public User delete(User entity) {
+    public User delete(User entity) throws Exception {
         User existingUser = findOne(entity.getId());
         existingUser.setIsDeleted(true);
         return save(existingUser);
     }
 
-    public User delete(Long id) {
+    public User delete(Long id) throws Exception {
         return delete(findOne(id));
+    }
+
+    public User findByUsername(String email) {
+        return repository.findByUsername(email).orElse(null);
     }
 }

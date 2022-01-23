@@ -1,23 +1,18 @@
 package kts.restaurant_application.model;
 
+import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Version;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 import io.swagger.annotations.ApiModel;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "_users")
@@ -34,7 +29,7 @@ import io.swagger.annotations.ApiModel;
 		@JsonSubTypes.Type(value = Barman.class, name = "barman")
 })
 @ApiModel(description = "")
-public class User {
+public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -73,6 +68,16 @@ public class User {
 	@Column(nullable = false)
 	private Boolean isDeleted;
 
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_authority",
+			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
+	private List<Authority> authorities;
+
+	@Column(name = "last_password_reset_date")
+	private Timestamp lastPasswordResetDate;
+
 	public User() {
 	}
 
@@ -99,6 +104,15 @@ public class User {
 		this.isDeleted = isDeleted;
 	}
 
+	public User(@NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password, @NotNull Date dateOfBirth, @NotNull Long salary) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.dateOfBirth = dateOfBirth;
+		this.salary = salary;
+	}
+
 	public Long getId(){
 		return id;
 	}
@@ -115,6 +129,31 @@ public class User {
 		return username;
 	}
 
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.authorities;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -129,6 +168,26 @@ public class User {
 
 	public Boolean getIsDeleted() {
 		return isDeleted;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+	public Timestamp getLastPasswordResetDate() {
+		return lastPasswordResetDate;
+	}
+
+	public void setLastPasswordResetDate(Timestamp lastPasswordResetDate) {
+		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
 
 	public User setFirstName(String firstName) {

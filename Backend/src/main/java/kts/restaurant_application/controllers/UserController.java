@@ -48,17 +48,17 @@ public class UserController {
     }
 
     @PostMapping
-    public User create(@RequestBody @Valid User entity) {
+    public User create(@RequestBody @Valid User entity) throws Exception {
         return service.save(entity);
     }
 
     @PostMapping("/update")
-    public User update(@RequestBody User entity){
+    public User update(@RequestBody User entity) throws Exception {
         return service.update(entity);
     }
 
     @PostMapping("/delete/{id}")
-    public User delete(@PathVariable Long id) {
+    public User delete(@PathVariable Long id) throws Exception {
         return service.delete(id);
     }
 }

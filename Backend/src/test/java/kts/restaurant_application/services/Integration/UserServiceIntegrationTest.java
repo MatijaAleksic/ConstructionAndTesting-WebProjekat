@@ -50,7 +50,7 @@ public class UserServiceIntegrationTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() throws Exception {
         User user = new User(NEW_USER_FIRSTNAME, NEW_USER_LASTNAME, NEW_USER_USERNAME,
                 NEW_USER_PASSWORD, NEW_USER_DATE_OF_BIRTH, NEW_USER_SALARY, NEW_USER_IS_DELETED);
 
@@ -60,13 +60,13 @@ public class UserServiceIntegrationTest {
     }
 
     @Test
-    public void testDelete1(){
+    public void testDelete1() throws Exception {
         User user = userService.delete(DB_USER_ID_DELETE);
         assertEquals(true, user.getIsDeleted());
     }
 
     @Test
-    public void testDelete2(){
+    public void testDelete2() throws Exception {
         User user = new User(DB_USER_FIRSTNAME, DB_USER_LASTNAME, DB_USER_USERNAME, DB_USER_PASSWORD, DB_USER_DATE_OF_BIRTH, DB_USER_SALARY, DB_USER_IS_DELETED);
         user.setId(2L);
 

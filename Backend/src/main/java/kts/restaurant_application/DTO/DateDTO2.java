@@ -1,4 +1,4 @@
-package kts.restaurant_application.model;
+package kts.restaurant_application.DTO;
 
 public class DateDTO2 {
     

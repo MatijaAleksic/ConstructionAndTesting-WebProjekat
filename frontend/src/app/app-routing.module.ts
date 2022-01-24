@@ -11,7 +11,7 @@ import { HomepageComponent } from './Pages/homepage/homepage.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login', 
+    redirectTo: 'homepage', 
     pathMatch: 'full'
   },
   // { 

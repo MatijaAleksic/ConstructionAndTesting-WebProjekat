@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from '../../../app//model/user-login' //'../model/user-login';
 import { AuthentitacionService } from '../../services/autentication/authentitacion.service';//'../../../app//model/service/auth-service/authentication.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',

@@ -16,8 +16,11 @@
           <!-- <li><a href="homepage">Home</a></li> -->
   
           <li>
-                <a (click) = "alertuj('MENI TODO')" *ngIf="checkRole('ROLE_ADMIN') === false" href="#">Meni</a>
+            <a (click) = "alertuj('MENI TODO')" href="#">Meni</a>
                 <!-- <a *ngIf="checkRole('ROLE_ADMIN') === false" href="#">Meni</a> -->
+          </li>
+          <li>
+            <a (click) = "alertuj('TODO')" *ngIf="checkRole('ROLE_ADMIN') === false" href="#">Ne-Admin-Opcija</a>
           </li>
   
           <!-- <li><a href="#">Contact</a></li>
@@ -42,7 +45,7 @@
           <li><a  *ngIf="checkIfLogged() === false" (click) = "this.router.navigate(['']);">Login</a></li>
 
           <!-- <li><a  *ngIf="checkIfLogged() === true" (click) = "this.router.navigate(['']);">Login</a></li> -->
-          <li><a  *ngIf="checkIfLogged() === true" (click) = "alertuj('Promena personalnih informacija')" >Change Personal Information</a></li>
+          <li><a  *ngIf="checkIfLogged() === true" (click) = "this.router.navigate(['profile']);" >Profile</a></li>
 
         </ul>
       </div>

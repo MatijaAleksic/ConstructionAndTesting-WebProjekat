@@ -3,14 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CookTableComponent } from './cook/cook-table/cook-table.component';
 //import { CreateCookComponent } from './cook/create-cook/create-cook.component';
 import { UpdateCookComponent } from './cook/update-cook/update-cook.component';
-import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginFormComponent } from './Forms/login-form/login-form.component';
-import { SuccessPageComponent } from './success-page/success-page.component';
 
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser'
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 const routes: Routes = [
@@ -40,20 +39,17 @@ const routes: Routes = [
     component: LoginFormComponent,
   },
 
-  {
-    path: 'success',
-    component: SuccessPageComponent,
-  },
-  {
-    path: 'error',
-    component: ErrorPageComponent,
-  },
-
 
   {
     path: 'navbar',
     component: NavBarComponent,
   },
+
+  {
+    path: 'profile',
+    component: ProfilePageComponent,
+  },
+
 ];
 
 @NgModule({

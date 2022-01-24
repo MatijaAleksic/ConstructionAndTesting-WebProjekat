@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './Forms/login-form/login-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     UpdateCookComponent,
     CookTableComponent,
     LoginFormComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

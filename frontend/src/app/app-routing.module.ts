@@ -6,14 +6,21 @@ import { UpdateCookComponent } from './cook/update-cook/update-cook.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginFormComponent } from './Forms/login-form/login-form.component';
 import { SuccessPageComponent } from './success-page/success-page.component';
-import { HomepageComponent } from './Pages/homepage/homepage.component';
+
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser'
+import { AppComponent } from './app.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'homepage', 
+    redirectTo: 'login', 
     pathMatch: 'full'
   },
+
+
   // { 
   //   path: 'add', 
   //   component: CreateCookComponent 
@@ -42,14 +49,20 @@ const routes: Routes = [
     component: ErrorPageComponent,
   },
 
+
   {
-    path: 'homepage',
-    component: HomepageComponent,
+    path: 'navbar',
+    component: NavBarComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [CommonModule, RouterModule.forRoot(routes) ],
+  declarations: [],
+  providers: [],
+  // bootstrap: [AppComponent]
+  exports: [RouterModule,BrowserModule ]
+  
 })
+
 export class AppRoutingModule { }

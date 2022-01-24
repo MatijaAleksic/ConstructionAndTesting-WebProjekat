@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './Forms/login-form/login-form.component';
-import { HomepageComponent } from './Pages/homepage/homepage.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { HomepageComponent } from './Pages/homepage/homepage.component';
     UpdateCookComponent,
     CookTableComponent,
     LoginFormComponent,
-    HomepageComponent
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/model/user-login';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { Authority } from 'src/app/model/autority';
 
 @Injectable({
   providedIn: 'root'
@@ -35,15 +36,20 @@ export class AuthentitacionService {
     const user = new UserWithToken(
       resData.accessToken, 
       resData.expiresIn, 
-      resData.userId);
+      resData.userId,
+      resData.authorities);
+    
+
     this.loggedUser.next(user);
     localStorage.setItem('loggedUser', JSON.stringify(user));
+    localStorage.setItem('autorities', JSON.stringify(resData.authorities))
   }
 
   logout() {
-    this.loggedUser.next(new UserWithToken('',0,-100));
+    this.loggedUser.next(new UserWithToken('',0,-100,new Array<Authority>()));
     this.router.navigate(['/login']);
     localStorage.removeItem('loggedUser');
+    localStorage.removeItem('autorities')
   }
 
 }

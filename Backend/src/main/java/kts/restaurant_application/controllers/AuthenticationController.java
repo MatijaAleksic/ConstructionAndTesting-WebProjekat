@@ -62,9 +62,12 @@ public class AuthenticationController {
         User user = (User) authentication.getPrincipal();
         String jwt = tokenUtils.generateToken(user.getUsername()); // prijavljujemo se na sistem sa email adresom
         int expiresIn = tokenUtils.getExpiredIn();
-        System.out.println("Haj11");
+
+        UserTokenStateDTO token = new UserTokenStateDTO(jwt, expiresIn, user.getId(), user.getAuthorities());
         // Vrati token kao odgovor na uspesnu autentifikaciju
-        return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn));
+        return ResponseEntity.ok(token);
+
+        //UserTokenStateDTO(String accessToken, Long expiresIn, Long userId, String userRole)
     }
 
     // Endpoint za registraciju novog korisnika
@@ -98,7 +101,9 @@ public class AuthenticationController {
             String refreshedToken = tokenUtils.refreshToken(token);
             int expiresIn = tokenUtils.getExpiredIn();
 
-            return ResponseEntity.ok(new UserTokenStateDTO(refreshedToken, expiresIn));
+            UserTokenStateDTO token1 = new UserTokenStateDTO(refreshedToken, expiresIn, user.getId(), user.getAuthorities());
+
+            return ResponseEntity.ok(token1);
         } else {
             UserTokenStateDTO userTokenState = new UserTokenStateDTO();
             return ResponseEntity.badRequest().body(userTokenState);

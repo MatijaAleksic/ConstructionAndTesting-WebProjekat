@@ -1,5 +1,5 @@
---password = 'MarkoMarkovic12'
-INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('markoMarkovic@maildrop.cc','$2a$12$63zSqkhynYHqacIvDEPzSOxOHXZldg/U5U0/T9X63YZSg7PbUjbSe', false, '2012-12-12', 'Pera', 'Peric', 20000);
+--password = 'admin'
+INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('admin@gmail.com','$2a$12$56lD4PGALif458mS44zuQuuRx28HkmKyJWk85ZtVTKFoDXsaROGNy', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _admins (user) VALUES (1);
 
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('peraperic@maildrop.cc','peraperic', false, '2012-12-11', 'Marko', 'Peric', 20000);
@@ -39,7 +39,8 @@ INSERT INTO _main_cooks (cook) VALUES (9);
 
 
 
-INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('nikolanikolic@maildrop.cc','nikolanikolic', false, '2012-12-12', 'Pera', 'Peric', 20000);
+--password = 'manager'
+INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('manager@gmail.com','$2a$12$R8Z3/K8a8QDFSQNl6kpp1ObioZO51I7/pGuzZfe/Icey/kT0t8mUW', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _managers (user) VALUES (10);
 
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('slavko@maildrop.cc','slavko', false, '2012-12-12', 'Pera', 'Peric', 20000);

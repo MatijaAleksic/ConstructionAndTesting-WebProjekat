@@ -38,7 +38,7 @@ export class LoginFormComponent implements OnInit {
           next: data => {
             localStorage.setItem('LoggedInUser', JSON.stringify(data.accessToken));
             if(data !== null) {
-              this.router.navigate([`homepage`])
+              this.router.navigate([''])
             }
           }
         }

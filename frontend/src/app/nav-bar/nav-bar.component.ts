@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { AuthentitacionService } from 'src/app/services/autentication/authentitacion.service';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',

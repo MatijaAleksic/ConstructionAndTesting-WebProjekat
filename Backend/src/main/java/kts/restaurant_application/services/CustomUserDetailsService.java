@@ -46,9 +46,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
         String username = ((User) currentUser.getPrincipal()).getUsername();
 
+        System.out.println(username);
+
         if (authenticationManager != null) {
+            System.out.println("Proslo");
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, oldPassword));
         } else {
+            System.out.println("FAIL");
             return;
         }
         User user = (User) loadUserByUsername(username);

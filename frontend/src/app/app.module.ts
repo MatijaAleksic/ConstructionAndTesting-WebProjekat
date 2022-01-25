@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { UpdateCookComponent } from './cook/update-cook/update-cook.component';
 import { CookTableComponent } from './cook/cook-table/cook-table.component';
 import { CookService } from './services/cook/cook.service';        //'./services/cook.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './Forms/login-form/login-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ChangePasswordFormComponent } from './Forms/change-password-form/change-password-form.component';
+import { AuthInterceptor } from './services/autentication/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     CookTableComponent,
     LoginFormComponent,
     NavBarComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    ChangePasswordFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,13 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

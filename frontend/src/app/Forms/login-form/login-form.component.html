@@ -3,15 +3,15 @@
         <h1 class="h1 mb-3 font-weight-normal">Login</h1>
         <form [formGroup]="loginForm">
             <div>
-                <label>Username</label>
+                <label style="margin:5px;">Username</label>
                 <input matInput class="form-control" id="email" type="text" formControlName="username">
             </div>
             <div>
-                <label >Password</label>
+                <label style="margin:5px;" >Password</label>
                 <input matInput class="form-control" id="password" type="password" formControlName="password">
             </div>
             <div id="button-div">
-                <button color="primary" type="submit" class="btn btn-lg btn-primary btn-block" (click)="login()" id="login-button">Login</button>
+                <button style="margin:15px;" color="primary" type="submit" class="btn btn-lg btn-primary btn-block" (click)="login()" id="login-button">Login</button>
             </div>
         </form>
     </div>

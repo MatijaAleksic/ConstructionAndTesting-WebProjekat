@@ -52,4 +52,25 @@ export class AuthentitacionService {
     localStorage.removeItem('autorities')
   }
 
+  getUserId(){
+    return JSON.parse(localStorage.getItem('loggedUser') || '{}').userId;
+  }
+
+  getUserRole(){
+    length : Number;
+    
+    length = JSON.parse(localStorage.getItem('autorities') || '{}').length;
+    
+    return JSON.parse(localStorage.getItem('autorities') || '{}')[length-1].authority;
+  }
+
+  getAuthorizationToken(){
+    if(localStorage.getItem('loggedUser') || ""){
+      return JSON.parse(localStorage.getItem('loggedUser') || "").accessToken;
+    }
+    else{
+      return false;
+    }
+  }
+
 }

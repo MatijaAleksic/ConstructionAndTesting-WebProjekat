@@ -43,8 +43,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User findOne(@PathVariable("id") Long id) {
-        return service.findOne(id);
+    public User findOne(@PathVariable("id") String id) {
+        return service.findOne(Long.parseLong(id));
     }
 
     @PostMapping

@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ChangePasswordFormComponent } from './Forms/change-password-form/change-password-form.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePageComponent,
+  },
+
+  {
+    path: 'change-password',
+    component: ChangePasswordFormComponent,
   },
 
 ];

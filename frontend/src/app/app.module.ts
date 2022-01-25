@@ -16,6 +16,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ChangePasswordFormComponent } from './Forms/change-password-form/change-password-form.component';
 import { AuthInterceptor } from './services/autentication/auth.interceptor';
+import { BarmanTableComponent } from './Tables/barman-table/barman-table.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthInterceptor } from './services/autentication/auth.interceptor';
     NavBarComponent,
     ProfilePageComponent,
     ChangePasswordFormComponent,
+    BarmanTableComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,8 @@
+.barman-table {
+    margin : 50px;
+    background-color: black;;
+    height: 100%;
+    width: 70%;
+    z-index: 1;
+    padding:15px;
+  }

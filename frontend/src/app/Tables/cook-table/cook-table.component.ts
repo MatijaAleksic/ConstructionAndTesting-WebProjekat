@@ -34,7 +34,6 @@ export class CookTableComponent implements OnInit {
         this.cooks.forEach( (element) => {
           element.dateOfBirth = datePipe.transform(element.dateOfBirth, 'dd/MM/yyyy') || "";
       });
-        console.log(this.cooks);
       },
       () => {
         alert("SHIT!")

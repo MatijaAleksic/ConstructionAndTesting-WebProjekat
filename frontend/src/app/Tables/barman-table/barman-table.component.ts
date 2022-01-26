@@ -34,7 +34,6 @@ export class BarmanTableComponent implements OnInit {
         this.barmans.forEach( (element) => {
           element.dateOfBirth = datePipe.transform(element.dateOfBirth, 'dd/MM/yyyy') || "";
       });
-        console.log(this.barmans);
       },
       () => {
         alert("SHIT!")

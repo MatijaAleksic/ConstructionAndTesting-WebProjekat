@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import kts.restaurant_application.model.User;
 import kts.restaurant_application.repositories.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,7 +56,9 @@ public class UserService {
         }
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 
-        List<Authority> auth = authService.findByName("ROLE_USER");
+        List<Authority> auth = new ArrayList<>();
+
+        auth.add(authService.findByName("ROLE_USER"));
 
         // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
         entity.setAuthorities(auth);

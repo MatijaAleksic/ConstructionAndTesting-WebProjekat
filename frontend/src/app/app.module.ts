@@ -18,6 +18,9 @@ import { ChangePasswordFormComponent } from './Forms/change-password-form/change
 import { AuthInterceptor } from './services/autentication/auth.interceptor';
 import { BarmanTableComponent } from './Tables/barman-table/barman-table.component';
 
+import { MatTableModule } from '@angular/material/table';
+import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component' 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +32,7 @@ import { BarmanTableComponent } from './Tables/barman-table/barman-table.compone
     ProfilePageComponent,
     ChangePasswordFormComponent,
     BarmanTableComponent,
+    AddNewBarmanComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { BarmanTableComponent } from './Tables/barman-table/barman-table.compone
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [
     {

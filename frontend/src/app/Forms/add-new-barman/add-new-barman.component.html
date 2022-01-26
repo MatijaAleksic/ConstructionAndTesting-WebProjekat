@@ -1,0 +1,50 @@
+<div id="container-div">
+    <div id="form-holder-div">
+        <h1 class="h1 mb-3 font-weight-normal">New Barman</h1>
+        <form [formGroup]="addNewBarmanForm">
+            <div>
+                <label style="margin:5px;">First Name</label>
+                <input matInput class="form-control" id="firstName" type="text" formControlName="firstName">
+            </div>
+            <div>
+                <label style="margin:5px;">Last Name</label>
+                <input matInput class="form-control" id="lastName" type="text" formControlName="lastName">
+            </div>
+            <div>
+                <label style="margin:5px;">Username</label>
+                <input matInput class="form-control" id="username" type="text" formControlName="username">
+            </div>
+            <div>
+                <label style="margin:5px;" >Password</label>
+                <input matInput class="form-control" id="password" type="password" formControlName="password">
+            </div>
+
+
+            <div>
+                <label style="margin:5px;" >Date Of Birth</label>
+                <input matInput class="form-control" type="date" id="dateOfBirth" formControlName="dateOfBirth" name="trip-start" min="1920-01-01" max="2022-12-31">
+            </div>
+<!-- 
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+
+            <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+                <input matInput class="form-control" placeholder="Select date" type="text" id="example" formControlName="dateOfBirth">
+                <label style="margin:5px;" >Date Of Birth</label>
+                <i class="fas fa-calendar input-prefix" tabindex=0></i>
+              </div> -->
+
+            <div>
+                <label style="margin:5px;" >Salary</label>
+                <input matInput class="form-control" id="salary" type="number" min="0" max = "999999" formControlName="salary">
+            </div>
+
+
+            <div id="button-div">   
+                <button style="margin:15px;" color="primary" type="submit" class="btn btn-lg btn-primary btn-block" (click)="addNew()" id="add-barman-button">Add Barman</button>
+            </div>
+        </form>
+    </div>
+</div>
+

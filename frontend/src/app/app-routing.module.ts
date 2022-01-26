@@ -12,6 +12,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ChangePasswordFormComponent } from './Forms/change-password-form/change-password-form.component';
 import { BarmanTableComponent } from './Tables/barman-table/barman-table.component';
+import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component';
 
 
 const routes: Routes = [
@@ -58,8 +59,13 @@ const routes: Routes = [
   },
 
   {
-    path: 'barmans',
+    path: 'barman-table',
     component: BarmanTableComponent,
+  },
+
+  {
+    path: 'add-barman',
+    component: AddNewBarmanComponent,
   },
 
 ];

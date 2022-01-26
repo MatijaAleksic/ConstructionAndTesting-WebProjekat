@@ -8,15 +8,20 @@ package kts.restaurant_application.services;
 
 
 import kts.restaurant_application.model.Admin;
+import kts.restaurant_application.model.Authority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Barman;
 import kts.restaurant_application.repositories.BarmanRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BarmanService {
@@ -25,12 +30,26 @@ public class BarmanService {
     private final BarmanRepository repository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthorityService authorityService;
+
+    @Autowired
     public BarmanService(BarmanRepository repository) {
         this.repository = repository;
     }
 
     public Iterable<Barman> findAll() {
-        return repository.findAll();
+        Iterable<Barman> all = repository.findAll();
+        ArrayList<Barman> notDeleted = new ArrayList<>();
+
+        for(Barman b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Barman findOne(Long id) {
@@ -41,6 +60,19 @@ public class BarmanService {
     }
 
     public Barman save(Barman entity) {
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        entity.setIsDeleted(false);
+
+        List<Authority> auth = new ArrayList<Authority>();
+
+
+        auth.add(authorityService.findByName("ROLE_USER"));
+        auth.add(authorityService.findByName("ROLE_STAFF"));
+        auth.add(authorityService.findByName("ROLE_BARMAN"));
+
+        entity.setAuthorities(auth);
+
+
         return repository.save(entity);
     }
 
@@ -50,7 +82,7 @@ public class BarmanService {
 
         existingBarman.setFirstName(entity.getFirstName());
         existingBarman.setLastName(entity.getLastName());
-        existingBarman.setPassword(entity.getPassword());
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingBarman.setDateOfBirth(entity.getDateOfBirth());
         existingBarman.setSalary(entity.getSalary());
         existingBarman.setIsDeleted(entity.getIsDeleted());

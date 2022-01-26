@@ -17,10 +17,16 @@ export class BarmanService {
     );
   }
 
-  public create(category: User) {
+  public create(user: User) {
     return this.http.post(
       `${environment.baseUrl}/${environment.barmans}`,
-      category
+      user
+    );
+  }
+
+  public delete(id: number) {
+    return this.http.post(
+      `${environment.baseUrl}/${environment.barmans}/delete`, id
     );
   }
 }

@@ -14,6 +14,8 @@ import { CookTableComponent } from './Tables/cook-table/cook-table.component';
 import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component';
 import { MaincookTableComponent } from './Tables/maincook-table/maincook-table.component';
 import { AddNewMaincookComponent } from './Forms/add-new-maincook/add-new-maincook.component';
+import { WaiterTableComponent } from './Tables/waiter-table/waiter-table.component';
+import { AddNewWaiterComponent } from './Forms/add-new-waiter/add-new-waiter.component';
 
 
 const routes: Routes = [
@@ -72,6 +74,16 @@ const routes: Routes = [
   {
     path: 'add-main-cook',
     component: AddNewMaincookComponent,
+  },
+
+  {
+    path: 'waiter-table',
+    component: WaiterTableComponent,
+  },
+
+  {
+    path: 'add-waiter',
+    component: AddNewWaiterComponent,
   },
 
 ];

@@ -21,6 +21,8 @@ import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component
 import { CookTableComponent } from './Tables/cook-table/cook-table.component';
 import { MaincookTableComponent } from './Tables/maincook-table/maincook-table.component';
 import { AddNewMaincookComponent } from './Forms/add-new-maincook/add-new-maincook.component';
+import { WaiterTableComponent } from './Tables/waiter-table/waiter-table.component';
+import { AddNewWaiterComponent } from './Forms/add-new-waiter/add-new-waiter.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { AddNewMaincookComponent } from './Forms/add-new-maincook/add-new-mainco
     AddNewCookComponent,
     MaincookTableComponent,
     AddNewMaincookComponent,
+    WaiterTableComponent,
+    AddNewWaiterComponent,
   ],
   imports: [
     BrowserModule,

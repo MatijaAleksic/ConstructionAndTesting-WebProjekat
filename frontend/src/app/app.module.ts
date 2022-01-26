@@ -25,6 +25,8 @@ import { WaiterTableComponent } from './Tables/waiter-table/waiter-table.compone
 import { AddNewWaiterComponent } from './Forms/add-new-waiter/add-new-waiter.component';
 import { AddNewManagerComponent } from './Forms/add-new-manager/add-new-manager.component';
 import { ManagerTableComponent } from './Tables/manager-table/manager-table.component';
+import { AdminTableComponent } from './Tables/admin-table/admin-table.component';
+import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ManagerTableComponent } from './Tables/manager-table/manager-table.comp
     AddNewWaiterComponent,
     AddNewManagerComponent,
     ManagerTableComponent,
+    AdminTableComponent,
+    AddNewAdminComponent,
   ],
   imports: [
     BrowserModule,

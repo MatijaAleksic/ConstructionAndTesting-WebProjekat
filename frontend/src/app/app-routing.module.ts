@@ -4,7 +4,6 @@ import { LoginFormComponent } from './Forms/login-form/login-form.component';
 
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser'
-import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ChangePasswordFormComponent } from './Forms/change-password-form/change-password-form.component';
@@ -18,6 +17,8 @@ import { WaiterTableComponent } from './Tables/waiter-table/waiter-table.compone
 import { AddNewWaiterComponent } from './Forms/add-new-waiter/add-new-waiter.component';
 import { ManagerTableComponent } from './Tables/manager-table/manager-table.component';
 import { AddNewManagerComponent } from './Forms/add-new-manager/add-new-manager.component';
+import { AdminTableComponent } from './Tables/admin-table/admin-table.component';
+import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
 
 
 const routes: Routes = [
@@ -96,6 +97,16 @@ const routes: Routes = [
   {
     path: 'add-manager',
     component: AddNewManagerComponent,
+  },
+
+  {
+    path: 'admin-table',
+    component: AdminTableComponent,
+  },
+
+  {
+    path: 'add-admin',
+    component: AddNewAdminComponent,
   },
 
 ];

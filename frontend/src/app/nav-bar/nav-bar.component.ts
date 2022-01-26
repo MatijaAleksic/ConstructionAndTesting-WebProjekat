@@ -32,6 +32,11 @@ export class NavBarComponent implements OnInit {
 
   }
 
+  checkUserId(){
+    return JSON.parse(localStorage.getItem('loggedUser') || '{}').userId;
+  }
+  
+
   checkIfLogged(){
     if(localStorage.getItem('loggedUser') != null){
       return true;

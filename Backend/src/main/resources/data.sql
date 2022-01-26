@@ -2,8 +2,8 @@
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('admin@gmail.com','$2a$12$56lD4PGALif458mS44zuQuuRx28HkmKyJWk85ZtVTKFoDXsaROGNy', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _admins (user) VALUES (1);
 
-
-INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('peraperic@maildrop.cc','peraperic', false, '2012-12-11', 'Marko', 'Peric', 20000);
+--password = 'admin1'
+INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('admin1@gmail.com','$2a$12$NJo7BbzawM4gLzfMq.F5Ae29Bwu0uZJWwtDm.Ve4TwLplJGNso/gG', false, '2012-12-11', 'Marko', 'Peric', 20000);
 INSERT INTO _admins (user) VALUES (2);
 
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('milanmilanovic@maildrop.cc','milanmilanovic', false, '2012-12-12', 'Pera', 'Peric', 20000);

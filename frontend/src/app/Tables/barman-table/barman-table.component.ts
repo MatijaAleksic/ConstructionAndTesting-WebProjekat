@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
+import { UserId } from 'src/app/model/user-id';
 import { BarmanService } from 'src/app/services/barman/barman-service.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { BarmanService } from 'src/app/services/barman/barman-service.service';
 })
 export class BarmanTableComponent implements OnInit {
 
-  barmans: User[];
+  barmans: UserId[];
   displayedColumns: string[] = ["id", "firstName", "lastName", "username", "dateOfBirth", "salary", "delete"];
 
   constructor(
@@ -46,12 +47,15 @@ export class BarmanTableComponent implements OnInit {
   }
 
   deleteBarman(id : number){
-    this.barmanService.delete(id);
-    this.getAll();
-  }
+    this.barmanService.delete(id).subscribe(
+      res => {
+        console.log(res);
+      });
 
-  alertuj(text : string){
-    alert(text);
+    this.barmans = this.barmans.filter(function( barman ) {
+      return barman.id !== id;
+  });
+
   }
 
 }

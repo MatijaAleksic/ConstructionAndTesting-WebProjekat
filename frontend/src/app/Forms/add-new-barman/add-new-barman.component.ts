@@ -44,7 +44,6 @@ export class AddNewBarmanComponent implements OnInit {
     this.barmanService.create(this.newBarman).subscribe(
       {
         next: data => {
-          alert("success");
             this.router.navigate(['barman-table'])
           }
         }

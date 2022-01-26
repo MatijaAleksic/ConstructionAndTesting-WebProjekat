@@ -32,8 +32,6 @@ public class BarmanService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private AuthorityService authorityService;
 
     @Autowired
     public BarmanService(BarmanRepository repository) {
@@ -60,19 +58,6 @@ public class BarmanService {
     }
 
     public Barman save(Barman entity) {
-        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
-        entity.setIsDeleted(false);
-
-        List<Authority> auth = new ArrayList<Authority>();
-
-
-        auth.add(authorityService.findByName("ROLE_USER"));
-        auth.add(authorityService.findByName("ROLE_STAFF"));
-        auth.add(authorityService.findByName("ROLE_BARMAN"));
-
-        entity.setAuthorities(auth);
-
-
         return repository.save(entity);
     }
 

@@ -10,7 +10,9 @@ export const environment = {
   barmans : 'barmans',
   cooks : 'cooks',
   mainCooks : 'mainCooks',
-  waiters : 'waiters'
+  waiters : 'waiters',
+  managers : 'managers',
+  admins : 'admins'
 };
 
 /*

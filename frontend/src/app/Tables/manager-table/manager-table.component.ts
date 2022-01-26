@@ -1,23 +1,23 @@
-
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserId } from 'src/app/model/user-id';
-import { BarmanService } from 'src/app/services/barman/barman-service.service';
+import { ManagerService } from 'src/app/services/manager/manager-service.service';
 
 @Component({
-  selector: 'app-barman-table',
-  templateUrl: './barman-table.component.html',
-  styleUrls: ['./barman-table.component.css']
+  selector: 'app-manager-table',
+  templateUrl: './manager-table.component.html',
+  styleUrls: ['./manager-table.component.css']
 })
-export class BarmanTableComponent implements OnInit {
+export class ManagerTableComponent implements OnInit {
 
-  barmans: UserId[];
+  managers: UserId[];
   displayedColumns: string[] = ["id", "firstName", "lastName", "username", "dateOfBirth", "salary", "delete"];
+
 
   constructor(
     private router: Router,
-    private barmanService: BarmanService
+    private managerService: ManagerService
   ) { }
 
   ngOnInit() {
@@ -25,33 +25,33 @@ export class BarmanTableComponent implements OnInit {
   }
 
   getAll() {
-    this.barmanService.getAll().subscribe(
+    this.managerService.getAll().subscribe(
       res => {
-        this.barmans = res;
+        this.managers = res;
 
         const datePipe = new DatePipe('en-US');
-        this.barmans.forEach( (element) => {
+        this.managers.forEach( (element) => {
           element.dateOfBirth = datePipe.transform(element.dateOfBirth, 'dd/MM/yyyy') || "";
       });
       },
       () => {
         alert("SHIT!")
       }
-    );
+    )
   }
 
   addNew() {
-    this.router.navigate([`add-barman`]);
+    this.router.navigate([`add-manager`]);
   }
 
-  deleteBarman(id : number){
-    this.barmanService.delete(id).subscribe(
+  deleteManager(id : number){
+    this.managerService.delete(id).subscribe(
       res => {
         console.log(res);
       });
 
-    this.barmans = this.barmans.filter(function( barman ) {
-      return barman.id !== id;
+    this.managers = this.managers.filter(function( manager ) {
+      return manager.id !== id;
   });
 
   }

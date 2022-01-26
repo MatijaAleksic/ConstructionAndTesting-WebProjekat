@@ -23,6 +23,8 @@ import { MaincookTableComponent } from './Tables/maincook-table/maincook-table.c
 import { AddNewMaincookComponent } from './Forms/add-new-maincook/add-new-maincook.component';
 import { WaiterTableComponent } from './Tables/waiter-table/waiter-table.component';
 import { AddNewWaiterComponent } from './Forms/add-new-waiter/add-new-waiter.component';
+import { AddNewManagerComponent } from './Forms/add-new-manager/add-new-manager.component';
+import { ManagerTableComponent } from './Tables/manager-table/manager-table.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { AddNewWaiterComponent } from './Forms/add-new-waiter/add-new-waiter.com
     AddNewMaincookComponent,
     WaiterTableComponent,
     AddNewWaiterComponent,
+    AddNewManagerComponent,
+    ManagerTableComponent,
   ],
   imports: [
     BrowserModule,

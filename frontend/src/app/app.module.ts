@@ -5,9 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //import { CreateCookComponent } from './cook/create-cook/create-cook.component';
-import { UpdateCookComponent } from './cook/update-cook/update-cook.component';
-import { CookTableComponent } from './cook/cook-table/cook-table.component';
-import { CookService } from './services/cook/cook.service';        //'./services/cook.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -19,13 +16,13 @@ import { AuthInterceptor } from './services/autentication/auth.interceptor';
 import { BarmanTableComponent } from './Tables/barman-table/barman-table.component';
 
 import { MatTableModule } from '@angular/material/table';
-import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component' 
+import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component';
+import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component' 
+import { CookTableComponent } from './Tables/cook-table/cook-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    //CreateCookComponent,
-    UpdateCookComponent,
     CookTableComponent,
     LoginFormComponent,
     NavBarComponent,
@@ -33,6 +30,7 @@ import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.com
     ChangePasswordFormComponent,
     BarmanTableComponent,
     AddNewBarmanComponent,
+    AddNewCookComponent,
   ],
   imports: [
     BrowserModule,

@@ -60,7 +60,7 @@ public class BarmanController {
     }
 
     @PostMapping
-    public Barman create(@RequestBody @Valid Barman entity) {
+    public Barman create(@RequestBody @Valid Barman entity) throws Exception {
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         entity.setIsDeleted(false);
 
@@ -76,13 +76,13 @@ public class BarmanController {
     }
 
     @PostMapping("/update")
-    public Barman update(@RequestBody Barman entity){
+    public Barman update(@RequestBody Barman entity) throws Exception {
         return service.update(entity);
     }
 
     @GetMapping("/delete/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long id) throws Exception {
         service.delete(id);
     }
 }

@@ -6,12 +6,15 @@
 
 package kts.restaurant_application.repositories;
 
+import kts.restaurant_application.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import kts.restaurant_application.model.Waiter;
 
+import java.util.Optional;
+
 @Repository
 public interface WaiterRepository extends CrudRepository<Waiter, Long> {
-
+    Optional<Waiter> findByUsername(String username);
 }

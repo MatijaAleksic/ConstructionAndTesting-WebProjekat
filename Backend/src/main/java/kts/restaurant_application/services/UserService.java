@@ -8,6 +8,7 @@ package kts.restaurant_application.services;
 
 
 import kts.restaurant_application.model.Authority;
+import kts.restaurant_application.model.Barman;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,15 @@ public class UserService {
     }
 
     public Iterable<User> findAll() {
-        return repository.findAll();
+        Iterable<User> all = repository.findAll();
+        ArrayList<User> notDeleted = new ArrayList<>();
+
+        for(User b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public User findOne(Long id) {
@@ -51,18 +60,6 @@ public class UserService {
     }
 
     public User save(User entity) throws Exception {
-        if(repository.findByUsername(entity.getUsername()).isPresent()){
-            throw new Exception("User with given username address already exists");
-        }
-        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
-
-        List<Authority> auth = new ArrayList<>();
-
-        auth.add(authService.findByName("ROLE_USER"));
-
-        // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
-        entity.setAuthorities(auth);
-
         return repository.save(entity);
     }
 
@@ -71,7 +68,7 @@ public class UserService {
 
         existingUser.setFirstName(entity.getFirstName());
         existingUser.setLastName(entity.getLastName());
-        existingUser.setPassword(entity.getPassword());
+        existingUser.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingUser.setDateOfBirth(entity.getDateOfBirth());
         existingUser.setSalary(entity.getSalary());
         existingUser.setIsDeleted(entity.getIsDeleted());

@@ -14,11 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Staff;
 import kts.restaurant_application.repositories.StaffRepository;
+
+import java.util.ArrayList;
 
 @Service
 public class StaffService {
@@ -27,12 +30,23 @@ public class StaffService {
     private final StaffRepository repository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     public StaffService(StaffRepository repository) {
         this.repository = repository;
     }
 
     public Iterable<Staff> findAll() {
-        return repository.findAll();
+        Iterable<Staff> all = repository.findAll();
+        ArrayList<Staff> notDeleted = new ArrayList<>();
+
+        for(Staff b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Staff findOne(Long id) {

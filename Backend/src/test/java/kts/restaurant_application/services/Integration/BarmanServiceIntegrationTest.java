@@ -47,7 +47,7 @@ public class BarmanServiceIntegrationTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() throws Exception {
         Barman barman= new Barman(NEW_BARMAN_FIRSTNAME, NEW_BARMAN_LASTNAME, NEW_BARMAN_USERNAME,
                 NEW_BARMAN_PASSWORD, NEW_BARMAN_DATE_OF_BIRTH, NEW_BARMAN_SALARY, NEW_BARMAN_IS_DELETED);
 
@@ -57,13 +57,13 @@ public class BarmanServiceIntegrationTest {
     }
 
     @Test
-    public void testDelete1(){
+    public void testDelete1() throws Exception {
         Barman barman= barmanService.delete(DB_BARMAN_ID);
         assertEquals(true, barman.getIsDeleted());
     }
 
     @Test
-    public void testDelete2(){
+    public void testDelete2() throws Exception {
         Barman barman = new Barman(DB_BARMAN_FIRSTNAME, DB_BARMAN_LASTNAME, DB_BARMAN_USERNAME, DB_BARMAN_PASSWORD, DB_BARMAN_DATE_OF_BIRTH, DB_BARMAN_SALARY, DB_BARMAN_IS_DELETED);
         barman.setId(DB_BARMAN_ID);
 

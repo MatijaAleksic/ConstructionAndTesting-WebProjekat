@@ -30,7 +30,7 @@
             <ul class="dropdown-menu">
               <li><a (click) = "alertuj('MANAGERS TODO')">Managers</a></li>
               <li><a (click) = "alertuj('WAITER TODO')" >Waiter</a></li>
-              <li><a (click) = "alertuj('COOK TODO')" >Cook</a></li>
+              <li><a (click) = "this.router.navigate(['cook-table']);" >Cook</a></li>
               <li><a (click) = "alertuj('MAINCOOK TODO')" >Main Cook</a></li>
               <li><a (click) = "this.router.navigate(['barman-table']);" >Barman</a></li>
             </ul>

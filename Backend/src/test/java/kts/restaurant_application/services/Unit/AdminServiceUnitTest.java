@@ -77,7 +77,7 @@ public class AdminServiceUnitTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() throws Exception {
         Admin Admin1 = new Admin(NEW_ADMIN_FIRSTNAME, NEW_ADMIN_LASTNAME, NEW_ADMIN_USERNAME,
                 NEW_ADMIN_PASSWORD, NEW_ADMIN_DATE_OF_BIRTH, NEW_ADMIN_SALARY, NEW_ADMIN_IS_DELETED);
 
@@ -89,7 +89,7 @@ public class AdminServiceUnitTest {
     }
 
     @Test(expected = ResponseStatusException.class)
-    public void testDelete1ShouldReturnResponseStatusException(){
+    public void testDelete1ShouldReturnResponseStatusException() throws Exception {
         Admin Admin1 = new Admin(DB_ADMIN_FIRSTNAME, DB_ADMIN_LASTNAME, DB_ADMIN_USERNAME, DB_ADMIN_PASSWORD, DB_ADMIN_DATE_OF_BIRTH, DB_ADMIN_SALARY, DB_ADMIN_IS_DELETED);
         Admin1.setId(DB_ADMIN_ID);
 
@@ -99,7 +99,7 @@ public class AdminServiceUnitTest {
     }
 
     @Test
-    public void testDelete1(){
+    public void testDelete1() throws Exception {
         Admin Admin1 = new Admin(DB_ADMIN_FIRSTNAME, DB_ADMIN_LASTNAME, DB_ADMIN_USERNAME, DB_ADMIN_PASSWORD, DB_ADMIN_DATE_OF_BIRTH, DB_ADMIN_SALARY, DB_ADMIN_IS_DELETED);
         Admin1.setId(DB_ADMIN_ID);
 
@@ -118,7 +118,7 @@ public class AdminServiceUnitTest {
 
 
     @Test
-    public void testDelete2(){
+    public void testDelete2() throws Exception {
         Admin Admin1 = new Admin(DB_ADMIN_FIRSTNAME, DB_ADMIN_LASTNAME, DB_ADMIN_USERNAME, DB_ADMIN_PASSWORD, DB_ADMIN_DATE_OF_BIRTH, DB_ADMIN_SALARY, DB_ADMIN_IS_DELETED_UNIT);
         Admin1.setId(DB_ADMIN_ID);
 
@@ -134,7 +134,7 @@ public class AdminServiceUnitTest {
     }
 
     @Test(expected = ResponseStatusException.class)
-    public void testDelete2ShouldReturnResponseStatusException(){
+    public void testDelete2ShouldReturnResponseStatusException() throws Exception {
         Admin Admin1 = new Admin(DB_ADMIN_FIRSTNAME, DB_ADMIN_LASTNAME, DB_ADMIN_USERNAME, DB_ADMIN_PASSWORD, DB_ADMIN_DATE_OF_BIRTH, DB_ADMIN_SALARY, DB_ADMIN_IS_DELETED);
         Admin1.setId(DB_WRONG_ADMIN_ID);
 

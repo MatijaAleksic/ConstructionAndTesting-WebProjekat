@@ -7,15 +7,19 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Barman;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Manager;
 import kts.restaurant_application.repositories.ManagerRepository;
+
+import java.util.ArrayList;
 
 @Service
 public class ManagerService {
@@ -24,12 +28,23 @@ public class ManagerService {
     private final ManagerRepository repository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     public ManagerService(ManagerRepository repository) {
         this.repository = repository;
     }
 
     public Iterable<Manager> findAll() {
-        return repository.findAll();
+        Iterable<Manager> all = repository.findAll();
+        ArrayList<Manager> notDeleted = new ArrayList<>();
+
+        for(Manager b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Manager findOne(Long id) {
@@ -48,7 +63,7 @@ public class ManagerService {
 
         existingManager.setFirstName(entity.getFirstName());
         existingManager.setLastName(entity.getLastName());
-        existingManager.setPassword(entity.getPassword());
+        existingManager.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingManager.setDateOfBirth(entity.getDateOfBirth());
         existingManager.setSalary(entity.getSalary());
         existingManager.setIsDeleted(entity.getIsDeleted());

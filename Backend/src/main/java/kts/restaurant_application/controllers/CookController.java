@@ -10,9 +10,13 @@ package kts.restaurant_application.controllers;
 
 import javax.validation.Valid;
 
+import kts.restaurant_application.model.Authority;
+import kts.restaurant_application.services.AuthorityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 import kts.restaurant_application.model.Cook;
 import kts.restaurant_application.services.CookService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Transactional
 @RestController
 @RequestMapping("/cooks")
@@ -31,6 +38,12 @@ public class CookController {
     private static final Logger logger = LoggerFactory.getLogger(CookController.class);
 
     private final CookService service;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthorityService authorityService;
 
     @Autowired
     public CookController(CookService service) {
@@ -49,6 +62,17 @@ public class CookController {
 
     @PostMapping
     public Cook create(@RequestBody @Valid Cook entity) {
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        entity.setIsDeleted(false);
+
+        List<Authority> auth = new ArrayList<Authority>();
+
+        auth.add(authorityService.findByName("ROLE_USER"));
+        auth.add(authorityService.findByName("ROLE_STAFF"));
+        auth.add(authorityService.findByName("ROLE_COOK"));
+
+        entity.setAuthorities(auth);
+
         return service.save(entity);
     }
 
@@ -57,8 +81,9 @@ public class CookController {
         return service.update(entity);
     }
 
-    @PostMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void delete(@PathVariable("id") Long id) throws Exception {
         service.delete(id);
     }
 }

@@ -7,15 +7,19 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Barman;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.MainCook;
 import kts.restaurant_application.repositories.MainCookRepository;
+
+import java.util.ArrayList;
 
 @Service
 public class MainCookService {
@@ -24,12 +28,23 @@ public class MainCookService {
     private final MainCookRepository repository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     public MainCookService(MainCookRepository repository) {
         this.repository = repository;
     }
 
     public Iterable<MainCook> findAll() {
-        return repository.findAll();
+        Iterable<MainCook> all = repository.findAll();
+        ArrayList<MainCook> notDeleted = new ArrayList<>();
+
+        for(MainCook b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public MainCook findOne(Long id) {
@@ -48,7 +63,7 @@ public class MainCookService {
 
         existingMainCook.setFirstName(entity.getFirstName());
         existingMainCook.setLastName(entity.getLastName());
-        existingMainCook.setPassword(entity.getPassword());
+        existingMainCook.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingMainCook.setDateOfBirth(entity.getDateOfBirth());
         existingMainCook.setSalary(entity.getSalary());
         existingMainCook.setIsDeleted(entity.getIsDeleted());

@@ -77,7 +77,7 @@ public class BarmanServiceUnitTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() throws Exception {
         Barman Barman1 = new Barman(NEW_BARMAN_FIRSTNAME, NEW_BARMAN_LASTNAME, NEW_BARMAN_USERNAME,
                 NEW_BARMAN_PASSWORD, NEW_BARMAN_DATE_OF_BIRTH, NEW_BARMAN_SALARY, NEW_BARMAN_IS_DELETED);
 
@@ -89,7 +89,7 @@ public class BarmanServiceUnitTest {
     }
 
     @Test(expected = ResponseStatusException.class)
-    public void testDelete1ShouldReturnResponseStatusException(){
+    public void testDelete1ShouldReturnResponseStatusException() throws Exception {
         Barman Barman1 = new Barman(DB_BARMAN_FIRSTNAME, DB_BARMAN_LASTNAME, DB_BARMAN_USERNAME, DB_BARMAN_PASSWORD, DB_BARMAN_DATE_OF_BIRTH, DB_BARMAN_SALARY, DB_BARMAN_IS_DELETED);
         Barman1.setId(DB_BARMAN_ID);
 
@@ -99,7 +99,7 @@ public class BarmanServiceUnitTest {
     }
 
     @Test
-    public void testDelete1(){
+    public void testDelete1() throws Exception {
         Barman Barman1 = new Barman(DB_BARMAN_FIRSTNAME, DB_BARMAN_LASTNAME, DB_BARMAN_USERNAME, DB_BARMAN_PASSWORD, DB_BARMAN_DATE_OF_BIRTH, DB_BARMAN_SALARY, DB_BARMAN_IS_DELETED);
         Barman1.setId(DB_BARMAN_ID);
 
@@ -118,7 +118,7 @@ public class BarmanServiceUnitTest {
 
 
     @Test
-    public void testDelete2(){
+    public void testDelete2() throws Exception {
         Barman Barman1 = new Barman(DB_BARMAN_FIRSTNAME, DB_BARMAN_LASTNAME, DB_BARMAN_USERNAME, DB_BARMAN_PASSWORD, DB_BARMAN_DATE_OF_BIRTH, DB_BARMAN_SALARY, DB_BARMAN_IS_DELETED_UNIT);
         Barman1.setId(DB_BARMAN_ID);
 
@@ -134,7 +134,7 @@ public class BarmanServiceUnitTest {
     }
 
     @Test(expected = ResponseStatusException.class)
-    public void testDelete2ShouldReturnResponseStatusException(){
+    public void testDelete2ShouldReturnResponseStatusException() throws Exception {
         Barman Barman1 = new Barman(DB_BARMAN_FIRSTNAME, DB_BARMAN_LASTNAME, DB_BARMAN_USERNAME, DB_BARMAN_PASSWORD, DB_BARMAN_DATE_OF_BIRTH, DB_BARMAN_SALARY, DB_BARMAN_IS_DELETED);
         Barman1.setId(DB_WRONG_BARMAN_ID);
 

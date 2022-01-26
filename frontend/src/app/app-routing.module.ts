@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CookTableComponent } from './cook/cook-table/cook-table.component';
-//import { CreateCookComponent } from './cook/create-cook/create-cook.component';
-import { UpdateCookComponent } from './cook/update-cook/update-cook.component';
 import { LoginFormComponent } from './Forms/login-form/login-form.component';
 
 import { CommonModule } from '@angular/common';
@@ -13,6 +10,8 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ChangePasswordFormComponent } from './Forms/change-password-form/change-password-form.component';
 import { BarmanTableComponent } from './Tables/barman-table/barman-table.component';
 import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component';
+import { CookTableComponent } from './Tables/cook-table/cook-table.component';
+import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component';
 
 
 const routes: Routes = [
@@ -20,21 +19,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login', 
     pathMatch: 'full'
-  },
-
-
-  // { 
-  //   path: 'add', 
-  //   component: CreateCookComponent 
-  // },
-
-  { 
-    path: 'employees', 
-    component: CookTableComponent 
-  },
-  { 
-    path: 'update/:id', 
-    component: UpdateCookComponent 
   },
 
   {
@@ -66,6 +50,16 @@ const routes: Routes = [
   {
     path: 'add-barman',
     component: AddNewBarmanComponent,
+  },
+
+  {
+    path: 'cook-table',
+    component: CookTableComponent,
+  },
+
+  {
+    path: 'add-cook',
+    component: AddNewCookComponent,
   },
 
 ];

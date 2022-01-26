@@ -57,17 +57,17 @@ public class BarmanService {
                         "Cannot find Barman by " + id));
     }
 
-    public Barman save(Barman entity) {
+    public Barman save(Barman entity) throws Exception {
         return repository.save(entity);
     }
 
 
-    public Barman update(Barman entity){
+    public Barman update(Barman entity) throws Exception {
         Barman existingBarman = findOne(entity.getId());
 
         existingBarman.setFirstName(entity.getFirstName());
         existingBarman.setLastName(entity.getLastName());
-        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        existingBarman.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingBarman.setDateOfBirth(entity.getDateOfBirth());
         existingBarman.setSalary(entity.getSalary());
         existingBarman.setIsDeleted(entity.getIsDeleted());
@@ -75,13 +75,13 @@ public class BarmanService {
         return save(existingBarman);
     }
 
-    public Barman delete(Barman entity) {
+    public Barman delete(Barman entity) throws Exception {
         Barman existingBarman = findOne(entity.getId());
         existingBarman.setIsDeleted(true);
         return save(existingBarman);
     }
 
-    public Barman delete(Long id) {
+    public Barman delete(Long id) throws Exception {
         return delete(findOne(id));
     }
 }

@@ -6,16 +6,20 @@
 
 package kts.restaurant_application.services;
 
+import kts.restaurant_application.model.Barman;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Admin;
 import kts.restaurant_application.repositories.AdminRepository;
+
+import java.util.ArrayList;
 
 @Service
 public class AdminService {
@@ -24,12 +28,23 @@ public class AdminService {
     private final AdminRepository repository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     public AdminService(AdminRepository repository) {
         this.repository = repository;
     }
 
     public Iterable<Admin> findAll() {
-        return repository.findAll();
+        Iterable<Admin> all = repository.findAll();
+        ArrayList<Admin> notDeleted = new ArrayList<>();
+
+        for(Admin b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Admin findOne(Long id) {
@@ -39,16 +54,16 @@ public class AdminService {
                         "Cannot find Admin by " + id));
     }
 
-    public Admin save(Admin entity) {
+    public Admin save(Admin entity) throws Exception {
         return repository.save(entity);
     }
 
-    public Admin update(Admin entity){
+    public Admin update(Admin entity) throws Exception {
         Admin existingAdmin = findOne(entity.getId());
 
         existingAdmin.setFirstName(entity.getFirstName());
         existingAdmin.setLastName(entity.getLastName());
-        existingAdmin.setPassword(entity.getPassword());
+        existingAdmin.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingAdmin.setDateOfBirth(entity.getDateOfBirth());
         existingAdmin.setSalary(entity.getSalary());
         existingAdmin.setIsDeleted(entity.getIsDeleted());
@@ -56,13 +71,13 @@ public class AdminService {
         return save(existingAdmin);
     }
 
-    public Admin delete(Admin entity) {
+    public Admin delete(Admin entity) throws Exception {
         Admin existingAdmin = findOne(entity.getId());
         existingAdmin.setIsDeleted(true);
         return save(existingAdmin);
     }
 
-    public Admin delete(Long id) {
+    public Admin delete(Long id) throws Exception {
         return delete(findOne(id));
     }
 }

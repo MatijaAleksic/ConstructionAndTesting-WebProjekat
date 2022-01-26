@@ -9,6 +9,7 @@ export const environment = {
   users: 'users',
   barmans : 'barmans',
   cooks : 'cooks',
+  mainCooks : 'mainCooks',
 };
 
 /*

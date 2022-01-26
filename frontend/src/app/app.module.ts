@@ -19,6 +19,8 @@ import { MatTableModule } from '@angular/material/table';
 import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component';
 import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component' 
 import { CookTableComponent } from './Tables/cook-table/cook-table.component';
+import { MaincookTableComponent } from './Tables/maincook-table/maincook-table.component';
+import { AddNewMaincookComponent } from './Forms/add-new-maincook/add-new-maincook.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { CookTableComponent } from './Tables/cook-table/cook-table.component';
     BarmanTableComponent,
     AddNewBarmanComponent,
     AddNewCookComponent,
+    MaincookTableComponent,
+    AddNewMaincookComponent,
   ],
   imports: [
     BrowserModule,

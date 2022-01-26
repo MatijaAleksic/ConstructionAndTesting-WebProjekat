@@ -1,7 +1,7 @@
 <div id="container-div">
     <div id="form-holder-div">
-        <h1 class="h1 mb-3 font-weight-normal">New Barman</h1>
-        <form [formGroup]="addNewBarmanForm">
+        <h1 class="h1 mb-3 font-weight-normal">New Main Cook</h1>
+        <form [formGroup]="addNewMainCookForm">
             <div>
                 <label style="margin:5px;">First Name</label>
                 <input matInput class="form-control" id="firstName" type="text" formControlName="firstName">
@@ -25,7 +25,6 @@
                 <input matInput class="form-control" type="date" id="dateOfBirth" formControlName="dateOfBirth" name="trip-start" min="1920-01-01" max="2022-12-31">
             </div>
 
-
             <div>
                 <label style="margin:5px;" >Salary</label>
                 <input matInput class="form-control" id="salary" type="number" min="0" max = "999999" formControlName="salary">
@@ -33,7 +32,7 @@
 
 
             <div id="button-div">   
-                <button style="margin:15px;" color="primary" type="submit" class="btn btn-lg btn-primary btn-block" (click)="addNew()" id="add-barman-button">Add Barman</button>
+                <button style="margin:15px;" color="primary" type="submit" class="btn btn-lg btn-primary btn-block" (click)="addNew()" id="add-main-cook-button">Add Main Cook</button>
             </div>
         </form>
     </div>

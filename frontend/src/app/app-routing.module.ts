@@ -12,6 +12,8 @@ import { BarmanTableComponent } from './Tables/barman-table/barman-table.compone
 import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component';
 import { CookTableComponent } from './Tables/cook-table/cook-table.component';
 import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component';
+import { MaincookTableComponent } from './Tables/maincook-table/maincook-table.component';
+import { AddNewMaincookComponent } from './Forms/add-new-maincook/add-new-maincook.component';
 
 
 const routes: Routes = [
@@ -60,6 +62,16 @@ const routes: Routes = [
   {
     path: 'add-cook',
     component: AddNewCookComponent,
+  },
+
+  {
+    path: 'main-cook-table',
+    component: MaincookTableComponent,
+  },
+
+  {
+    path: 'add-main-cook',
+    component: AddNewMaincookComponent,
   },
 
 ];

@@ -27,6 +27,7 @@ import { AddNewManagerComponent } from './Forms/add-new-manager/add-new-manager.
 import { ManagerTableComponent } from './Tables/manager-table/manager-table.component';
 import { AdminTableComponent } from './Tables/admin-table/admin-table.component';
 import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
+import { ChangeSalaryManagerComponent } from './Forms/change-salary-manager/change-salary-manager.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.compon
     ManagerTableComponent,
     AdminTableComponent,
     AddNewAdminComponent,
+    ChangeSalaryManagerComponent,
   ],
   imports: [
     BrowserModule,

@@ -66,7 +66,6 @@ public class ManagerService {
         existingManager.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingManager.setDateOfBirth(entity.getDateOfBirth());
         existingManager.setSalary(entity.getSalary());
-        existingManager.setIsDeleted(entity.getIsDeleted());
 
         return save(existingManager);
     }

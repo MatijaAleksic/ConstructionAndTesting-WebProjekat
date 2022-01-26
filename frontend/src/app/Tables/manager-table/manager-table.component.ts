@@ -12,8 +12,9 @@ import { ManagerService } from 'src/app/services/manager/manager-service.service
 export class ManagerTableComponent implements OnInit {
 
   managers: UserId[];
-  displayedColumns: string[] = ["id", "firstName", "lastName", "username", "dateOfBirth", "salary", "delete"];
+  displayedColumns: string[] = ["id", "firstName", "lastName", "username", "dateOfBirth", "salary", "delete", "editSalary"];
 
+  managerId : number; 
 
   constructor(
     private router: Router,
@@ -54,6 +55,10 @@ export class ManagerTableComponent implements OnInit {
       return manager.id !== id;
   });
 
+  }
+
+  editSalary(id : number){
+    this.router.navigate([`edit-salary`, {id : id}]);
   }
 
 }

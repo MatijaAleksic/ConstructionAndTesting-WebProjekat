@@ -19,6 +19,7 @@ import { ManagerTableComponent } from './Tables/manager-table/manager-table.comp
 import { AddNewManagerComponent } from './Forms/add-new-manager/add-new-manager.component';
 import { AdminTableComponent } from './Tables/admin-table/admin-table.component';
 import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
+import { ChangeSalaryManagerComponent } from './Forms/change-salary-manager/change-salary-manager.component';
 
 
 const routes: Routes = [
@@ -107,6 +108,11 @@ const routes: Routes = [
   {
     path: 'add-admin',
     component: AddNewAdminComponent,
+  },
+
+  {
+    path: 'edit-salary',
+    component: ChangeSalaryManagerComponent,
   },
 
 ];

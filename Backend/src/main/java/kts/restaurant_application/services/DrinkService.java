@@ -64,7 +64,7 @@ public class DrinkService {
         existingDrink.setPrice(entity.getPrice());
         existingDrink.setPriority(entity.getPriority());
         existingDrink.setSubcategory(entity.getSubcategory());
-        existingItem.setItemStatus(entity.getItemStatus());
+        existingDrink.setItemStatus(entity.getItemStatus());
 
 
         return save(existingDrink);

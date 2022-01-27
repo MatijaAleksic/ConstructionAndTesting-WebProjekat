@@ -8,6 +8,8 @@
 package kts.restaurant_application.controllers;
 
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -42,10 +44,7 @@ public class ItemController {
 
     @GetMapping
     public Iterable<Item> findAll() {
-        System.out.println("AAAAAAAAAAAAAAa");
-        for(Item i : service.findAll()){
-            System.out.println(i);
-        }
+        
         return service.findAll();
     }
 
@@ -62,6 +61,18 @@ public class ItemController {
     @PostMapping("/update")
     public Item update(@RequestBody Item entity){
         return service.update(entity);
+    }
+
+    @GetMapping("/getSubcategories")
+    public ResponseEntity<String[]> getSubcategories(){
+        
+        return new ResponseEntity<>( service.getSubcategories(), HttpStatus.OK );
+    }
+
+
+    @PostMapping("/findBySubcategory")
+    public ResponseEntity<Collection<Item>> findBySubcategory(@RequestBody String category){
+        return new ResponseEntity<Collection<Item>>(this.service.findAllBySubcategory(category), HttpStatus.OK);
     }
 
     @PostMapping("/delete/{id}")

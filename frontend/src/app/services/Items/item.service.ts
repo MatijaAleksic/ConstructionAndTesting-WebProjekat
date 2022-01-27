@@ -14,14 +14,20 @@ export class ItemService {
 
   
 
-  getItems() : Observable<any[]> {
-    const items = this.http.get<any[]>(this.baseUrl);
-    console.log(items)
-    items.subscribe(x => {
-      console.log("BBBBBBB")
-      console.log(x)
-    })
-    console.log("AAAAAA")
+  getItems() : Observable<Item[]> {
+    const items = this.http.get<Item[]>(this.baseUrl);
+
+    return items
+  }
+
+  getCategories() : Observable<string[]>{
+    const categories = this.http.get<string[]>(this.baseUrl + "getSubcategories");
+
+    return categories
+  }
+
+  findBySubcategory(subcategory: string) : Observable<Item[]>{
+    const items = this.http.post<Item[]>(this.baseUrl + "findBySubcategory", subcategory);
 
     return items
   }

@@ -1,9 +1,14 @@
 <div class="demo-button-container">
 
 
-    <mat-drawer-container >
-        <mat-drawer mode="side" opened>Drawer content</mat-drawer>
-        <mat-drawer-content>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav mode="side" opened class="side-menu"> 
+          <div *ngFor="let button of subcategories">
+            <button (click)="subSelected(button)" class="side-button">
+           {{ button }}</button>
+         </div>
+        </mat-sidenav>
+        <mat-sidenav-content class="main-menu">
       
       
       
@@ -46,7 +51,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   </table>
 
-    </mat-drawer-content>
-    </mat-drawer-container>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 
 </div>

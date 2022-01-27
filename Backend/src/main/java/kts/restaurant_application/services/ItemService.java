@@ -1,5 +1,7 @@
 package kts.restaurant_application.services;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -65,5 +67,18 @@ public class ItemService {
     public Item delete(Long id) {
         Item item = findOne(id);
         return delete(item);
+    }
+
+    public String[] getSubcategories() {
+        HashSet<String> hashset = new HashSet<>();
+        for (Item item : this.findAll()){
+            hashset.add(item.getSubcategory());
+        }
+        return hashset.toArray( new String[hashset.size()]);
+    }
+
+    public Collection<Item> findAllBySubcategory(String subcategory){
+        System.out.println("AAAAAA");
+        return this.repository.findAllBySubcategory(subcategory);
     }
 }

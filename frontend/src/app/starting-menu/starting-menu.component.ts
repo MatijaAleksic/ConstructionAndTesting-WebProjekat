@@ -3,7 +3,7 @@ import {Component, ViewChild} from '@angular/core';
 import {MatTable} from '@angular/material/table';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Item } from '../model/item.model';
-import { ItemService } from '../services/profile/item.service';
+import { ItemService } from '../services/Items/item.service';
 export interface PeriodicElement {
   picture: string;
   name: string;
@@ -22,6 +22,7 @@ export interface PeriodicElement {
 export class StartingMenuComponent {
   displayedColumns: string[] = ['picture', 'name', 'price', 'number'];
   dataSource: Observable<Item[]>;
+  subcategories: string[];
 
 
 
@@ -32,7 +33,11 @@ export class StartingMenuComponent {
   }
 
   ngOnInit(){
-    this.dataSource = this.itemService.getItems()
+    this.itemService.getCategories().subscribe(x=>{
+      this.subcategories = x;
+      this.dataSource = this.itemService.findBySubcategory(this.subcategories[0]);
+    });
+
   }
 
   itemClicked(item: Item){
@@ -48,4 +53,12 @@ export class StartingMenuComponent {
   removeData() {
     this.table.renderRows();
   }
+
+
+  subSelected(button: string) {
+    this.dataSource = this.itemService.findBySubcategory(button)
+  }
+
+
+
 }

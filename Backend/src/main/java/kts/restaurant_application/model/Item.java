@@ -44,6 +44,9 @@ public class Item {
 	@Column(nullable = false)
 	private Double price;
 
+	@Column(nullable = true)
+	private String picture;
+
 	@NotNull
 	@Column(nullable = false)
 	private Byte priority;
@@ -196,6 +199,18 @@ public class Item {
 
 	public void setItemstatus(ItemStatus itemStatus) {
 		this.itemStatus = itemStatus;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public ItemStatus getItemStatus() {
+		return itemStatus;
 	}
 
 }

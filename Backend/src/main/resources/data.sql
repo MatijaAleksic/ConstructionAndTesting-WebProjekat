@@ -112,18 +112,18 @@ insert into user_authority (user_id, authority_id) values (13, 8); -- user has R
 
 
 
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory) VALUES ('Deskripcija1', false, 'Pice1', 'active',100, 1, 'subcategory1');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija1', false, 'Pice1', 'active',100, 1, 'subcategory1', 'assets/food.jpg');
 INSERT INTO _drinks (item) VALUES (1);
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory) VALUES ('Deskripcija2', false, 'Pice2', 'active',100, 1, 'subcategory2');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija2', false, 'Pice2', 'active',100, 1, 'subcategory2', 'assets/food.jpg');
 INSERT INTO _drinks (item) VALUES (2);
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory) VALUES ('Deskripcija3', false, 'Pice3', 'active',100, 1, 'subcategory3');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija3', false, 'Pice3', 'active',100, 1, 'subcategory3', 'assets/food.jpg');
 INSERT INTO _drinks (item) VALUES (3);
 
-INSERT INTO _items (description, is_deleted, name, item_status, price, priority, subcategory) VALUES ('Deskripcija4', false, 'Jelo1', 'active', 100, 1, 'subcategory4');
+INSERT INTO _items (description, is_deleted, name, item_status, price, priority, subcategory, picture) VALUES ('Deskripcija4', false, 'Jelo1', 'active', 100, 1, 'subcategory4', 'assets/food.jpg');
 INSERT INTO _foods (item) VALUES (4);
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory) VALUES ('Deskripcija5', false, 'Jelo2', 'active',100, 1, 'subcategory5');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija5', false, 'Jelo2', 'active',100, 1, 'subcategory5', 'assets/food.jpg');
 INSERT INTO _foods (item) VALUES (5);
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory) VALUES ('Deskripcija6', false, 'Jelo3', 'active',100, 1, 'subcategory6');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija6', false, 'Jelo3', 'active',100, 1, 'subcategory6', 'assets/food.jpg');
 INSERT INTO _foods (item) VALUES (6);
 
 INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (1, 1, 1.0, 2.0, 'free', false);

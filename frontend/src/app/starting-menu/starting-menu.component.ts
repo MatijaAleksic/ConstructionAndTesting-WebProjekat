@@ -35,6 +35,10 @@ export class StartingMenuComponent {
     this.dataSource = this.itemService.getItems()
   }
 
+  itemClicked(item: Item){
+    console.log(item)
+  }
+
   addData() {
     console.log(this.dataSource)
     this.table.renderRows();

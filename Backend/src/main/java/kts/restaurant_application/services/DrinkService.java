@@ -7,9 +7,7 @@
 package kts.restaurant_application.services;
 
 
-import kts.restaurant_application.model.Admin;
-import kts.restaurant_application.model.Barman;
-import kts.restaurant_application.model.Cook;
+import kts.restaurant_application.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import kts.restaurant_application.model.Drink;
 import kts.restaurant_application.repositories.DrinkRepository;
 
 import java.util.ArrayList;
@@ -37,8 +34,20 @@ public class DrinkService {
         Iterable<Drink> all = repository.findAll();
         ArrayList<Drink> notDeleted = new ArrayList<>();
 
+        for(Drink b : all ){
+            if(!b.getIsDeleted() && b.getItemStatus() != ItemStatus.newItem){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
+    }
+
+    public Iterable<Drink> findAllNew() {
+        Iterable<Drink> all = repository.findAll();
+        ArrayList<Drink> notDeleted = new ArrayList<>();
+
         for(Drink b : all){
-            if(!b.getIsDeleted()){
+            if(!b.getIsDeleted() && b.getItemStatus() == ItemStatus.newItem){
                 notDeleted.add(b);
             }
         }
@@ -64,6 +73,8 @@ public class DrinkService {
         existingDrink.setPrice(entity.getPrice());
         existingDrink.setPriority(entity.getPriority());
         existingDrink.setSubcategory(entity.getSubcategory());
+        existingDrink.setItemStatus(entity.getItemStatus());
+
 
         return save(existingDrink);
     }

@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class ItemsTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['picture', 'name', 'price', 'status', 'subcategory', 'description', 'priority', 'editPrice'];
+  displayedColumns: string[] = ['picture', 'name', 'price', 'status', 'subcategory', 'description', 'priority', 'editPrice', "active"];
   dataSource: Observable<Item[]>;
   subcategories: string[] = ["foods", "drinks"];
 
@@ -29,36 +29,37 @@ export class ItemsTableComponent implements OnInit {
     private drinkService : DrinkService) { }
 
   ngOnInit(){
-    this.itemService.getItems().subscribe(
-          res => {
-            console.log(res);
-          }
-        )
     this.dataSource = this.itemService.getItems();
   }
-
-  // getAllFoods() {
-  //   this.foodService.getAll().subscribe(
-  //     res => {
-  //       this.foods = res;
-  //       console.log(res);
-  //       this.getAllDrinks();
-  //     }
-  //   )
-  // }
-
-  // getAllDrinks(){
-  //   this.drinkService.getAll().subscribe(
-  //     res => {
-  //       this.drinks = res;
-  //       console.log(res);
-  //   });
-  // }
 
   editPrice(id : number)
   {
     this.router.navigate([`edit-item-price`, {id : id}]);
   }
+
+  editStatus(element : Item)
+  {
+
+    if(element.itemStatus === "active"){
+      element.itemStatus = "inactive";
+    }
+    else
+    {
+      element.itemStatus = "active";
+    }
+
+    this.itemService.updateItem(element).subscribe(
+      {
+        next: data => {
+          console.log(data);
+          if(data !== null) {
+            this.router.navigate(['items-table'])
+          }
+        }
+      }
+    );
+  }
+
 
 
 

@@ -48,6 +48,11 @@ public class ItemController {
         return service.findAll();
     }
 
+    @GetMapping("/new")
+    public Iterable<Item> findAllNew(){
+        return service.findAllNew();
+    }
+
     @GetMapping("/{id}")
     public Item findOne(@PathVariable("id") Long id) {
         return service.findOne(id);

@@ -29,4 +29,10 @@ export class FoodService {
       `${environment.baseUrl}/${environment.drinks}`
     );
   }
+
+  public getAllNew() {
+    return this.http.get<Item[]>(
+      `${environment.baseUrl}/${environment.drinks}/new`
+    );
+  }
 }

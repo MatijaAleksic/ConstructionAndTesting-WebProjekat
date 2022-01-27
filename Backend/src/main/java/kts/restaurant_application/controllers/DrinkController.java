@@ -9,6 +9,7 @@ package kts.restaurant_application.controllers;
 
 import javax.validation.Valid;
 
+import kts.restaurant_application.model.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class DrinkController {
     @GetMapping
     public Iterable<Drink> findAll() {
         return service.findAll();
+    }
+
+    @GetMapping("/new")
+    public Iterable<Drink> findAllNew(){
+        return service.findAllNew();
     }
 
     @GetMapping("/{id}")

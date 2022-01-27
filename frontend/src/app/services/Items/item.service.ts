@@ -34,6 +34,11 @@ export class ItemService {
     return items
   }
 
+  getItemsNew() : Observable<Item[]> {
+    const items = this.http.get<Item[]>(this.baseUrl + "new");
+    return items
+  }
+
   getCategories() : Observable<string[]>{
     const categories = this.http.get<string[]>(this.baseUrl + "getSubcategories");
 
@@ -58,9 +63,7 @@ export class ItemService {
   }
 
   updateItem(item: Item): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${environment.baseUrl}/${environment.items}/update`, item);
-
-    
+    return this.http.post<ApiResponse>(`${environment.baseUrl}/${environment.items}/update`, item);    
   }
 
   deleteItem(id: number): Observable<ApiResponse> {

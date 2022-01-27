@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import kts.restaurant_application.model.Admin;
+import kts.restaurant_application.model.ItemStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,19 @@ public class ItemService {
         ArrayList<Item> notDeleted = new ArrayList<>();
 
         for(Item b : all){
-            if(!b.getIsDeleted()){
+            if(!b.getIsDeleted() && b.getItemStatus() != ItemStatus.newItem){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
+    }
+
+    public Iterable<Item> findAllNew() {
+        Iterable<Item> all = repository.findAll();
+        ArrayList<Item> notDeleted = new ArrayList<>();
+
+        for(Item b : all){
+            if(!b.getIsDeleted() && b.getItemStatus() == ItemStatus.newItem){
                 notDeleted.add(b);
             }
         }
@@ -63,6 +76,7 @@ public class ItemService {
         existingItem.setPrice(entity.getPrice());
         existingItem.setPriority(entity.getPriority());
         existingItem.setSubcategory(entity.getSubcategory());
+        existingItem.setItemStatus(entity.getItemStatus());
 
         return save(existingItem);
     }

@@ -32,6 +32,14 @@
             <a *ngIf="checkRole('ROLE_MANAGER') === true" (click) = "this.router.navigate(['new-recipe-table']);">New Recipes</a>
           </li>
 
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_BARMAN') === true" (click) = "this.router.navigate(['barman-recipe-table']);">New Recipes</a>
+          </li>
+
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_MAINCOOK') === true" (click) = "this.router.navigate(['maincook-recipe-table']);">New Recipes</a>
+          </li>
+
           
           <!-- <li class = "nav-item">
             <a (click) = "alertuj('TODO')" *ngIf="checkRole('ROLE_ADMIN') === true" href="#">Admin-Opcija</a>

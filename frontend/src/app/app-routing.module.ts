@@ -26,6 +26,8 @@ import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-sal
 import { ItemsTableComponent } from './Tables/items-table/items-table.component';
 import { ChangePriceItemComponent } from './Forms/change-price-item/change-price-item.component';
 import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
+import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-recipe-table.component';
+import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
 
 const routes: Routes = [
   {
@@ -147,6 +149,16 @@ const routes: Routes = [
   {
     path: 'new-recipe-table',
     component: NewRecipeTableComponent,
+  },
+
+  {
+    path: 'barman-recipe-table',
+    component: BarmanRecipeTableComponent,
+  },
+
+  {
+    path: 'maincook-recipe-table',
+    component: MaincookRecipeTableComponent,
   },
 
 ];

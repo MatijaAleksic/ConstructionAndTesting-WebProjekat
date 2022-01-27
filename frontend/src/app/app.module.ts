@@ -15,7 +15,6 @@ import { ChangePasswordFormComponent } from './Forms/change-password-form/change
 import { AuthInterceptor } from './services/autentication/auth.interceptor';
 import { BarmanTableComponent } from './Tables/barman-table/barman-table.component';
 import { StartingMenuComponent } from './starting-menu/starting-menu.component';
-import { MatTableModule } from '@angular/material/table';
 import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component';
 import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component' 
 import { CookTableComponent } from './Tables/cook-table/cook-table.component';
@@ -39,6 +38,7 @@ import {MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef} from '@angular/
 import { MatCardModule } from '@angular/material/card';
 import { BottomSheetOverviewExampleSheet } from './starting-menu/starting-menu.component';
 import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [

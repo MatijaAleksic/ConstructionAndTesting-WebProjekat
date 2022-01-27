@@ -4,6 +4,8 @@ import {MatTable} from '@angular/material/table';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Item } from '../model/item.model';
 import { ItemService } from '../services/Items/item.service';
+import {MatButtonModule} from '@angular/material/button';
+
 export interface PeriodicElement {
   picture: string;
   name: string;

@@ -4,7 +4,7 @@
     <mat-sidenav-container class="example-container">
         <mat-sidenav mode="side" opened class="side-menu"> 
           <div *ngFor="let button of subcategories">
-            <button (click)="subSelected(button)" class="side-button">
+            <button mat-raised-button color="primary" (click)="subSelected(button)" class="side-button">
            {{ button }}</button>
          </div>
         </mat-sidenav>
@@ -13,11 +13,12 @@
       
       
     
-    <button mat-raised-button (click)="addData()" class="demo-button">
+    <button mat-raised-button color="accent" (click)="addData()" class="demo-button">
       Add data
     </button>
     <button
         mat-raised-button
+        color="accent"
         (click)="removeData()"
         class="demo-button">
       Remove data

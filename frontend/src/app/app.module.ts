@@ -31,6 +31,8 @@ import { ChangeSalaryManagerComponent } from './Forms/change-salary-manager/chan
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { StaffTableComponent } from './Tables/staff-table/staff-table.component';
 import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component'
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-sal
     ReactiveFormsModule,
     FormsModule,
     MatTableModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonModule
   ],
   providers: [
     {

@@ -42,6 +42,10 @@ public class ItemController {
 
     @GetMapping
     public Iterable<Item> findAll() {
+        System.out.println("AAAAAAAAAAAAAAa");
+        for(Item i : service.findAll()){
+            System.out.println(i);
+        }
         return service.findAll();
     }
 

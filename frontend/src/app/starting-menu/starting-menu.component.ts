@@ -4,7 +4,8 @@ import {MatTable} from '@angular/material/table';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Item } from '../model/item.model';
 import { ItemService } from '../services/Items/item.service';
-import {MatButtonModule} from '@angular/material/button';
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { MatCardModule } from '@angular/material/card';
 
 export interface PeriodicElement {
   picture: string;
@@ -30,7 +31,7 @@ export class StartingMenuComponent {
 
   @ViewChild(MatTable) table: MatTable<PeriodicElement>;
 
-  constructor(private itemService: ItemService ){
+  constructor(private itemService: ItemService, private _bottomSheet: MatBottomSheet ){
     
   }
 
@@ -43,13 +44,13 @@ export class StartingMenuComponent {
   }
 
   itemClicked(item: Item){
-    console.log(item)
+    console.log(item);
+    this.itemService.setItem(item);
+    this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
 
   addData() {
-    console.log(this.dataSource)
     this.table.renderRows();
-    console.log(this.dataSource)
   }
 
   removeData() {
@@ -63,4 +64,35 @@ export class StartingMenuComponent {
 
 
 
+}
+
+
+
+@Component({
+  selector: 'sheet',
+  templateUrl: 'sheet.html',
+})
+export class BottomSheetOverviewExampleSheet {
+  constructor(private itemService : ItemService, private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+  
+
+  title: string;
+  description: string;
+  subcategory: string;
+  picture: string;
+
+  ngOnInit(){
+    const item = this.itemService.getItem();
+    this.title = item.name;
+    this.description = item.description;
+    this.subcategory = item.subcategory;
+    this.picture = item.slika;
+    console.log(item)
+  }
+
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
 }

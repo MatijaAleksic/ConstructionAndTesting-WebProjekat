@@ -12,7 +12,16 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
   private baseUrl: string = 'http://localhost:8080/items/';
+  private currentItemSelected : Item
 
+
+  setItem(item: Item) {
+    this.currentItemSelected = item;
+  }
+
+  getItem() : Item{
+    return this.currentItemSelected;
+  }
   
 
   getItems() : Observable<Item[]> {

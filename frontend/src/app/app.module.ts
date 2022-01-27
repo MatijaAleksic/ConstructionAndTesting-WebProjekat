@@ -35,6 +35,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { ItemsTableComponent } from './Tables/items-table/items-table.component';
 import { ChangePriceItemComponent } from './Forms/change-price-item/change-price-item.component';
 
+import {MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { MatCardModule } from '@angular/material/card';
+import { BottomSheetOverviewExampleSheet } from './starting-menu/starting-menu.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ import { ChangePriceItemComponent } from './Forms/change-price-item/change-price
     StaffTableComponent,
     ChangeSalaryUserComponent,
     ItemsTableComponent,
-    ChangePriceItemComponent
+    ChangePriceItemComponent,
+    BottomSheetOverviewExampleSheet
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,10 @@ import { ChangePriceItemComponent } from './Forms/change-price-item/change-price
     FormsModule,
     MatTableModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatBottomSheetModule
+
   ],
   providers: [
     {

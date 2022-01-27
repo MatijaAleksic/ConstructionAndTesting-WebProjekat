@@ -7,6 +7,7 @@
 package kts.restaurant_application.services;
 
 
+import kts.restaurant_application.model.Admin;
 import kts.restaurant_application.model.Barman;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Food;
 import kts.restaurant_application.repositories.FoodRepository;
+
+import java.util.ArrayList;
 
 @Service
 public class FoodService {
@@ -31,7 +34,15 @@ public class FoodService {
     }
 
     public Iterable<Food> findAll() {
-        return repository.findAll();
+        Iterable<Food> all = repository.findAll();
+        ArrayList<Food> notDeleted = new ArrayList<>();
+
+        for(Food b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Food findOne(Long id) {
@@ -55,7 +66,6 @@ public class FoodService {
         existingFood.setPrice(entity.getPrice());
         existingFood.setPriority(entity.getPriority());
         existingFood.setSubcategory(entity.getSubcategory());
-        existingFood.setIsDeleted(entity.getIsDeleted());
 
         return save(existingFood);
     }

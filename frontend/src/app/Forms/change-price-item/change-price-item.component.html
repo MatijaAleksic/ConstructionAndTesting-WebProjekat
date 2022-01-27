@@ -1,0 +1,14 @@
+<div id="container-div">
+    <div id="form-holder-div">
+        <h1 class="h1 mb-3 font-weight-normal">Change Price</h1>
+        <form>
+            <div>
+                <input  [(ngModel)]="price" matInput class="form-control" id="price" name = "price-input" type="number">
+            </div>
+            <div id="button-div">
+                <button style="margin:15px;" color="primary" type="submit" class="btn btn-lg btn-primary btn-block" (click)="changePrice()" id="change-price-button">Change</button>
+            </div>
+        </form>
+    </div>
+</div>
+

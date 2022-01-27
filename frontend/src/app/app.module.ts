@@ -32,6 +32,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { StaffTableComponent } from './Tables/staff-table/staff-table.component';
 import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component'
 import {MatButtonModule} from '@angular/material/button';
+import { ItemsTableComponent } from './Tables/items-table/items-table.component';
+import { ChangePriceItemComponent } from './Forms/change-price-item/change-price-item.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import {MatButtonModule} from '@angular/material/button';
     ChangeSalaryManagerComponent,
     StartingMenuComponent,
     StaffTableComponent,
-    ChangeSalaryUserComponent
+    ChangeSalaryUserComponent,
+    ItemsTableComponent,
+    ChangePriceItemComponent
   ],
   imports: [
     BrowserModule,

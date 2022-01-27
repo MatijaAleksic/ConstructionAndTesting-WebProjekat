@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs/index";
 import { ApiResponse } from 'src/app/model/api.response';
 import { Item } from 'src/app/model/item.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,9 @@ export class ItemService {
   }
 
   updateItem(item: Item): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(this.baseUrl, item);
+    return this.http.post<ApiResponse>(`${environment.baseUrl}/${environment.items}/update`, item);
+
+    
   }
 
   deleteItem(id: number): Observable<ApiResponse> {

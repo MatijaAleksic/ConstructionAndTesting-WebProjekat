@@ -13,7 +13,7 @@ import { StaffService } from 'src/app/services/staff/staff-service.service';
 export class StaffTableComponent implements OnInit {
 
   staffs: UserAuth[];
-  displayedColumns: string[] = ["id", "firstName", "lastName", "username", "dateOfBirth","salary","role",  "editSalary"]; //"role"
+  displayedColumns: string[] = ["id", "firstName", "lastName", "username", "dateOfBirth","salary","role",  "editSalary"];
 
 
   constructor(
@@ -42,15 +42,7 @@ export class StaffTableComponent implements OnInit {
         const datePipe = new DatePipe('en-US');
         this.staffs.forEach( (element) => {
           element.dateOfBirth = datePipe.transform(element.dateOfBirth, 'dd/MM/yyyy') || "";
-
-        // var last = this.staffs[0].authorities
-        // console.log(this.staffs[0].authorities);
       }); 
-      
-      console.log(this.staffs);
-      console.log(this.staffs[7].authorities.length);
-
-      console.log(this.staffs[7].authorities[this.staffs[7].authorities.length-1].name.substring(5))
     });
   }
 

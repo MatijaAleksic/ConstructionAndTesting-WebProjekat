@@ -1,11 +1,13 @@
 package kts.restaurant_application.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import kts.restaurant_application.model.Admin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,15 @@ public class ItemService {
     }
 
     public Iterable<Item> findAll() {
-        return repository.findAll();
+        Iterable<Item> all = repository.findAll();
+        ArrayList<Item> notDeleted = new ArrayList<>();
+
+        for(Item b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Item findOne(Long id) {
@@ -53,7 +63,6 @@ public class ItemService {
         existingItem.setPrice(entity.getPrice());
         existingItem.setPriority(entity.getPriority());
         existingItem.setSubcategory(entity.getSubcategory());
-        existingItem.setIsDeleted(entity.getIsDeleted());
 
         return save(existingItem);
     }

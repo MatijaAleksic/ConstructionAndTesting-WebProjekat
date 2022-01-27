@@ -1,6 +1,5 @@
 .demo-table {
     width: 100%;
-    height: 100%;
   }
   
   .demo-button-container {
@@ -14,7 +13,7 @@
   .example-container {
     margin-top: 50px;
     border: 1px solid #555;
-    height: 100%;
+    height: 1000px;
     width: 100%;
   }
 

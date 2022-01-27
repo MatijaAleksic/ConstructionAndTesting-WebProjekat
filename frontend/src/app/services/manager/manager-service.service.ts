@@ -17,18 +17,14 @@ export class ManagerService {
     return this.http.get<UserId>(
       `${environment.baseUrl}/${environment.managers}/` + id
     );
-
-    // return this.http.get<UserId>(`${environment.baseUrl}/${environment.managers}/` + id)
-    // .map(function(res){
-    //     var data = res.json();
-    //     return new Book(data.id, data.title, data.pages);
-    // })
-
-    // return this.http.get<UserId>(`${environment.baseUrl}/${environment.managers}/` + id)
-    // .pipe(map(data => {})).subscribe(result => {
-    //   console.log(result);
-    // });
   }
+
+  public update(user : UserId){
+    return this.http.post<UserId[]>(
+      `${environment.baseUrl}/${environment.managers}/update`, user
+    );
+
+  };
 
   public getAll() {
     return this.http.get<UserId[]>(

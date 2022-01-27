@@ -67,7 +67,6 @@ public class CookService {
         existingCook.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingCook.setDateOfBirth(entity.getDateOfBirth());
         existingCook.setSalary(entity.getSalary());
-        existingCook.setIsDeleted(entity.getIsDeleted());
 
         return save(existingCook);
     }

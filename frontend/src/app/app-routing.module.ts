@@ -21,6 +21,8 @@ import { AdminTableComponent } from './Tables/admin-table/admin-table.component'
 import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
 import { ChangeSalaryManagerComponent } from './Forms/change-salary-manager/change-salary-manager.component';
 import { StartingMenuComponent } from './starting-menu/starting-menu.component';
+import { StaffTableComponent } from './Tables/staff-table/staff-table.component';
+import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component';
 
 const routes: Routes = [
   {
@@ -117,6 +119,16 @@ const routes: Routes = [
   {
     path: 'edit-salary',
     component: ChangeSalaryManagerComponent,
+  },
+
+  {
+    path: 'staff-table',
+    component: StaffTableComponent,
+  },
+
+  {
+    path: 'edit-salary-user',
+    component: ChangeSalaryUserComponent,
   },
 
 ];

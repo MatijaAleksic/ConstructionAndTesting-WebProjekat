@@ -32,7 +32,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { StaffTableComponent } from './Tables/staff-table/staff-table.component';
 import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component'
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { MatCardModule } from '@angular/material/card';
+import { BottomSheetOverviewExampleSheet } from './starting-menu/starting-menu.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import {MatButtonModule} from '@angular/material/button';
     ChangeSalaryManagerComponent,
     StartingMenuComponent,
     StaffTableComponent,
-    ChangeSalaryUserComponent
+    ChangeSalaryUserComponent,
+    BottomSheetOverviewExampleSheet
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,10 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     MatTableModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatBottomSheetModule
+
   ],
   providers: [
     {

@@ -66,6 +66,8 @@ public class FoodService {
         existingFood.setPrice(entity.getPrice());
         existingFood.setPriority(entity.getPriority());
         existingFood.setSubcategory(entity.getSubcategory());
+        existingItem.setItemStatus(entity.getItemStatus());
+
 
         return save(existingFood);
     }

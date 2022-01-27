@@ -63,6 +63,7 @@ public class ItemService {
         existingItem.setPrice(entity.getPrice());
         existingItem.setPriority(entity.getPriority());
         existingItem.setSubcategory(entity.getSubcategory());
+        existingItem.setItemStatus(entity.getItemStatus());
 
         return save(existingItem);
     }

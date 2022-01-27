@@ -26,7 +26,6 @@ export class ChangePriceItemComponent implements OnInit {
 
     this.itemService.getItemById(this.myParam).subscribe( 
       res => {
-        this.item = new Item(res.id, res.name, res.price, res.subcategory,res.description, res.priority, res.itemStatus, res.slika);
         //this.validateForm.value.salary = this.user.salary;
         this.price = this.item.price;
 

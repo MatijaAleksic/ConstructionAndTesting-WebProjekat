@@ -24,7 +24,7 @@ export interface PeriodicElement {
 })
 export class StartingMenuComponent {
   displayedColumns: string[] = ['picture', 'name', 'price', 'number'];
-  dataSource: Observable<Item[]>;
+  dataSource: Item[];
   subcategories: string[];
 
 
@@ -38,7 +38,13 @@ export class StartingMenuComponent {
   ngOnInit(){
     this.itemService.getCategories().subscribe(x=>{
       this.subcategories = x;
-      this.dataSource = this.itemService.findBySubcategory(this.subcategories[0]);
+      this.dataSource = [];
+      this.itemService.findBySubcategory(this.subcategories[0]).subscribe(y => {
+        y.forEach(z =>{
+
+          this.dataSource.push(new Item(z));
+        })
+      });
     });
 
   }
@@ -47,6 +53,7 @@ export class StartingMenuComponent {
     console.log(item);
     this.itemService.setItem(item);
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+
   }
 
   addData() {
@@ -59,7 +66,12 @@ export class StartingMenuComponent {
 
 
   subSelected(button: string) {
-    this.dataSource = this.itemService.findBySubcategory(button)
+    this.itemService.findBySubcategory(button).subscribe(y => {
+      this.dataSource = [];
+      y.forEach(z =>{
+        this.dataSource.push(new Item(z));
+      })
+    });
   }
 
 
@@ -71,6 +83,8 @@ export class StartingMenuComponent {
 @Component({
   selector: 'sheet',
   templateUrl: 'sheet.html',
+  styleUrls: ['starting-menu.component.css'],
+
 })
 export class BottomSheetOverviewExampleSheet {
   constructor(private itemService : ItemService, private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
@@ -86,7 +100,7 @@ export class BottomSheetOverviewExampleSheet {
     this.title = item.name;
     this.description = item.description;
     this.subcategory = item.subcategory;
-    this.picture = item.slika;
+    this.picture = item.picture;
     console.log(item)
   }
 

@@ -13,6 +13,11 @@ export class ItemService {
   constructor(private http: HttpClient) { }
   private baseUrl: string = 'http://localhost:8080/items/';
   private currentItemSelected : Item
+  private orderedItems : Item[]
+
+
+  addOrderedItem(item: Item){
+  }
 
 
   setItem(item: Item) {
@@ -26,7 +31,6 @@ export class ItemService {
 
   getItems() : Observable<Item[]> {
     const items = this.http.get<Item[]>(this.baseUrl);
-
     return items
   }
 
@@ -39,6 +43,9 @@ export class ItemService {
   findBySubcategory(subcategory: string) : Observable<Item[]>{
     const items = this.http.post<Item[]>(this.baseUrl + "findBySubcategory", subcategory);
 
+    items.subscribe(x => {
+      console.log(x);
+    })
     return items
   }
 

@@ -28,7 +28,9 @@ import { ManagerTableComponent } from './Tables/manager-table/manager-table.comp
 import { AdminTableComponent } from './Tables/admin-table/admin-table.component';
 import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
 import { ChangeSalaryManagerComponent } from './Forms/change-salary-manager/change-salary-manager.component';
-import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { StaffTableComponent } from './Tables/staff-table/staff-table.component';
+import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import {MatSidenavModule} from '@angular/material/sidenav'
     AdminTableComponent,
     AddNewAdminComponent,
     ChangeSalaryManagerComponent,
-    StartingMenuComponent
+    StartingMenuComponent,
+    StaffTableComponent,
+    ChangeSalaryUserComponent
   ],
   imports: [
     BrowserModule,

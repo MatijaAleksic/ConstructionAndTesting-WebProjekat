@@ -70,7 +70,6 @@ public class BarmanService {
         existingBarman.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingBarman.setDateOfBirth(entity.getDateOfBirth());
         existingBarman.setSalary(entity.getSalary());
-        existingBarman.setIsDeleted(entity.getIsDeleted());
 
         return save(existingBarman);
     }

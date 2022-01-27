@@ -19,6 +19,12 @@
             <a (click) = "alertuj('MENI TODO')" href="#">Menu</a>
                 <!-- <a *ngIf="checkRole('ROLE_ADMIN') === false" href="#">Meni</a> -->
           </li>
+
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_MANAGER') === true" (click) = "this.router.navigate(['staff-table']);">Staff</a>
+          </li>
+
+          
           <!-- <li class = "nav-item">
             <a (click) = "alertuj('TODO')" *ngIf="checkRole('ROLE_ADMIN') === true" href="#">Admin-Opcija</a>
           </li> -->

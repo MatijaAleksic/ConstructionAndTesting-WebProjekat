@@ -8,15 +8,20 @@ package kts.restaurant_application.services;
 
 
 import kts.restaurant_application.model.Admin;
+import kts.restaurant_application.model.Authority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Barman;
 import kts.restaurant_application.repositories.BarmanRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BarmanService {
@@ -25,12 +30,24 @@ public class BarmanService {
     private final BarmanRepository repository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
+    @Autowired
     public BarmanService(BarmanRepository repository) {
         this.repository = repository;
     }
 
     public Iterable<Barman> findAll() {
-        return repository.findAll();
+        Iterable<Barman> all = repository.findAll();
+        ArrayList<Barman> notDeleted = new ArrayList<>();
+
+        for(Barman b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Barman findOne(Long id) {
@@ -40,17 +57,17 @@ public class BarmanService {
                         "Cannot find Barman by " + id));
     }
 
-    public Barman save(Barman entity) {
+    public Barman save(Barman entity) throws Exception {
         return repository.save(entity);
     }
 
 
-    public Barman update(Barman entity){
+    public Barman update(Barman entity) throws Exception {
         Barman existingBarman = findOne(entity.getId());
 
         existingBarman.setFirstName(entity.getFirstName());
         existingBarman.setLastName(entity.getLastName());
-        existingBarman.setPassword(entity.getPassword());
+        existingBarman.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingBarman.setDateOfBirth(entity.getDateOfBirth());
         existingBarman.setSalary(entity.getSalary());
         existingBarman.setIsDeleted(entity.getIsDeleted());
@@ -58,13 +75,13 @@ public class BarmanService {
         return save(existingBarman);
     }
 
-    public Barman delete(Barman entity) {
+    public Barman delete(Barman entity) throws Exception {
         Barman existingBarman = findOne(entity.getId());
         existingBarman.setIsDeleted(true);
         return save(existingBarman);
     }
 
-    public Barman delete(Long id) {
+    public Barman delete(Long id) throws Exception {
         return delete(findOne(id));
     }
 }

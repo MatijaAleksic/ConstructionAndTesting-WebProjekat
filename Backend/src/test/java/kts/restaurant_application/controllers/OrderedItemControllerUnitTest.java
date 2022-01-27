@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import kts.restaurant_application.model.DateDTO;
+import kts.restaurant_application.DTO.DateDTO;
 import kts.restaurant_application.model.Item;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.Staff;

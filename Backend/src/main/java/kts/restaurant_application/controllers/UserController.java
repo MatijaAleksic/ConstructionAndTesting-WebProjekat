@@ -10,9 +10,13 @@ package kts.restaurant_application.controllers;
 
 import javax.validation.Valid;
 
+import kts.restaurant_application.model.Authority;
+import kts.restaurant_application.services.AuthorityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 import kts.restaurant_application.model.User;
 import kts.restaurant_application.services.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Transactional
 @RestController
 @RequestMapping("/users")
@@ -31,6 +38,12 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserService service;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthorityService authorityService;
 
     @Autowired
     public UserController(UserService service) {
@@ -43,22 +56,32 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User findOne(@PathVariable("id") Long id) {
-        return service.findOne(id);
+    public User findOne(@PathVariable("id") String id) {
+        return service.findOne(Long.parseLong(id));
     }
 
     @PostMapping
-    public User create(@RequestBody @Valid User entity) {
+    public User create(@RequestBody @Valid User entity) throws Exception {
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        entity.setIsDeleted(false);
+
+        List<Authority> auth = new ArrayList<Authority>();
+
+        auth.add(authorityService.findByName("ROLE_USER"));
+
+        entity.setAuthorities(auth);
+
         return service.save(entity);
     }
 
     @PostMapping("/update")
-    public User update(@RequestBody User entity){
+    public User update(@RequestBody User entity) throws Exception {
         return service.update(entity);
     }
 
-    @PostMapping("/delete/{id}")
-    public User delete(@PathVariable Long id) {
-        return service.delete(id);
+    @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void delete(@PathVariable("id") Long id) throws Exception {
+        service.delete(id);
     }
 }

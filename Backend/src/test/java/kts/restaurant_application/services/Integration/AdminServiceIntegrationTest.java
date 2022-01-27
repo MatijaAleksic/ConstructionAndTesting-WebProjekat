@@ -64,7 +64,7 @@ public class AdminServiceIntegrationTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() throws Exception {
         Admin Admin = new Admin(NEW_ADMIN_FIRSTNAME, NEW_ADMIN_LASTNAME, NEW_ADMIN_USERNAME,
                 NEW_ADMIN_PASSWORD, NEW_ADMIN_DATE_OF_BIRTH, NEW_ADMIN_SALARY, NEW_ADMIN_IS_DELETED);
 
@@ -74,13 +74,13 @@ public class AdminServiceIntegrationTest {
     }
 
     @Test
-    public void testDelete1(){
+    public void testDelete1() throws Exception {
         Admin Admin = adminService.delete(DB_ADMIN_ID);
         assertEquals(true, Admin.getIsDeleted());
     }
 
     @Test
-    public void testDelete2(){
+    public void testDelete2() throws Exception {
         Admin Admin = new Admin(DB_ADMIN_FIRSTNAME, DB_ADMIN_LASTNAME, DB_ADMIN_USERNAME, DB_ADMIN_PASSWORD, DB_ADMIN_DATE_OF_BIRTH, DB_ADMIN_SALARY, DB_ADMIN_IS_DELETED);
         Admin.setId(DB_ADMIN_ID);
 

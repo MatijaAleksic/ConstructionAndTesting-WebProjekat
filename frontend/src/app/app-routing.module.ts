@@ -25,6 +25,7 @@ import { StaffTableComponent } from './Tables/staff-table/staff-table.component'
 import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component';
 import { ItemsTableComponent } from './Tables/items-table/items-table.component';
 import { ChangePriceItemComponent } from './Forms/change-price-item/change-price-item.component';
+import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
 
 const routes: Routes = [
   {
@@ -141,6 +142,11 @@ const routes: Routes = [
   {
     path: 'edit-item-price',
     component: ChangePriceItemComponent,
+  },
+
+  {
+    path: 'new-recipe-table',
+    component: NewRecipeTableComponent,
   },
 
 ];

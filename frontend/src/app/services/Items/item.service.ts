@@ -30,6 +30,11 @@ export class ItemService {
     return items
   }
 
+  getItemsNew() : Observable<Item[]> {
+    const items = this.http.get<Item[]>(this.baseUrl + "new");
+    return items
+  }
+
   getCategories() : Observable<string[]>{
     const categories = this.http.get<string[]>(this.baseUrl + "getSubcategories");
 

@@ -29,11 +29,6 @@ export class ItemsTableComponent implements OnInit {
     private drinkService : DrinkService) { }
 
   ngOnInit(){
-    this.itemService.getItems().subscribe(
-          res => {
-            console.log(res);
-          }
-        )
     this.dataSource = this.itemService.getItems();
   }
 

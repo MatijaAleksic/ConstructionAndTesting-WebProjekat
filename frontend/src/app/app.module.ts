@@ -38,6 +38,7 @@ import { ChangePriceItemComponent } from './Forms/change-price-item/change-price
 import {MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
 import { BottomSheetOverviewExampleSheet } from './starting-menu/starting-menu.component';
+import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { BottomSheetOverviewExampleSheet } from './starting-menu/starting-menu.c
     ChangeSalaryUserComponent,
     ItemsTableComponent,
     ChangePriceItemComponent,
-    BottomSheetOverviewExampleSheet
+    BottomSheetOverviewExampleSheet,
+    NewRecipeTableComponent
   ],
   imports: [
     BrowserModule,

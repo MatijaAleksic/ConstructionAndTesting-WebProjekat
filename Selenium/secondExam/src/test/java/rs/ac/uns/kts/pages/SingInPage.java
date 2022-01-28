@@ -8,7 +8,7 @@ public class SingInPage {
 
 	private WebDriver driver;
 
-	@FindBy(id = "user-name")
+	@FindBy(id = "email")
 	private WebElement emailInput;
 
 	@FindBy(id = "password")
@@ -17,8 +17,6 @@ public class SingInPage {
 	@FindBy(id = "login-button")
 	private WebElement submitButton;
 
-	@FindBy(xpath = "//*[contains(text(), 'Epic sadface')]")
-	private WebElement alertDivText;
 
 	public SingInPage(WebDriver driver) {
 		this.driver = driver;
@@ -48,8 +46,6 @@ public class SingInPage {
 		Utilities.clickableWait(driver, this.submitButton, 10).click();
 	}
 
-	public boolean errorMessagePresent(String text) {
-		return Utilities.textWait(driver, this.alertDivText, text, 10);
-	}
+
 
 }

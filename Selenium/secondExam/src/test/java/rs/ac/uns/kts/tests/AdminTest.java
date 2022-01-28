@@ -43,11 +43,10 @@ public class AdminTest {
         singInPage.submitBtnClick();
         Utilities.urlWait(browser, "http://localhost:4200/profile", 100);
         assertEquals("http://localhost:4200/profile", browser.getCurrentUrl());
-
+        
 
 
         changePasswordAdminPage.singInLinkClick();
-        System.out.println("nesta");
         Utilities.urlWait(browser, "http://localhost:4200/change-password", 100);
         assertEquals("http://localhost:4200/change-password", browser.getCurrentUrl());
     }

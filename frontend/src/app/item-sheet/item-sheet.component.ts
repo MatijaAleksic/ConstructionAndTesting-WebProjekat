@@ -34,6 +34,12 @@ export class BottomSheetOverviewExampleSheet {
     this.subcategory = item.subcategory;
     this.picture = item.picture;
     this.item = item;
+    console.log("Before");
+    console.log(item);
+    this.item.note = this.itemService.getItemNote(this.item.id);
+
+    console.log("After");
+    console.log(item);
   }
 
 
@@ -44,7 +50,7 @@ export class BottomSheetOverviewExampleSheet {
 
   addItem(){
     this.itemService.addOrderedItem(this.item);
-    this._snackBar.open(this.item.name, "added " + this.item.number, {duration: 500});
+    this._snackBar.open(this.item.name + " added " + this.itemService.getOrderedItem(this.item.id)?.number, "", {duration: 500});
   }
 
   cancelItem(){

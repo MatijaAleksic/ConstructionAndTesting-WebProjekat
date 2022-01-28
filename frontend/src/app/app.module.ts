@@ -45,7 +45,11 @@ import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.compo
 import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
 import { BottomSheetOverviewExampleSheet } from './item-sheet/item-sheet.component';
 import { Cart } from './cart/cart.component';
-import {MatInputModule} from '@angular/material/input'; 
+import {MatInputModule} from '@angular/material/input';
+import { BartenderMenuComponent } from './bartender-menu/bartender-menu.component';
+import { OrderedItemSheetComponent } from './ordered-item-sheet/ordered-item-sheet.component'; 
+
+
 
 @NgModule({
   declarations: [
@@ -76,6 +80,8 @@ import {MatInputModule} from '@angular/material/input';
     Cart,
     FoodMenuComponent,
     DrinkMenuComponent,
+    BartenderMenuComponent,
+    OrderedItemSheetComponent,
   ],
   imports: [
     BrowserModule,

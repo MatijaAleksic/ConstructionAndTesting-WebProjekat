@@ -5,6 +5,7 @@ import { ApiResponse } from 'src/app/model/api.response';
 import { Item } from 'src/app/model/item.model';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +15,22 @@ export class ItemService {
   private baseUrl: string = 'http://localhost:8080/items/';
   private baseUrlFood: string = 'http://localhost:8080/foods/';
   private baseUrlDrink: string = 'http://localhost:8080/drinks/';
-  private currentItemSelected: Item
-  private orderedItems: Item[] = []
+  private currentItemSelected: Item;
+  private orderedItems: Item[] = [];
+  
+
+  getItemNote(itemId : number){
+    this.orderedItems = JSON.parse(localStorage.getItem('shoppingCart') || '{}');
+    if(!this.orderedItems.length){
+      this.orderedItems = []
+    }
+    for(let i = 0; i < this.orderedItems.length; i++){
+      if(this.orderedItems[i].id === itemId){
+        return this.orderedItems[i].note;
+      }
+    }
+    return "";
+  }
 
   getFoodItems(){
     const items = this.http.get<Item[]>(this.baseUrlFood);
@@ -61,7 +76,10 @@ export class ItemService {
     return categories
   }
 
-
+  removeAllOrderedItems(){
+    this.orderedItems = []
+    localStorage.setItem('shoppingCart', JSON.stringify(this.orderedItems));
+  }
 
   addOrderedItem(item: Item) {
 
@@ -110,6 +128,20 @@ export class ItemService {
       this.orderedItems = []
     }
     return this.orderedItems;
+  }
+
+
+  getOrderedItem(id : number){
+    this.orderedItems = JSON.parse(localStorage.getItem('shoppingCart') || '{}');
+    if(!this.orderedItems.length){
+      this.orderedItems = []
+    }
+    for( let i = 0; i < this.orderedItems.length; i++){
+      if(this.orderedItems[i].id === id){
+        return this.orderedItems[i];
+      }
+    }
+    return null;
   }
 
 

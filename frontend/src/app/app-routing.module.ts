@@ -29,6 +29,8 @@ import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.compo
 import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
 import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-recipe-table.component';
 import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
+import { BartenderMenuComponent } from './bartender-menu/bartender-menu.component';
+
 
 const routes: Routes = [
   {
@@ -42,7 +44,11 @@ const routes: Routes = [
     component: LoginFormComponent,
   },
 
-
+  {
+    path: 'bartender-menu',
+    component: BartenderMenuComponent,
+  },
+  
   { 
     path: 'food-menu', component: FoodMenuComponent
   },

@@ -72,14 +72,21 @@ public class OrderedItemController {
     @PostMapping("/update")
     public OrderedItem update(@RequestBody OrderedItem entity){
         Item item = itemService.findOne(entity.getItem().getId());
-        Staff staff = staffService.findOne(entity.getStaff().getId());
+        Staff staff = null;
+
+        try{
+            staff = staffService.findOne(entity.getStaff().getId());
+        }catch(Exception e){
+            
+        }
         entity.setItem(item);
         entity.setStaff(staff);
         return service.update(entity);
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
+        
         service.delete(id);
     }
 

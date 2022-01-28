@@ -14,7 +14,17 @@ import { Observable } from 'rxjs';
 })
 export class OrderedItemService {
 
+  private currentOrderedItemSelected : OrderedItem;
+
   constructor(private http: HttpClient, private router: Router) { }
+
+  public setCurrentOrderedItem(orderedItem : OrderedItem){
+    this.currentOrderedItemSelected = orderedItem;
+  }
+
+  public getCurrentOrderedItem(){
+    return this.currentOrderedItemSelected;
+  }
 
   public getOne(id : number) {
     return this.http.get<UserId>(

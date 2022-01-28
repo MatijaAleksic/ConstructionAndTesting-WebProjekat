@@ -103,4 +103,15 @@ public class OrderController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+
+
+    @GetMapping("/getOrderByTable/{id}")
+    public Order getOrderByTable(@PathVariable Long id){
+        return service.getOrderByTable(id);
+    }
+
+    @GetMapping("/getOrdersByTable/{id}")
+    public Collection<Order> getOrdersByTable(@PathVariable Long id){
+        return service.getOrdersByTable(id);
+    }
 }

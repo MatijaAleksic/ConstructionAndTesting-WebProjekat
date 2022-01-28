@@ -8,7 +8,7 @@ export class Order {
     public waiter : any;
     public restourantTable : Table;
     public dateTime : Date;
-    public orderedItems : OrderedItem[];
+    public food : OrderedItem[];
     
 
 

@@ -10,6 +10,19 @@ import { Order, OrderBack } from 'src/app/model/order';
 export class OrderService {
 
   constructor(private http: HttpClient) { }
+  
+  public getOrdersByTable(id : number){
+    return this.http.get<Order[]>(
+      `${environment.baseUrl}/${environment.orders}/getOrdersByTable/` + id
+    );
+  }
+
+  public getOrderByTable(id : number){
+    return this.http.get<Order>(
+      `${environment.baseUrl}/${environment.orders}/getOrderByTable/` + id
+    );
+  }
+
 
   public getOne(id : number) {
     return this.http.get<Order>(

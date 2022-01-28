@@ -6,10 +6,8 @@
 
 package kts.restaurant_application.services;
 
-
 import java.util.Collection;
 import java.util.Date;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -21,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Order;
+import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.repositories.OrderRepository;
 
 @Service
@@ -44,36 +43,40 @@ public class OrderService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Cannot find Order by " + id));
     }
+
     @Transactional
     public Order save(Order entity) {
+        if (entity.getIsCompleted() == null) {
+            entity.setIsCompleted(false);
+        }
+        Order existingOrder = this.getOrderByTable(entity.getRestourantTable().getId());
 
-        if(entity.getId() != null){
-            Optional<Order> o = repository.findById(entity.getId());
-            if(o.isPresent()){
-                throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED,
-                            "order already exists: " + entity.getId());
+        if (existingOrder != null) {
+            existingOrder.setPrice( existingOrder.getPrice() + entity.getPrice());
+            for (OrderedItem item : entity.getFood()) {
+                existingOrder.linkFood(item);
             }
+            entity = existingOrder;
         }
         return repository.save(entity);
 
     }
 
-    public Order update(Order entity){
+    public Order update(Order entity) {
         Order existingOrder = findOne(entity.getId());
 
         existingOrder.setPrice(entity.getPrice());
         existingOrder.setWaiter(entity.getWaiter());
         existingOrder.setRestourantTable(entity.getRestourantTable());
 
-
         return repository.save(existingOrder);
     }
 
     public boolean delete(Order entity) {
-        if(findOne(entity.getId()) != null) {
+        if (findOne(entity.getId()) != null) {
             repository.delete(entity);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -84,5 +87,14 @@ public class OrderService {
 
     public Collection<Order> getOrdersByDate(Date dateFrom, Date dateTo) {
         return repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
+    }
+
+    public Order getOrderByTable(Long id) {
+        Order orders = this.repository.findByRestourantTable_idAndIsCompleted(id, false);
+        return orders;
+    }
+
+    public Collection<Order> getOrdersByTable(Long id) {
+        return this.repository.findAllByRestourantTable_id(id);
     }
 }

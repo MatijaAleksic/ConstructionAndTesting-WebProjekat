@@ -23,6 +23,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Collection<Order> findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(Date dateFrom, Date dateTo);
     
-
+    Collection<Order> findAllByRestourantTable_id(Long restourantTable_id);
+    Order findByRestourantTable_idAndIsCompleted(Long restourantTable_id, Boolean isCompleted);
 
 }

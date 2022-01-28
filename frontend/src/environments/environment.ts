@@ -18,7 +18,8 @@ export const environment = {
   drinks : 'drinks',
   items : 'items',
   orders: 'orders',
-  orderedItems: 'orderedItems'
+  orderedItems: 'orderedItems',
+  restourantTables: 'tables'
 };
 
 /*

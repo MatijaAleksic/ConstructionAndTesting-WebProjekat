@@ -24,36 +24,27 @@ export class MaincookRecipeTableComponent implements OnInit {
   subcategories: string[] = ["foods", "drinks"];
   
   @ViewChild(MatTable) table: MatTable<PeriodicElement>;
-  
+
   constructor(
     private router: Router,
     private foodService : FoodService,
   ) { }
 
-  ngOnInit(){
-    this.foodService.getAllNew().subscribe(
-          res => {
-            console.log(res);
-          }
-        )
+
+  ngOnInit(): void {
     this.dataSource = this.foodService.getAllNew();
   }
 
-  editData(element: Item){
-    alert("Edit data TODO");
+  newRecipe(){
+    this.router.navigate([`add-food`]);
+  }
+
+  editData(element : Item){
+    this.router.navigate([`edit-item-info`, {id : element.id}]);
   }
 
   itemClicked(item: Item){
     console.log(item)
   }
 
-  addData() {
-    console.log(this.dataSource)
-    this.table.renderRows();
-    console.log(this.dataSource)
-  }
-
-  removeData() {
-    this.table.renderRows();
-  }
 }

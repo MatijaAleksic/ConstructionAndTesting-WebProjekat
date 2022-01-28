@@ -11,6 +11,7 @@ import { ItemService } from 'src/app/services/Items/item.service';
 export class ChangeItemInfoComponent implements OnInit {
 
   myParam: number;
+  role : string;
   item : Item;
 
   name : string;
@@ -26,6 +27,7 @@ export class ChangeItemInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.route.params.subscribe((params: Params) => this.myParam = params['id']);
 
     this.itemService.getItemById(this.myParam).subscribe( 
@@ -54,12 +56,28 @@ export class ChangeItemInfoComponent implements OnInit {
       {
         next: data => {
           if(data !== null) {
-            console.log(data);
-            this.router.navigate(['barman-recipe-table'])
+            console.log(this.checkRole('ROLE_BARMAN'));
+            if( !this.checkRole('ROLE_BARMAN')){
+              this.router.navigate(['maincook-recipe-table'])
+              
+            }
+            else{
+              this.router.navigate(['barman-recipe-table'])
+            }
           }
         }
       }
     );
+  }
+
+  checkRole(role : string){
+    if(localStorage.getItem('autorities') != null){
+      return JSON.parse(localStorage.getItem('autorities') || '{}').some((e: { name: string; }) => e.name === role);
     }
+    else{
+      return false;
+    }
+
+  }
 
 }

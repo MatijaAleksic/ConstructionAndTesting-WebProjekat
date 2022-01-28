@@ -31,6 +31,7 @@ import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-
 import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
 import { ChangeItemInfoComponent } from './Forms/change-item-info/change-item-info.component';
 import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.component';
+import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component';
 
 const routes: Routes = [
   {
@@ -177,6 +178,11 @@ const routes: Routes = [
   {
     path: 'add-drink',
     component: AddNewDrinkComponent,
+  },
+
+  {
+    path: 'add-food',
+    component: AddNewFoodComponent,
   },
 
 ];

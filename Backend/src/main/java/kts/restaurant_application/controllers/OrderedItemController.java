@@ -47,6 +47,17 @@ public class OrderedItemController {
         return service.findAll();
     }
 
+    @GetMapping("/staff")
+    public Iterable<OrderedItem> findAllOrdered() {
+        return service.findAllOrdered();
+    }
+
+    @GetMapping("/staff/{id}")
+    public Iterable<OrderedItem> findAllStaff(@PathVariable("id") Long id) {
+        return service.findAllByStaff(id);
+    }
+
+
     @GetMapping("/{id}")
     public OrderedItem findOne(@PathVariable("id") Long id) {
         return service.findOne(id);
@@ -71,10 +82,6 @@ public class OrderedItemController {
 
     @PostMapping("/update")
     public OrderedItem update(@RequestBody OrderedItem entity){
-        Item item = itemService.findOne(entity.getItem().getId());
-        Staff staff = staffService.findOne(entity.getStaff().getId());
-        entity.setItem(item);
-        entity.setStaff(staff);
         return service.update(entity);
     }
 

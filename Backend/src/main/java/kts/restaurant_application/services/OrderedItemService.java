@@ -7,9 +7,12 @@
 package kts.restaurant_application.services;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import kts.restaurant_application.model.Item;
+import kts.restaurant_application.model.ItemStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,32 @@ public class OrderedItemService {
 
     public Iterable<OrderedItem> findAll() {
         return repository.findAll();
+    }
+
+    public Iterable<OrderedItem> findAllOrdered() {
+        Iterable<OrderedItem> all = repository.findAll();
+        ArrayList<OrderedItem> ordered = new ArrayList<>();
+
+        for(OrderedItem b : all){
+            if(b.getState() == State.ordered){
+                ordered.add(b);
+            }
+        }
+        return ordered;
+    }
+
+    public Iterable<OrderedItem> findAllByStaff(Long id) {
+        Iterable<OrderedItem> all = repository.findAll();
+        ArrayList<OrderedItem> ordered = new ArrayList<>();
+
+        for(OrderedItem b : all){
+            if(b.getStaff() != null) {
+                if (b.getStaff().getId().equals(id)) {
+                    ordered.add(b);
+                }
+            }
+        }
+        return ordered;
     }
 
     public OrderedItem findOne(Long id) {

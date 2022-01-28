@@ -51,6 +51,7 @@ import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/mai
 import { ChangeItemInfoComponent } from './Forms/change-item-info/change-item-info.component';
 import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.component';
 import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component';
+import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-table-cooks.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component
     MaincookRecipeTableComponent,
     ChangeItemInfoComponent,
     AddNewDrinkComponent,
-    AddNewFoodComponent
+    AddNewFoodComponent,
+    OrdersTableCooksComponent
   ],
   imports: [
     BrowserModule,

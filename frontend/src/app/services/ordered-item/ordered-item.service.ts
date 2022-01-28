@@ -29,9 +29,28 @@ export class OrderedItemService {
 
   };
 
+  public update1(orderedItem : OrderedItem){
+    return this.http.post<UserId[]>(
+      `${environment.baseUrl}/${environment.orderedItems}/update`, orderedItem
+    );
+
+  };
+
   public getAll() {
     return this.http.get<OrderedItem[]>(
       `${environment.baseUrl}/${environment.orderedItems}`
+    );
+  }
+
+  public getAllOrdered() {
+    return this.http.get<OrderedItem[]>(
+      `${environment.baseUrl}/${environment.orderedItems}/staff`
+    );
+  }
+
+  public getAllStaff(id : number) {
+    return this.http.get<OrderedItem[]>(
+      `${environment.baseUrl}/${environment.orderedItems}/staff/${id}`
     );
   }
 

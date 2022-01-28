@@ -147,7 +147,6 @@ INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, 
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na nesto', '2012-11-11', 4, 6, 200, 2);
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na kikiriki', '2012-12-12', 1, 5, 50, 1);
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na nesto', '2012-11-11', 4, 6, 100, 2);
-
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na kikiriki', '2012-12-12', 2, null, 50, 1);
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na nesto', '2012-11-11', 5, null, 100, 2);
 

@@ -124,3 +124,4 @@ baseline.json
 
 ### Sensitive Data ###
 src/main/resources/application.properties
+Backend/src/main/resources/application.properties

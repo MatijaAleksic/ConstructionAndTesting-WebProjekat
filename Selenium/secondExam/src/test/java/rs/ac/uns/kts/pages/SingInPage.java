@@ -14,7 +14,7 @@ public class SingInPage {
 	@FindBy(id = "password")
 	private WebElement passwordInput;
 
-	@FindBy(id = "login-button")
+	@FindBy(xpath = "//button[@id='login-button' and not(@disabled)]")
 	private WebElement submitButton;
 
 
@@ -43,7 +43,8 @@ public class SingInPage {
 	}
 
 	public void submitBtnClick() {
-		Utilities.clickableWait(driver, this.submitButton, 10).click();
+		System.out.println(this.submitButton);
+		Utilities.clickableWait(driver, this.submitButton, 100).click();
 	}
 
 

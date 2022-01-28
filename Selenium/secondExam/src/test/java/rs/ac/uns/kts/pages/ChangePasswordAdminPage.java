@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 public class ChangePasswordAdminPage {
     private WebDriver driver;
 
-    @FindBy(xpath = "//a[text()='Change Password']")
+    @FindBy(id = "changePasswordButton")
     private WebElement changePasswordLink;
 
     public ChangePasswordAdminPage(WebDriver driver){
@@ -15,6 +15,6 @@ public class ChangePasswordAdminPage {
     }
 
     public void singInLinkClick() {
-        Utilities.visibilityWait(driver, this.changePasswordLink, 10).click();
+        Utilities.clickableWait(driver, this.changePasswordLink, 1000).click();
     }
 }

@@ -14,7 +14,6 @@ public class DateDTO {
         this.dateTo = dateTo;
     }
 
-    
 
 
     public DateDTO(){}

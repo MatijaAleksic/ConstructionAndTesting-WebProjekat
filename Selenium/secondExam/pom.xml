@@ -31,6 +31,15 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
+
+		<dependency>
+			<groupId>com.paulhammant</groupId>
+			<artifactId>ngwebdriver</artifactId>
+			<version>1.1.5</version>
+			<!-- You might want to delete the following line if you get "package com.paulhammant.ngwebdriver does not exist" errors -->
+			<scope>test</scope>
+		  </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

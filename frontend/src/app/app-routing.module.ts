@@ -27,6 +27,8 @@ import { ChangePriceItemComponent } from './Forms/change-price-item/change-price
 import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
 import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.component';
 import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
+import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-recipe-table.component';
+import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
 
 const routes: Routes = [
   {
@@ -153,6 +155,16 @@ const routes: Routes = [
   {
     path: 'new-recipe-table',
     component: NewRecipeTableComponent,
+  },
+
+  {
+    path: 'barman-recipe-table',
+    component: BarmanRecipeTableComponent,
+  },
+
+  {
+    path: 'maincook-recipe-table',
+    component: MaincookRecipeTableComponent,
   },
 
 ];

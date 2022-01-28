@@ -17,9 +17,15 @@ public class SingInPage {
 	@FindBy(xpath = "//button[@id='login-button' and not(@disabled)]")
 	private WebElement submitButton;
 
+	@FindBy(xpath = "//*[contains(text(),'Logout')]")
+	private WebElement logout;
 
 	public SingInPage(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	public void logoutLinkClick() {
+		Utilities.clickableWait(driver, this.logout, 1000).click();
 	}
 
 	public WebElement getEmailInput() {

@@ -7,7 +7,10 @@
 package kts.restaurant_application.services;
 
 
-import kts.restaurant_application.model.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import kts.restaurant_application.model.Drink;
+import kts.restaurant_application.model.Item;
+import kts.restaurant_application.model.ItemStatus;
 import kts.restaurant_application.repositories.DrinkRepository;
-
-import java.util.ArrayList;
 
 @Service
 public class DrinkService {
@@ -89,5 +93,17 @@ public class DrinkService {
 
     public Drink delete(Long id) {
         return delete(findOne(id));
+    }
+
+    public String[] getSubcategories() {
+        HashSet<String> hashset = new HashSet<>();
+        for (Item item : this.findAll()){
+            hashset.add(item.getSubcategory());
+        }
+        return hashset.toArray( new String[hashset.size()]);
+    }
+
+    public Collection<Item> findAllBySubcategory(String subcategory) {
+        return this.repository.findAllBySubcategory(subcategory);
     }
 }

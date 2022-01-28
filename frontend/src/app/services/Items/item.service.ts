@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs/index";
+import { Observable } from "rxjs/index";
 import { ApiResponse } from 'src/app/model/api.response';
 import { Item } from 'src/app/model/item.model';
 import { environment } from 'src/environments/environment';
@@ -12,11 +12,104 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
   private baseUrl: string = 'http://localhost:8080/items/';
-  private currentItemSelected : Item
-  private orderedItems : Item[]
+  private baseUrlFood: string = 'http://localhost:8080/foods/';
+  private baseUrlDrink: string = 'http://localhost:8080/drinks/';
+  private currentItemSelected: Item
+  private orderedItems: Item[] = []
+
+  getFoodItems(){
+    const items = this.http.get<Item[]>(this.baseUrlFood);
+    return items
+  }
+
+  getFoodItemsByCategory(subcategory : string){
+    const items = this.http.post<Item[]>(this.baseUrlFood + "findBySubcategory", subcategory);
+
+    items.subscribe(x => {
+      console.log(x);
+    })
+    return items
+  }
+
+  getFoodItemsCategories(){
+    const categories = this.http.get<string[]>(this.baseUrlFood + "getSubcategories");
+
+    return categories
+  }
 
 
-  addOrderedItem(item: Item){
+
+
+
+  getDrinkItems(){
+    const items = this.http.get<Item[]>(this.baseUrlDrink);
+    return items
+  }
+
+  getDrinkItemsByCategory(subcategory : string){
+    const items = this.http.post<Item[]>(this.baseUrlDrink + "findBySubcategory", subcategory);
+
+    items.subscribe(x => {
+      console.log(x);
+    })
+    return items
+  }
+
+  getDrinkItemsCategories(){
+    const categories = this.http.get<string[]>(this.baseUrlDrink + "getSubcategories");
+
+    return categories
+  }
+
+
+
+  addOrderedItem(item: Item) {
+
+    this.orderedItems = JSON.parse(localStorage.getItem('shoppingCart') || '{}');
+    if(!this.orderedItems.length){
+      this.orderedItems = []
+    }
+    let i = 0;
+    let foundTheItem : Boolean = false;
+    for( ; i < this.orderedItems.length; i++){
+      if(this.orderedItems[i].id === item.id){
+        this.orderedItems[i].number++;
+        foundTheItem = true;
+      }
+    }
+    if(!foundTheItem){
+      item.number = 1;
+      this.orderedItems.push(item);
+    }
+
+
+    localStorage.setItem('shoppingCart', JSON.stringify(this.orderedItems));
+
+  }
+
+  removeOrderedItem(item: Item) {
+    this.orderedItems = JSON.parse(localStorage.getItem('shoppingCart') || '{}');
+    if(!this.orderedItems.length){
+      this.orderedItems = []
+    }
+
+
+    let i = 0;
+    for( ; i < this.orderedItems.length; i++){
+      if(this.orderedItems[i].id === item.id){
+        this.orderedItems.splice(i, 1);
+      }
+    }
+
+    localStorage.setItem('shoppingCart', JSON.stringify(this.orderedItems));
+  }
+
+  getOrderedItems(){
+    this.orderedItems = JSON.parse(localStorage.getItem('shoppingCart') || '{}');
+    if(!this.orderedItems.length){
+      this.orderedItems = []
+    }
+    return this.orderedItems;
   }
 
 
@@ -24,28 +117,28 @@ export class ItemService {
     this.currentItemSelected = item;
   }
 
-  getItem() : Item{
+  getItem(): Item {
     return this.currentItemSelected;
   }
-  
 
-  getItems() : Observable<Item[]> {
+
+  getItems(): Observable<Item[]> {
     const items = this.http.get<Item[]>(this.baseUrl);
     return items
   }
 
-  getItemsNew() : Observable<Item[]> {
+  getItemsNew(): Observable<Item[]> {
     const items = this.http.get<Item[]>(this.baseUrl + "new");
     return items
   }
 
-  getCategories() : Observable<string[]>{
+  getCategories(): Observable<string[]> {
     const categories = this.http.get<string[]>(this.baseUrl + "getSubcategories");
 
     return categories
   }
 
-  findBySubcategory(subcategory: string) : Observable<Item[]>{
+  findBySubcategory(subcategory: string): Observable<Item[]> {
     const items = this.http.post<Item[]>(this.baseUrl + "findBySubcategory", subcategory);
 
     items.subscribe(x => {
@@ -63,7 +156,7 @@ export class ItemService {
   }
 
   updateItem(item: Item): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${environment.baseUrl}/${environment.items}/update`, item);    
+    return this.http.post<ApiResponse>(`${environment.baseUrl} + update`, item);
   }
 
   deleteItem(id: number): Observable<ApiResponse> {

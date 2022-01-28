@@ -3,11 +3,18 @@ import { MatTable } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/services/Items/item.service';
-import { PeriodicElement } from 'src/app/starting-menu/starting-menu.component';
 
 import { FoodService } from 'src/app/services/food/food-service.service';
 import { DrinkService } from 'src/app/services/drink/drink-service.service';
 import { Router } from '@angular/router';
+
+
+export interface PeriodicElement {
+  picture: string;
+  name: string;
+  price: number;
+}
+
 
 @Component({
   selector: 'app-items-table',

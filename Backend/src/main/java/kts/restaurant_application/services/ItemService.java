@@ -7,8 +7,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import kts.restaurant_application.model.Admin;
-import kts.restaurant_application.model.ItemStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Item;
+import kts.restaurant_application.model.ItemStatus;
 import kts.restaurant_application.repositories.ItemRepository;
 
 @Service
@@ -101,7 +100,6 @@ public class ItemService {
     }
 
     public Collection<Item> findAllBySubcategory(String subcategory){
-        System.out.println("AAAAAA");
         return this.repository.findAllBySubcategory(subcategory);
     }
 }

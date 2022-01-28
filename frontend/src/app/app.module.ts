@@ -14,7 +14,6 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ChangePasswordFormComponent } from './Forms/change-password-form/change-password-form.component';
 import { AuthInterceptor } from './services/autentication/auth.interceptor';
 import { BarmanTableComponent } from './Tables/barman-table/barman-table.component';
-import { StartingMenuComponent } from './starting-menu/starting-menu.component';
 import { MatTableModule } from '@angular/material/table';
 import { AddNewBarmanComponent } from './Forms/add-new-barman/add-new-barman.component';
 import { AddNewCookComponent } from './Forms/add-new-cook/add-new-cook.component' 
@@ -37,8 +36,16 @@ import { ChangePriceItemComponent } from './Forms/change-price-item/change-price
 
 import {MatBottomSheet, MatBottomSheetModule, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
-import { BottomSheetOverviewExampleSheet } from './starting-menu/starting-menu.component';
 import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatBadgeModule} from '@angular/material/badge';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.component';
+import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
+import { BottomSheetOverviewExampleSheet } from './item-sheet/item-sheet.component';
+import { Cart } from './cart/cart.component';
+
 
 @NgModule({
   declarations: [
@@ -60,13 +67,15 @@ import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-ta
     AdminTableComponent,
     AddNewAdminComponent,
     ChangeSalaryManagerComponent,
-    StartingMenuComponent,
     StaffTableComponent,
     ChangeSalaryUserComponent,
     ItemsTableComponent,
     ChangePriceItemComponent,
     BottomSheetOverviewExampleSheet,
-    NewRecipeTableComponent
+    NewRecipeTableComponent,
+    Cart,
+    FoodMenuComponent,
+    DrinkMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +88,11 @@ import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-ta
     MatSidenavModule,
     MatButtonModule,
     MatCardModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatSortModule,
+    MatSnackBarModule
 
   ],
   providers: [

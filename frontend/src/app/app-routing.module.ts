@@ -20,12 +20,13 @@ import { AddNewManagerComponent } from './Forms/add-new-manager/add-new-manager.
 import { AdminTableComponent } from './Tables/admin-table/admin-table.component';
 import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
 import { ChangeSalaryManagerComponent } from './Forms/change-salary-manager/change-salary-manager.component';
-import { StartingMenuComponent } from './starting-menu/starting-menu.component';
 import { StaffTableComponent } from './Tables/staff-table/staff-table.component';
 import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component';
 import { ItemsTableComponent } from './Tables/items-table/items-table.component';
 import { ChangePriceItemComponent } from './Forms/change-price-item/change-price-item.component';
 import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
+import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.component';
+import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
 
 const routes: Routes = [
   {
@@ -39,8 +40,13 @@ const routes: Routes = [
     component: LoginFormComponent,
   },
 
+
   { 
-    path: 'menu', component: StartingMenuComponent
+    path: 'food-menu', component: FoodMenuComponent
+  },
+
+  { 
+    path: 'drink-menu', component: DrinkMenuComponent
   },
 
 

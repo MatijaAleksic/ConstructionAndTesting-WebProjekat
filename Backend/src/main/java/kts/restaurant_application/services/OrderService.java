@@ -46,10 +46,13 @@ public class OrderService {
     }
     @Transactional
     public Order save(Order entity) {
-        Optional<Order> o = repository.findById(entity.getId());
-        if(o.isPresent()){
-            throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED,
-                        "order already exists: " + entity.getId());
+
+        if(entity.getId() != null){
+            Optional<Order> o = repository.findById(entity.getId());
+            if(o.isPresent()){
+                throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED,
+                            "order already exists: " + entity.getId());
+            }
         }
         return repository.save(entity);
 

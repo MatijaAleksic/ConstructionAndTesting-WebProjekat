@@ -55,12 +55,17 @@ public class OrderedItemController {
     @PostMapping
     public OrderedItem create(@RequestBody @Valid OrderedItem entity) {
 
-
+        
         Item item = itemService.findOne(entity.getItem().getId());
-        Staff staff = staffService.findOne(entity.getStaff().getId());
+        Staff staff = null;
+        try{
+            staff = staffService.findOne(entity.getStaff().getId());
+        } catch(Exception e){
+
+        }
+        System.out.println("Item id: " + item.getId());
         entity.setItem(item);
         entity.setStaff(staff);
-        
         return service.save(entity);
     }
 
@@ -89,7 +94,6 @@ public class OrderedItemController {
 
     @PostMapping("/getOrderedItemsByDate")
     public Collection<OrderedItem> getOrdersByDate(@RequestBody DateDTO data){
-        System.out.println("AAAAAAAAAAA");
         Date dateFrom = data.dateFrom;
         Date dateTo = data.dateTo;
 

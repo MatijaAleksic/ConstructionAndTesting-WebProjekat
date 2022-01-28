@@ -8,14 +8,14 @@ package kts.restaurant_application.repositories;
 
 import java.util.Collection;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import kts.restaurant_application.model.Drink;
 import kts.restaurant_application.model.Item;
 
 @Repository
-public interface DrinkRepository extends CrudRepository<Drink, Long> {
+public interface DrinkRepository extends JpaRepository<Drink, Long> {
 
     Collection<Item> findAllBySubcategory(String subcategory);
 

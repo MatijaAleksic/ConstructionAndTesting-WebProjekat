@@ -8,11 +8,20 @@
       <p>
         {{description}}
       </p>
+
+      
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput placeholder="Ex. Alergies, etc" [(ngModel)]="this.item.note"></textarea>
+      </mat-form-field>
+
+
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="addItem()">ORDER</button>
       <button style="float: right;" mat-button (click)="cancelItem()">CANCEL ORDER</button>
     </mat-card-actions>
+
   </mat-card>
   
   

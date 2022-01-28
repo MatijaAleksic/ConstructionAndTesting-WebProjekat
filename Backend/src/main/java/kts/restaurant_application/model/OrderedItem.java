@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModel;
@@ -46,7 +47,7 @@ public class OrderedItem {
 	private Integer number;
 
 	@Column(nullable = true)
-	private Integer price;
+	private Double price;
 
 	@NotNull
 	@Column(nullable = false)
@@ -58,9 +59,8 @@ public class OrderedItem {
 	@JoinColumn(name = "item_id")
 	private Item item;
 
-	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "staff_id")
+	@JoinColumn(name = "staff_id", nullable = true)
 	private Staff staff;
 
 	@NotNull
@@ -68,9 +68,10 @@ public class OrderedItem {
 	private String note;
 
 	public OrderedItem() {
+		this.dateTime = new Date();
 	}
 
-	public OrderedItem(Long id, Long version, @NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull Date dateTime, @NotNull Item item, @NotNull Staff staff, @NotNull Integer price) {
+	public OrderedItem(Long id, Long version, @NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull Date dateTime, @NotNull Item item, @NotNull Staff staff, @NotNull Double price) {
 		this.id = id;
 		this.version = version;
 		this.state = state;
@@ -82,7 +83,7 @@ public class OrderedItem {
 		this.price = price;
 	}
 
-	public OrderedItem(@NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull Date dateTime, @NotNull Integer price) {
+	public OrderedItem(@NotNull String note, @NotNull State state, @NotNull Integer number, @NotNull Date dateTime, @NotNull Double price) {
 		this.state = state;
 		this.number = number;
 		this.dateTime = dateTime;
@@ -91,6 +92,17 @@ public class OrderedItem {
 	}
 
 	
+
+	public OrderedItem(@Valid OrderedItem entity) {
+		this.version = entity.version;
+		this.state = entity.state;
+		this.number = entity.number;
+		this.dateTime = entity.dateTime;
+		this.item = entity.item;
+		this.staff = entity.staff;
+		this.note = entity.note;
+		this.price = entity.price;
+	}
 
 	public OrderedItem linkItem(Item _item) {
 		setItem(_item);
@@ -164,11 +176,11 @@ public class OrderedItem {
 		this.number = number;
 	}
 
-	public Integer getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

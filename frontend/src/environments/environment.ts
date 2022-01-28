@@ -16,7 +16,9 @@ export const environment = {
   staffs : 'staffs',
   foods : 'foods',
   drinks : 'drinks',
-  items : 'items'
+  items : 'items',
+  orders: 'orders',
+  orderedItems: 'orderedItems'
 };
 
 /*

@@ -44,9 +44,10 @@ public class OrderedItemService {
     }
 
     public OrderedItem save(OrderedItem entity) {
-        if(repository.existsById(entity.getId())){
+        if( entity.getId() != null && repository.existsById(entity.getId())){
             throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, "Ordered item with that id already exists: " + entity.getId());
         }
+        entity.setDateTime(new Date());
         return repository.save(entity);
     }
 

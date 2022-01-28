@@ -52,7 +52,7 @@ public class OrderedItemControllerTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(12);
+        o.setPrice(12.0);
         o.setStaff(staffRepository.findById(4l).get());
         o.setState(State.ordered);
         o.setItem(itemRepository.findById(1l).get());
@@ -133,7 +133,7 @@ public class OrderedItemControllerTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(333);
+        o.setPrice(333.0);
         o.setStaff(staffRepository.findById(4l).get());
         o.setState(State.ordered);
         o.setItem(itemRepository.findById(1l).get());

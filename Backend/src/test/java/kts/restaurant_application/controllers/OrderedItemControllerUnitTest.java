@@ -56,7 +56,7 @@ public class OrderedItemControllerUnitTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(12);
+        o.setPrice(12.0);
 
         Staff staff = new Staff();
         staff.setId(4l);
@@ -86,7 +86,7 @@ public class OrderedItemControllerUnitTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(12);
+        o.setPrice(12.0);
 
         Staff staff = new Staff();
         staff.setId(4l);
@@ -190,7 +190,7 @@ public class OrderedItemControllerUnitTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(12);
+        o.setPrice(12.0);
 
         Staff staff = new Staff();
         staff.setId(4l);

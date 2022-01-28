@@ -10,6 +10,13 @@ import { MatSort } from '@angular/material/sort';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { BottomSheetOverviewExampleSheet } from '../item-sheet/item-sheet.component';
 import { Cart } from '../cart/cart.component';
+import { OrderedItemService } from '../services/ordered-item/ordered-item.service';
+import { UserService } from '../services/user/user-service.service';
+import { OrderService } from '../services/order/order.service';
+import { AuthentitacionService } from '../services/autentication/authentitacion.service';
+import { OrderedItem } from '../model/ordered-item';
+import { Order } from '../model/order';
+import { Table } from '../model/table';
 
 export interface PeriodicElement {
   picture: string;
@@ -35,7 +42,8 @@ export class DrinkMenuComponent {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private itemService: ItemService, private _bottomSheet: MatBottomSheet){
+  constructor(private itemService: ItemService, private _bottomSheet: MatBottomSheet, private orderedItemService : OrderedItemService, 
+    private orderService : OrderService, private userService : UserService, private authenticationService : AuthentitacionService){
     
   }
 
@@ -75,6 +83,28 @@ export class DrinkMenuComponent {
 
   }
 
+
+  finalizeOrder(){
+    const orderedItems = this.itemService.getOrderedItems();
+    const id = this.authenticationService.getUserId();
+    const user = this.userService.getOne(id);
+    let realOrderedItems : OrderedItem[] = []
+    let priceOfTheOrder = 0
+    for(let i = 0; i < orderedItems.length; i++){
+      const temp = (new OrderedItem(orderedItems[i].price, orderedItems[i].number, "ordered", orderedItems[i], user, orderedItems[i].note))
+      realOrderedItems.push(temp);
+      this.orderedItemService.create(temp);
+      console.log(temp);
+      priceOfTheOrder += orderedItems[i].price;
+    }
+    let orderTable = new Table(1, 1, 1, 1, "free");
+
+    orderTable.id = 1
+    const currentOrder = new Order(priceOfTheOrder, user,  orderTable);
+    //this.orderService.create(currentOrder);
+
+
+  }
   
 
 }

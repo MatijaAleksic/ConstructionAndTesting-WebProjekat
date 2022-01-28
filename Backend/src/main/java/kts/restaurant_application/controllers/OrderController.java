@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kts.restaurant_application.DTO.DateDTO;
 import kts.restaurant_application.model.Order;
+import kts.restaurant_application.model.OrderDTO;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.RestourantTables;
 import kts.restaurant_application.model.Waiter;
@@ -58,14 +59,19 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order create(@RequestBody @Valid Order entity) {
+    public Order create(@RequestBody @Valid OrderDTO entityDto) {
+        System.out.println("Enitty: " + entityDto.toString());
+        System.out.println("Enitty: " + entityDto.getClass().toString());
+        Order entity = new Order();
+        entity.setDateTime(new Date());
+        entity.setPrice(entityDto.price);
 
-        RestourantTables t = tableService.findOne(entity.getRestourantTable().getId());
-        Waiter w = waiterService.findOne(entity.getWaiter().getId());
+        RestourantTables t = tableService.findOne(entityDto.restourantTable);
+        Waiter w = waiterService.findOne(entityDto.waiter);
         Set<OrderedItem> food = new HashSet<OrderedItem>();
 
-        for(OrderedItem item : entity.getFood()){
-            OrderedItem foundItem = orderedItemService.findOne(item.getId());
+        for(Long item : entityDto.orderedItems){
+            OrderedItem foundItem = orderedItemService.findOne(item);
             food.add(foundItem);
         }
         entity.setFood(food);

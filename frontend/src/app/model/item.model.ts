@@ -8,6 +8,7 @@ export class Item{
     itemStatus: string;
     picture: string;
     number: number;
+    note: string;
 
     constructor(item: Item) {
         this.convert(item);
@@ -27,7 +28,7 @@ export class Item{
     }
 
 
-    
+
 
 
 }

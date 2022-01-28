@@ -6,15 +6,14 @@
 package kts.restaurant_application.repositories;
 
 
-import kts.restaurant_application.model.User;
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import kts.restaurant_application.model.Manager;
 
-import java.util.Optional;
-
 @Repository
-public interface ManagerRepository extends CrudRepository<Manager, Long> {
+public interface ManagerRepository extends JpaRepository<Manager, Long> {
     Optional<Manager> findByUsername(String username);
 }

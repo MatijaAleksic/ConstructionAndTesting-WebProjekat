@@ -44,11 +44,13 @@ export class BottomSheetOverviewExampleSheet {
 
   addItem(){
     this.itemService.addOrderedItem(this.item);
-    this._snackBar.open(this.item.name, "added", {duration: 500});
+    this._snackBar.open(this.item.name, "added " + this.item.number, {duration: 500});
   }
 
   cancelItem(){
     this.itemService.removeOrderedItem(this.item);
     this._snackBar.open(this.item.name, "removed", {duration: 500});
   }
+
+
 }

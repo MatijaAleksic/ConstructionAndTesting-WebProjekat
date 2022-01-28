@@ -45,7 +45,7 @@ import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.compo
 import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
 import { BottomSheetOverviewExampleSheet } from './item-sheet/item-sheet.component';
 import { Cart } from './cart/cart.component';
-
+import {MatInputModule} from '@angular/material/input'; 
 
 @NgModule({
   declarations: [
@@ -92,7 +92,8 @@ import { Cart } from './cart/cart.component';
     MatIconModule,
     MatBadgeModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatInputModule
 
   ],
   providers: [

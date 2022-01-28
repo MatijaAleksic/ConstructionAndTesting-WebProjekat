@@ -47,6 +47,17 @@ public class OrderedItemController {
         return service.findAll();
     }
 
+    @GetMapping("/staff")
+    public Iterable<OrderedItem> findAllOrdered() {
+        return service.findAllOrdered();
+    }
+
+    @GetMapping("/staff/{id}")
+    public Iterable<OrderedItem> findAllStaff(@PathVariable("id") Long id) {
+        return service.findAllByStaff(id);
+    }
+
+
     @GetMapping("/{id}")
     public OrderedItem findOne(@PathVariable("id") Long id) {
         return service.findOne(id);

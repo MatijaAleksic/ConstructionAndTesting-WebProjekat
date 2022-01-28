@@ -48,8 +48,12 @@ import { Cart } from './cart/cart.component';
 import {MatInputModule} from '@angular/material/input';
 import { BartenderMenuComponent } from './bartender-menu/bartender-menu.component';
 import { OrderedItemSheetComponent } from './ordered-item-sheet/ordered-item-sheet.component'; 
-
-
+import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-recipe-table.component';
+import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
+import { ChangeItemInfoComponent } from './Forms/change-item-info/change-item-info.component';
+import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.component';
+import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component';
+import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-table-cooks.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +86,12 @@ import { OrderedItemSheetComponent } from './ordered-item-sheet/ordered-item-she
     DrinkMenuComponent,
     BartenderMenuComponent,
     OrderedItemSheetComponent,
+    BarmanRecipeTableComponent,
+    MaincookRecipeTableComponent,
+    ChangeItemInfoComponent,
+    AddNewDrinkComponent,
+    AddNewFoodComponent,
+    OrdersTableCooksComponent
   ],
   imports: [
     BrowserModule,

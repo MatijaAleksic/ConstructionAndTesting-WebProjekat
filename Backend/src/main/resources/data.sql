@@ -9,7 +9,8 @@ INSERT INTO _admins (user) VALUES (2);
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('milanmilanovic@maildrop.cc','milanmilanovic', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _admins (user) VALUES (3);
 
-INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('savosavic@maildrop.cc','MarkoMarkovic12', false, '2012-12-12', 'Pera' ,'Peric', 20000);
+--password = 'barman'
+INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('barman@gmail.com','$2a$12$JL62vFqwVuMXsMgFog0hZOeM1IbbUJFhaCcvPhXEDVCRz38wVn.9e', false, '2012-12-12', 'Pera' ,'Peric', 20000);
 INSERT INTO _staff (user) VALUES (4);
 INSERT INTO _barmen (staff) VALUES (4);
 
@@ -18,7 +19,7 @@ INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, la
 INSERT INTO _staff (user) VALUES (5);
 INSERT INTO _barmen (staff) VALUES (5);
 
-INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('luka@maildrop.cc','luka', false, '2012-12-12', 'Pera', 'Peric', 20000);
+INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('cook@gmail.com','$2a$12$Nfqk50L3tIg5QZwnOPiQauOYHbbLqwcjbeNLoZauSmaYwiehSrl9K', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _staff (user) VALUES (6);
 INSERT INTO _cooks (staff) VALUES (6);
 
@@ -27,8 +28,8 @@ INSERT INTO _staff (user) VALUES (7);
 INSERT INTO _cooks (staff) VALUES (7);
 
 
-
-INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('jovan@maildrop.cc','jovan', false, '2012-12-12', 'Pera', 'Peric', 20000);
+--password = 'maincook'
+INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('maincook@gmail.com','$2a$12$z.NQsL83grGYoAxEMQjqSOvwb/2rBclZgEuzSS/F2AFTfh010zzri', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _staff (user) VALUES (8);
 INSERT INTO _cooks (staff) VALUES (8);
 INSERT INTO _main_cooks (cook) VALUES (8);
@@ -144,6 +145,12 @@ INSERT INTO _orders (price, waiter_id, restourant_table_id, date_time) VALUES (2
 
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na kikiriki', '2012-12-12', 1, 5, 200, 1);
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na nesto', '2012-11-11', 4, 6, 200, 2);
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na kikiriki', '2012-12-12', 1, 5, 50, 1);
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na nesto', '2012-11-11', 4, 6, 100, 2);
+
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na kikiriki', '2012-12-12', 2, null, 50, 1);
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na nesto', '2012-11-11', 5, null, 100, 2);
+
 
 INSERT INTO _notifications (id,date_time, text, user_type) VALUES (1, '2012-12-12 11:11:11', 'Notifikacija1', 'admin');
 INSERT INTO _notifications (id,date_time, text, user_type) VALUES (2, '2012-10-12 05:05:05', 'Notifikacija2', 'admin');

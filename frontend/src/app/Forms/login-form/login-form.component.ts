@@ -37,6 +37,7 @@ export class LoginFormComponent implements OnInit {
         {
           next: data => {
             localStorage.setItem('LoggedInUser', JSON.stringify(data.accessToken));
+            localStorage.setItem('UserId', JSON.stringify(data.userId));
             if(data !== null) {
               this.router.navigate(['profile'])
             }

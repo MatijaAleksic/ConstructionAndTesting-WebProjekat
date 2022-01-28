@@ -1,4 +1,5 @@
 import { Item } from "./item.model";
+import { UserId } from "./user-id";
 
 export class OrderedItem {
 
@@ -7,7 +8,7 @@ export class OrderedItem {
     public number : number;
     public state : any;
     public item : Item;
-    public staff : any;
+    public staff : UserId;
     public note : string;
     public dateTime : Date;
 

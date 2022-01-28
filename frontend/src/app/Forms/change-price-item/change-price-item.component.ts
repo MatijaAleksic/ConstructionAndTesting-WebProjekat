@@ -27,13 +27,15 @@ export class ChangePriceItemComponent implements OnInit {
     this.itemService.getItemById(this.myParam).subscribe( 
       res => {
         //this.validateForm.value.salary = this.user.salary;
-        this.price = this.item.price;
+        this.item = res;
+        this.price = res.price;
 
       })
   }
 
   changePrice(){
     this.item.price = this.price;
+    
     this.itemService.updateItem(this.item).subscribe(
       {
         next: data => {

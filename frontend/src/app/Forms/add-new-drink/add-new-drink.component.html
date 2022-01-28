@@ -1,0 +1,32 @@
+<div id="container-div">
+    <div id="form-holder-div">
+        <h1 class="h1 mb-3 font-weight-normal">Add new recipe</h1>
+        <form>
+            <div>
+                <label >Name</label>
+                <input  [(ngModel)]="name" matInput class="form-control" id="name" name = "name-input" type="text">
+            </div>
+            <div>
+                <label >Price</label>
+                <input  [(ngModel)]="price" matInput class="form-control" id="price" name = "price-input" type="number">
+            </div>
+            <div>
+                <label >Subcategory</label>
+                <input  [(ngModel)]="subcategory" matInput class="form-control" id="subcategory" name = "subcategory-input" type="text">
+            </div>
+            <div>
+                <label >Description</label>
+                <input  [(ngModel)]="description" matInput class="form-control" id="description" name = "description-input" type="text">
+            </div>
+            <div>
+                <label >Priority</label>
+                <input  [(ngModel)]="priority" matInput class="form-control" id="priority" name = "priority-input" type="number">
+            </div>
+
+            <div id="button-div">
+                <button style="margin:15px;" color="primary" type="submit" class="btn btn-lg btn-primary btn-block" (click)="addNew()" id="change-price-button">Add new</button>
+            </div>
+        </form>
+    </div>
+</div>
+

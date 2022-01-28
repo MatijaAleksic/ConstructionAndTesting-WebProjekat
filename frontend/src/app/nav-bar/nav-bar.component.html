@@ -8,7 +8,8 @@
           <span class="icon-bar"></span>
         </button>
             <!-- <a class="navbar-brand" (click) = "this.router.navigate(['']);">Restaurant Application</a>  -->
-            <a class="navbar-brand" (click) = "alertuj('Prebaci na MENI')">Restaurant Application</a>
+            <a class="navbar-brand" (click) = "this.router.navigate(['food-menu'])">Foods</a>
+            <a class="navbar-brand" (click) = "this.router.navigate(['drink-menu'])">Drinks</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
@@ -19,6 +20,28 @@
             <a (click) = "alertuj('MENI TODO')" href="#">Menu</a>
                 <!-- <a *ngIf="checkRole('ROLE_ADMIN') === false" href="#">Meni</a> -->
           </li>
+
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_MANAGER') === true" (click) = "this.router.navigate(['staff-table']);">Staff</a>
+          </li>
+
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_MANAGER') === true" (click) = "this.router.navigate(['items-table']);">Items</a>
+          </li>
+
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_MANAGER') === true" (click) = "this.router.navigate(['new-recipe-table']);">New Recipes</a>
+          </li>
+
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_BARMAN') === true" (click) = "this.router.navigate(['barman-recipe-table']);">New Recipes</a>
+          </li>
+
+          <li class = "nav-item">
+            <a *ngIf="checkRole('ROLE_MAINCOOK') === true" (click) = "this.router.navigate(['maincook-recipe-table']);">New Recipes</a>
+          </li>
+
+          
           <!-- <li class = "nav-item">
             <a (click) = "alertuj('TODO')" *ngIf="checkRole('ROLE_ADMIN') === true" href="#">Admin-Opcija</a>
           </li> -->

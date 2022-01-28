@@ -71,7 +71,6 @@ public class UserService {
         existingUser.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingUser.setDateOfBirth(entity.getDateOfBirth());
         existingUser.setSalary(entity.getSalary());
-        existingUser.setIsDeleted(entity.getIsDeleted());
         existingUser.setUsername(entity.getUsername());
 
         return save(existingUser);

@@ -73,7 +73,6 @@ public class WaiterService {
         existingWaiter.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingWaiter.setDateOfBirth(entity.getDateOfBirth());
         existingWaiter.setSalary(entity.getSalary());
-        existingWaiter.setIsDeleted(entity.getIsDeleted());
 
         return save(existingWaiter);
     }

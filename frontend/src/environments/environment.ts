@@ -12,7 +12,11 @@ export const environment = {
   mainCooks : 'mainCooks',
   waiters : 'waiters',
   managers : 'managers',
-  admins : 'admins'
+  admins : 'admins',
+  staffs : 'staffs',
+  foods : 'foods',
+  drinks : 'drinks',
+  items : 'items'
 };
 
 /*

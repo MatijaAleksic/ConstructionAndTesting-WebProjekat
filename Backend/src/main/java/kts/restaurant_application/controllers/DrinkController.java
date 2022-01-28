@@ -7,11 +7,15 @@
 package kts.restaurant_application.controllers;
 
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kts.restaurant_application.model.Drink;
+import kts.restaurant_application.model.Item;
 import kts.restaurant_application.services.DrinkService;
 
 @Transactional
@@ -41,6 +46,11 @@ public class DrinkController {
         return service.findAll();
     }
 
+    @GetMapping("/new")
+    public Iterable<Drink> findAllNew(){
+        return service.findAllNew();
+    }
+
     @GetMapping("/{id}")
     public Drink findOne(@PathVariable("id") Long id) {
         return service.findOne(id);
@@ -59,5 +69,18 @@ public class DrinkController {
     @PostMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+
+    @GetMapping("/getSubcategories")
+    public ResponseEntity<String[]> getSubcategories(){
+        
+        return new ResponseEntity<>( service.getSubcategories(), HttpStatus.OK );
+    }
+
+
+    @PostMapping("/findBySubcategory")
+    public ResponseEntity<Collection<Item>> findBySubcategory(@RequestBody String category){
+        return new ResponseEntity<Collection<Item>>(this.service.findAllBySubcategory(category), HttpStatus.OK);
     }
 }

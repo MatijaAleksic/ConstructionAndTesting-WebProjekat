@@ -1,0 +1,18 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-subtitle>{{subcategory}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{picture}}" width="500px" height="500px">
+    <mat-card-content>
+      <p>
+        {{description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="addItem()">ORDER</button>
+      <button style="float: right;" mat-button (click)="cancelItem()">CANCEL ORDER</button>
+    </mat-card-actions>
+  </mat-card>
+  
+  

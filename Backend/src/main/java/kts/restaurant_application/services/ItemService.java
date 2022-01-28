@@ -1,5 +1,8 @@
 package kts.restaurant_application.services;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Item;
+import kts.restaurant_application.model.ItemStatus;
 import kts.restaurant_application.repositories.ItemRepository;
 
 @Service
@@ -27,7 +31,27 @@ public class ItemService {
     }
 
     public Iterable<Item> findAll() {
-        return repository.findAll();
+        Iterable<Item> all = repository.findAll();
+        ArrayList<Item> notDeleted = new ArrayList<>();
+
+        for(Item b : all){
+            if(!b.getIsDeleted() && b.getItemStatus() != ItemStatus.newItem){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
+    }
+
+    public Iterable<Item> findAllNew() {
+        Iterable<Item> all = repository.findAll();
+        ArrayList<Item> notDeleted = new ArrayList<>();
+
+        for(Item b : all){
+            if(!b.getIsDeleted() && b.getItemStatus() == ItemStatus.newItem){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Item findOne(Long id) {
@@ -51,7 +75,7 @@ public class ItemService {
         existingItem.setPrice(entity.getPrice());
         existingItem.setPriority(entity.getPriority());
         existingItem.setSubcategory(entity.getSubcategory());
-        existingItem.setIsDeleted(entity.getIsDeleted());
+        existingItem.setItemStatus(entity.getItemStatus());
 
         return save(existingItem);
     }
@@ -65,5 +89,17 @@ public class ItemService {
     public Item delete(Long id) {
         Item item = findOne(id);
         return delete(item);
+    }
+
+    public String[] getSubcategories() {
+        HashSet<String> hashset = new HashSet<>();
+        for (Item item : this.findAll()){
+            hashset.add(item.getSubcategory());
+        }
+        return hashset.toArray( new String[hashset.size()]);
+    }
+
+    public Collection<Item> findAllBySubcategory(String subcategory){
+        return this.repository.findAllBySubcategory(subcategory);
     }
 }

@@ -20,7 +20,15 @@ import { AddNewManagerComponent } from './Forms/add-new-manager/add-new-manager.
 import { AdminTableComponent } from './Tables/admin-table/admin-table.component';
 import { AddNewAdminComponent } from './Forms/add-new-admin/add-new-admin.component';
 import { ChangeSalaryManagerComponent } from './Forms/change-salary-manager/change-salary-manager.component';
-import { StartingMenuComponent } from './starting-menu/starting-menu.component';
+import { StaffTableComponent } from './Tables/staff-table/staff-table.component';
+import { ChangeSalaryUserComponent } from './Forms/change-salary-user/change-salary-user.component';
+import { ItemsTableComponent } from './Tables/items-table/items-table.component';
+import { ChangePriceItemComponent } from './Forms/change-price-item/change-price-item.component';
+import { NewRecipeTableComponent } from './Tables/new-recipe-table/new-recipe-table.component';
+import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.component';
+import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
+import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-recipe-table.component';
+import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
 
 const routes: Routes = [
   {
@@ -34,8 +42,13 @@ const routes: Routes = [
     component: LoginFormComponent,
   },
 
+
   { 
-    path: 'menu', component: StartingMenuComponent
+    path: 'food-menu', component: FoodMenuComponent
+  },
+
+  { 
+    path: 'drink-menu', component: DrinkMenuComponent
   },
 
 
@@ -117,6 +130,41 @@ const routes: Routes = [
   {
     path: 'edit-salary',
     component: ChangeSalaryManagerComponent,
+  },
+
+  {
+    path: 'staff-table',
+    component: StaffTableComponent,
+  },
+
+  {
+    path: 'edit-salary-user',
+    component: ChangeSalaryUserComponent,
+  },
+
+  {
+    path: 'items-table',
+    component: ItemsTableComponent,
+  },
+
+  {
+    path: 'edit-item-price',
+    component: ChangePriceItemComponent,
+  },
+
+  {
+    path: 'new-recipe-table',
+    component: NewRecipeTableComponent,
+  },
+
+  {
+    path: 'barman-recipe-table',
+    component: BarmanRecipeTableComponent,
+  },
+
+  {
+    path: 'maincook-recipe-table',
+    component: MaincookRecipeTableComponent,
   },
 
 ];

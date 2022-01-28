@@ -68,7 +68,6 @@ public class StaffService {
         existingManager.setPassword(entity.getPassword());
         existingManager.setDateOfBirth(entity.getDateOfBirth());
         existingManager.setSalary(entity.getSalary());
-        existingManager.setIsDeleted(entity.getIsDeleted());
 
         return save(existingManager);
     }

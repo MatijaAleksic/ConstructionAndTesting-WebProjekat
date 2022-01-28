@@ -66,7 +66,6 @@ public class AdminService {
         existingAdmin.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingAdmin.setDateOfBirth(entity.getDateOfBirth());
         existingAdmin.setSalary(entity.getSalary());
-        existingAdmin.setIsDeleted(entity.getIsDeleted());
 
         return save(existingAdmin);
     }

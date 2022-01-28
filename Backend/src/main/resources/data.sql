@@ -126,6 +126,14 @@ INSERT INTO _foods (item) VALUES (5);
 INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija6', false, 'Jelo3', 'active',100, 1, 'subcategory6', 'assets/food.jpg');
 INSERT INTO _foods (item) VALUES (6);
 
+
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija7', false, 'Pice7', 'newItem',100, 1, 'subcategory7', 'assets/food.jpg');
+INSERT INTO _drinks (item) VALUES (7);
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija8', false, 'Pice8', 'newItem',100, 1, 'subcategory8', 'assets/food.jpg');
+INSERT INTO _drinks (item) VALUES (8);
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija9', false, 'Jelo9', 'newItem',100, 1, 'subcategory9', 'assets/food.jpg');
+INSERT INTO _foods (item) VALUES (9);
+
 INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (1, 1, 1.0, 2.0, 'free', false);
 INSERT INTO _tables (table_number, floor, positionX, positionY, state, is_deleted) VALUES (2, 4, 30.0, 2.0, 'free', false);
 

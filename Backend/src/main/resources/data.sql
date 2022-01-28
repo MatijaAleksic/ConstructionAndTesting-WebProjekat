@@ -9,7 +9,8 @@ INSERT INTO _admins (user) VALUES (2);
 INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('milanmilanovic@maildrop.cc','milanmilanovic', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _admins (user) VALUES (3);
 
-INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('savosavic@maildrop.cc','MarkoMarkovic12', false, '2012-12-12', 'Pera' ,'Peric', 20000);
+--password = 'barman'
+INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('barman@gmail.com','$2a$12$JL62vFqwVuMXsMgFog0hZOeM1IbbUJFhaCcvPhXEDVCRz38wVn.9e', false, '2012-12-12', 'Pera' ,'Peric', 20000);
 INSERT INTO _staff (user) VALUES (4);
 INSERT INTO _barmen (staff) VALUES (4);
 
@@ -18,7 +19,7 @@ INSERT INTO _users (username,password, is_deleted, date_of_birth, first_name, la
 INSERT INTO _staff (user) VALUES (5);
 INSERT INTO _barmen (staff) VALUES (5);
 
-INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('luka@maildrop.cc','luka', false, '2012-12-12', 'Pera', 'Peric', 20000);
+INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('cook@gmail.com','$2a$12$Nfqk50L3tIg5QZwnOPiQauOYHbbLqwcjbeNLoZauSmaYwiehSrl9K', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _staff (user) VALUES (6);
 INSERT INTO _cooks (staff) VALUES (6);
 
@@ -27,8 +28,8 @@ INSERT INTO _staff (user) VALUES (7);
 INSERT INTO _cooks (staff) VALUES (7);
 
 
-
-INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('jovan@maildrop.cc','jovan', false, '2012-12-12', 'Pera', 'Peric', 20000);
+--password = 'maincook'
+INSERT INTO _users(username,password, is_deleted, date_of_birth, first_name, last_name, salary) VALUES ('maincook@gmail.com','$2a$12$z.NQsL83grGYoAxEMQjqSOvwb/2rBclZgEuzSS/F2AFTfh010zzri', false, '2012-12-12', 'Pera', 'Peric', 20000);
 INSERT INTO _staff (user) VALUES (8);
 INSERT INTO _cooks (staff) VALUES (8);
 INSERT INTO _main_cooks (cook) VALUES (8);

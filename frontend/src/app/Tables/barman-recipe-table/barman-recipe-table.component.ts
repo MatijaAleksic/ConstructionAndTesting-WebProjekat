@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Item } from 'src/app/model/item.model';
 import { DrinkService } from 'src/app/services/drink/drink-service.service';
 
-
 export interface PeriodicElement {
   picture: string;
   name: string;
@@ -36,15 +35,19 @@ export class BarmanRecipeTableComponent implements OnInit {
   }
 
   newRecipe(){
-    alert("New recipe TODO")
+    this.router.navigate([`add-drink`]);
   }
 
   editData(element : Item){
-    alert("Edit data TODO")
+    this.router.navigate([`edit-item-info`, {id : element.id}]);
   }
 
   itemClicked(item: Item){
     console.log(item)
+  }
+
+  subSelected(a : any){
+    alert("Hello")
   }
 
 }

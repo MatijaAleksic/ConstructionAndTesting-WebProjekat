@@ -11,6 +11,7 @@ import java.util.Collection;
 
 import javax.validation.Valid;
 
+import kts.restaurant_application.model.ItemStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,8 @@ public class DrinkController {
 
     @PostMapping
     public Drink create(@RequestBody @Valid Drink entity) {
+        entity.setIsDeleted(false);
+        entity.setItemStatus(ItemStatus.newItem);
         return service.save(entity);
     }
 

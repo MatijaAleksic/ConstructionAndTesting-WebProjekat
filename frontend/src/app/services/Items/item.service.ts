@@ -156,7 +156,7 @@ export class ItemService {
   }
 
   updateItem(item: Item): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${environment.baseUrl} + update`, item);
+    return this.http.post<ApiResponse>(`${environment.baseUrl}/items/update`, item);
   }
 
   deleteItem(id: number): Observable<ApiResponse> {

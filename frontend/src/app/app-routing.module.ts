@@ -29,6 +29,8 @@ import { FoodMenuComponent } from './food-starting-menu/food-starting-menu.compo
 import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.component';
 import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-recipe-table.component';
 import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
+import { ChangeItemInfoComponent } from './Forms/change-item-info/change-item-info.component';
+import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.component';
 
 const routes: Routes = [
   {
@@ -165,6 +167,16 @@ const routes: Routes = [
   {
     path: 'maincook-recipe-table',
     component: MaincookRecipeTableComponent,
+  },
+
+  {
+    path: 'edit-item-info',
+    component: ChangeItemInfoComponent,
+  },
+
+  {
+    path: 'add-drink',
+    component: AddNewDrinkComponent,
   },
 
 ];

@@ -46,6 +46,10 @@ import { DrinkMenuComponent } from './drink-starting-menu/drink-starting-menu.co
 import { BottomSheetOverviewExampleSheet } from './item-sheet/item-sheet.component';
 import { Cart } from './cart/cart.component';
 import {MatInputModule} from '@angular/material/input'; 
+import { BarmanRecipeTableComponent } from './Tables/barman-recipe-table/barman-recipe-table.component';
+import { MaincookRecipeTableComponent } from './Tables/maincook-recipe-table/maincook-recipe-table.component';
+import { ChangeItemInfoComponent } from './Forms/change-item-info/change-item-info.component';
+import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +80,10 @@ import {MatInputModule} from '@angular/material/input';
     Cart,
     FoodMenuComponent,
     DrinkMenuComponent,
+    BarmanRecipeTableComponent,
+    MaincookRecipeTableComponent,
+    ChangeItemInfoComponent,
+    AddNewDrinkComponent
   ],
   imports: [
     BrowserModule,

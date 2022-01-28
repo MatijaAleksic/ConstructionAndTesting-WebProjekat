@@ -4,16 +4,20 @@ import { Item } from 'src/app/model/item.model';
 import { ItemService } from 'src/app/services/Items/item.service';
 
 @Component({
-  selector: 'app-change-price-item',
-  templateUrl: './change-price-item.component.html',
-  styleUrls: ['./change-price-item.component.css']
+  selector: 'app-change-item-info',
+  templateUrl: './change-item-info.component.html',
+  styleUrls: ['./change-item-info.component.css']
 })
-export class ChangePriceItemComponent implements OnInit {
+export class ChangeItemInfoComponent implements OnInit {
 
   myParam: number;
   item : Item;
 
+  name : string;
   price : number;
+  subcategory : string;
+  priority : number;
+  description : string;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,22 +30,32 @@ export class ChangePriceItemComponent implements OnInit {
 
     this.itemService.getItemById(this.myParam).subscribe( 
       res => {
-        //this.validateForm.value.salary = this.user.salary;
+        console.log(res);
+        
         this.item = res;
+
+        this.name = res.name;
         this.price = res.price;
+        this.subcategory = res.subcategory;
+        this.priority = res.priority;
+        this.description = res.description;
 
       })
   }
 
-  changePrice(){
+  changeInfo(){
     this.item.price = this.price;
+    this.item.name = this.name;
+    this.item.description = this.description;
+    this.item.subcategory = this.subcategory;
+    this.item.priority = this.priority;
     
     this.itemService.updateItem(this.item).subscribe(
       {
         next: data => {
           if(data !== null) {
             console.log(data);
-            this.router.navigate(['items-table'])
+            this.router.navigate(['barman-recipe-table'])
           }
         }
       }

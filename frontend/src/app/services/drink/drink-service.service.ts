@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/model/item.model';
+import { ItemConstruct } from 'src/app/model/itemConstruct';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,26 +14,32 @@ export class DrinkService {
 
   public getOne(id : number) {
     return this.http.get<Item>(
-      `${environment.baseUrl}/${environment.foods}/` + id
+      `${environment.baseUrl}/${environment.drinks}/` + id
     );
   }
 
   public update(item : Item){
     return this.http.post<Item[]>(
-      `${environment.baseUrl}/${environment.foods}/update`, item
+      `${environment.baseUrl}/${environment.drinks}/update`, item
     );
 
   };
 
   public getAll() {
     return this.http.get<Item[]>(
-      `${environment.baseUrl}/${environment.foods}`
+      `${environment.baseUrl}/${environment.drinks}`
     );
   }
 
   public getAllNew() {
     return this.http.get<Item[]>(
-      `${environment.baseUrl}/${environment.foods}/new`
+      `${environment.baseUrl}/${environment.drinks}/new`
+    );
+  }
+
+  public create(item : ItemConstruct) {
+    return this.http.post<Item>(
+      `${environment.baseUrl}/${environment.drinks}`,item
     );
   }
 }

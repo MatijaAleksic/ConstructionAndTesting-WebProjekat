@@ -10,8 +10,10 @@ import rs.ac.uns.kts.EditSalary;
 import rs.ac.uns.kts.ManagerTestPages.ChangeItemPrice;
 import rs.ac.uns.kts.ManagerTestPages.ItemsTable;
 import rs.ac.uns.kts.ManagerTestPages.StaffTables;
+import rs.ac.uns.kts.ManagerTestPages.TablesManagerPage;
 import rs.ac.uns.kts.SingInPage;
 import rs.ac.uns.kts.pages.AdminTestPages.Utilities;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -25,6 +27,7 @@ public class ManagerTest {
     private EditSalary editSalary;
     private ItemsTable itemsTable;
     private ChangeItemPrice changeItemPrice;
+    private TablesManagerPage tablesManagerPage;
     private NgWebDriver angularWebDriver;
     @Before
     public void setupSelenium() {
@@ -43,6 +46,7 @@ public class ManagerTest {
         editSalary = PageFactory.initElements(browser,EditSalary.class);
         itemsTable = PageFactory.initElements(browser,ItemsTable.class);
         changeItemPrice = PageFactory.initElements(browser,ChangeItemPrice.class);
+        tablesManagerPage = PageFactory.initElements(browser,TablesManagerPage.class);
 
         //valid user
         singInPage.setEmailInput("manager@gmail.com");
@@ -84,7 +88,6 @@ public class ManagerTest {
 
         editSalary.setSalaryInput("10000");
         editSalary.submitBtnClick();
-
     }
 
     @Test
@@ -99,6 +102,7 @@ public class ManagerTest {
 
         changeItemPrice.setPriceInput("2000");
         changeItemPrice.submitBtnClick();
+
     }
 
     @Test
@@ -118,6 +122,19 @@ public class ManagerTest {
 
         itemsTable.activateItemBtnClick();
         itemsTable.deactivateItemBtnClick();
+    }
+
+    @Test
+    public void floorManagerTest() throws InterruptedException {
+        tablesManagerPage.tablesManagerLinkClick();
+        Utilities.urlWait(browser, "http://localhost:4200/restourant-menu-manager", 100);
+        assertEquals("http://localhost:4200/restourant-menu-manager", browser.getCurrentUrl());
+
+        Thread.sleep(10000);
+        tablesManagerPage.choseFloorLinkClick();
+        tablesManagerPage.addTableLinkClick();
+        tablesManagerPage.choseTableLinkClick();
+        tablesManagerPage.deleteTableLinkClick();
     }
 
 

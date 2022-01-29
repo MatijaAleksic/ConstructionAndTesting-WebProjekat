@@ -85,7 +85,7 @@ public class AddNewUserPage {
     public void setSalaryInput(String value) {
         WebElement el = getSalaryInput();
         el.clear();
-        el.sendKeys(value);
+        el.sendKeys(String.valueOf(value));
     }
 
     public void submitBtnClick() {

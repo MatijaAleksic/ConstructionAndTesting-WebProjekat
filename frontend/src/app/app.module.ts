@@ -55,7 +55,9 @@ import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.compon
 import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component';
 import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-table-cooks.component';
 import { RestourantTablesComponent } from './restourant-tables/restourant-tables.component';
-import {DragDropModule} from '@angular/cdk/drag-drop'; 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { RestourantTablesBartenderComponent } from './restourant-tables-bartender/restourant-tables-bartender.component';
+import { StatsComponent } from './stats/stats.component'; 
 
 
 @NgModule({
@@ -95,7 +97,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AddNewDrinkComponent,
     AddNewFoodComponent,
     OrdersTableCooksComponent,
-    RestourantTablesComponent
+    RestourantTablesComponent,
+    RestourantTablesBartenderComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

@@ -29,12 +29,12 @@ public class TableService {
     }
 
     public Iterable<RestourantTables> findAll() {
-        return repository.findAll();
+        return repository.findAllByIsDeleted(false);
     }
 
     public RestourantTables findOne(Long id) {
         return repository
-                .findById(id)
+                .findByIdAndIsDeleted(id, false)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Cannot find Table by " + id));
     }
@@ -66,7 +66,7 @@ public class TableService {
     }
 
     public RestourantTables[] findTablesByFloor(Integer floor) {
-        RestourantTables[] t = this.repository.findAllByFloor(floor);
+        RestourantTables[] t = this.repository.findAllByFloorAndIsDeleted(floor, false);
         return t;
     }
 
@@ -77,6 +77,6 @@ public class TableService {
                 max = t.getFloor();
             }
         }
-        return max;
+        return 10; //max
     }
 }

@@ -9,22 +9,20 @@
          </div>
         </mat-sidenav>
         <mat-sidenav-content class="main-menu" id="main-content">
-            <button mat-raised-button color="accent" (click)="addData()" class="demo-button">
-                add table
-              </button>
+            
               <button mat-raised-button color="accent" (click)="addData()" class="demo-button" disabled>
                 floor: {{this.activeFloor}}
               </button>
-              <button mat-raised-button color="primary" (click)="removeData()" class="demo-button">
-                delete table: {{this.activeTable.id}}
+              <button mat-raised-button color="primary" (click)="this.router.navigate(['bartender-menu'])" class="demo-button">
+                order for table: {{this.activeTable.id}}
               </button>
               <div class="dragDropBorder">
                     <div *ngFor="let table of restourantTables">
 
-                        <p class="example-box" cdkDrag cdkDragBoundary=".dragDropBorder" [cdkDragFreeDragPosition]="table.position" *ngIf="table.state==='free'" (click)="clickEvent(table)" (cdkDragEnded)="drop($event, table)">
+                        <p class="example-box" cdkDragBoundary=".dragDropBorder" *ngIf="table.state==='free'" (click)="clickEvent(table)">
                             {{table.id}}
                         </p>
-                        <p  class="example-box2" cdkDrag cdkDragBoundary=".dragDropBorder" [cdkDragFreeDragPosition]="table.position" *ngIf="table.state==='ordeoccupiedred'" (click)="clickEvent(table)" (cdkDragEnded)="drop($event, table)">
+                        <p  class="example-box2" cdkDragBoundary=".dragDropBorder" *ngIf="table.state==='ordeoccupiedred'" (click)="clickEvent(table)">
                             {{table.id}}
                         </p>
                     </div>

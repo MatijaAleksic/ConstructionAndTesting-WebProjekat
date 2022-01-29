@@ -37,6 +37,7 @@ import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component
 import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-table-cooks.component';
 import { RestourantTablesComponent } from './restourant-tables/restourant-tables.component';
 import { RestourantTablesBartenderComponent } from './restourant-tables-bartender/restourant-tables-bartender.component';
+import { StatsComponent } from './stats/stats.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,13 @@ const routes: Routes = [
     path: 'login',
     component: LoginFormComponent,
   },
+
+  {
+    path: 'stats',
+    component: StatsComponent,
+  },
+
+
   {
     path: 'restourant-menu-bartender',
     component: RestourantTablesBartenderComponent,

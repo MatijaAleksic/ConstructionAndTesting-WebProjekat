@@ -58,8 +58,8 @@ import { RestourantTablesComponent } from './restourant-tables/restourant-tables
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { RestourantTablesBartenderComponent } from './restourant-tables-bartender/restourant-tables-bartender.component';
 import { StatsComponent } from './stats/stats.component'; 
-
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +118,9 @@ import { StatsComponent } from './stats/stats.component';
     MatSortModule,
     MatSnackBarModule,
     MatInputModule,
-    DragDropModule
+    DragDropModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   providers: [

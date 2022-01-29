@@ -67,7 +67,7 @@ public class OrderedItemController {
     public OrderedItem findOne(@PathVariable("id") Long id) {
         return service.findOne(id);
     }
-
+    
     @PostMapping
     public OrderedItem create(@RequestBody @Valid OrderedItem entity) {
 

@@ -1,22 +1,22 @@
 package rs.ac.uns.kts.tests;
 
+import static org.junit.Assert.assertEquals;
+
 import com.paulhammant.ngwebdriver.NgWebDriver;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+
 import rs.ac.uns.kts.ChangePasswordPage;
 import rs.ac.uns.kts.EditSalary;
+import rs.ac.uns.kts.SingInPage;
 import rs.ac.uns.kts.ManagerTestPages.ChangeItemPrice;
 import rs.ac.uns.kts.ManagerTestPages.ItemsTable;
 import rs.ac.uns.kts.ManagerTestPages.StaffTables;
 import rs.ac.uns.kts.ManagerTestPages.TablesManagerPage;
-import rs.ac.uns.kts.SingInPage;
 import rs.ac.uns.kts.pages.AdminTestPages.Utilities;
-
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ManagerTest {
 
@@ -32,7 +32,7 @@ public class ManagerTest {
     @Before
     public void setupSelenium() {
         // instantiate browser
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
         browser = new ChromeDriver();
         angularWebDriver = new NgWebDriver(browser);
         // maximize window
@@ -126,11 +126,12 @@ public class ManagerTest {
 
     @Test
     public void floorManagerTest() throws InterruptedException {
+        Utilities.urlWait(browser, "http://localhost:4200/profile", 100);
+
         tablesManagerPage.tablesManagerLinkClick();
         Utilities.urlWait(browser, "http://localhost:4200/restourant-menu-manager", 100);
         assertEquals("http://localhost:4200/restourant-menu-manager", browser.getCurrentUrl());
 
-        Thread.sleep(10000);
         tablesManagerPage.choseFloorLinkClick();
         tablesManagerPage.addTableLinkClick();
         tablesManagerPage.choseTableLinkClick();

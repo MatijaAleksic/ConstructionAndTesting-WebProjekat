@@ -120,4 +120,15 @@ export class Cart {
 
 
   }
+
+  checkRole(role : string){
+    if(localStorage.getItem('autorities') != null){
+      return JSON.parse(localStorage.getItem('autorities') || '{}').some((e: { name: string; }) => e.name === role);
+    }
+    else{
+      return false;
+    }
+
+  }
+
 }

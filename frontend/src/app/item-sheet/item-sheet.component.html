@@ -17,7 +17,7 @@
 
 
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="checkRole('ROLE_WAITER') === true">
       <button mat-button (click)="addItem()">ORDER</button>
       <button style="float: right;" mat-button (click)="cancelItem()">CANCEL ORDER</button>
     </mat-card-actions>

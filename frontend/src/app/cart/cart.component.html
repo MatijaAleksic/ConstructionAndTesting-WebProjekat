@@ -1,4 +1,4 @@
-
+<div *ngIf="checkRole('ROLE_WAITER') === true">
       <button mat-raised-button color="accent" (click)="finalizeOrder()" class="demo-button">
         order
       </button>
@@ -43,3 +43,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
     <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
   </table>
+
+</div>

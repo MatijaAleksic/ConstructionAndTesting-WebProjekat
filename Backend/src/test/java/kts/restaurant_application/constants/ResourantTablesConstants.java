@@ -38,7 +38,7 @@ public class ResourantTablesConstants {
     public static final TableStatus DB_RESTOURANT_TABLE_STATE_UNIT2 = TableStatus.free;
     public static final Boolean DB_RESTOURANT_TABLE_IS_DELETED_UNIT2 = false;
 
-    public static final int FIND_ALL_NUMBER_OF_RESTOURANT_TABLE_UNIT = 3;
+    public static final int FIND_ALL_NUMBER_OF_RESTOURANT_TABLE_UNIT = 0;
     public static final Long DB_SAVED_RESTOURANT_TABLE_ID_UNIT= 2L;
     public static final Boolean DB_RESTOURANT_TABLE_IS_DELETED_UNIT = true;
 

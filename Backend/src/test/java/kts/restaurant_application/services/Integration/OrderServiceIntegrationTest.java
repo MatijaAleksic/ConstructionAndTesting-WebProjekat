@@ -25,8 +25,13 @@ import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_USE
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 
+import kts.restaurant_application.model.TableStatus;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -85,6 +90,15 @@ public class OrderServiceIntegrationTest {
 
         Order item = new Order(DB_ORDER_PRICE, DB_ORDER_DATETIME);
         item.setId(10L);
+
+        RestourantTables table = new RestourantTables();
+        table.setId(100L);
+        table.setFloor(1);
+        table.setPositionY(1.0);
+        table.setPositionX(1.0);
+        table.setState(TableStatus.free);
+        table.setIsDeleted(false);
+        item.setRestourantTable(table);
 
         Order created = orderService.save(item);
 

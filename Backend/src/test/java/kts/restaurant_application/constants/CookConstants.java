@@ -18,6 +18,9 @@ public class CookConstants {
     public static final Long DB_COOK_SALARY = 20000L;
     public static final Boolean DB_COOK_IS_DELETED = false;
 
+    public static final String DB_COOK_USERNAME1 = "cook@gmail.com";
+    public static final String WRONG_COOK_USERNAME = "wrong@gmail.com";
+
 
 
     public static final String NEW_COOK_FIRSTNAME ="FIRSTNAME1";

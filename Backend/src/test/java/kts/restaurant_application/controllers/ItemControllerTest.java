@@ -69,7 +69,7 @@ public class ItemControllerTest {
 
     @Test
     public void testUpdate() {
-        Item newAdmin = new Item(1l, 0l, 22.22, (byte)1, "sub", "description", false, "name");
+        Item newAdmin = new Item(1l, 0l, 22.22, (byte)1, "sub", "description", false, "nameasdfasdf");
 		
 		ResponseEntity<Item> responseEntity = restTemplate.postForEntity(
 				"/items/update", newAdmin, Item.class);

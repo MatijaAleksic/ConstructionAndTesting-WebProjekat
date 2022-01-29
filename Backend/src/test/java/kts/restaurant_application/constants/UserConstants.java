@@ -25,6 +25,8 @@ public class UserConstants {
 
     public static final int FIND_ALL_NUMBER_OF_ITEMS = 1;
 
+    public static final String DB_USER_USERNAME1 = "cook@gmail.com";
+    public static final String WRONG_USER_USERNAME = "wrong@gmail.com";
 
     public static final String NEW_USER_FIRSTNAME ="asdf";
     public static final String NEW_USER_LASTNAME ="asdf";

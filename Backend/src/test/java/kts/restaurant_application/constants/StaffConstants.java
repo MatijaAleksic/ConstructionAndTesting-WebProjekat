@@ -22,6 +22,8 @@ public class StaffConstants {
 
     public static final int FIND_ALL_NUMBER_OF_ITEMS = 1;
 
+    public static final String DB_STAFF_USERNAME1 = "cook@gmail.com";
+    public static final String WRONG_STAFF_USERNAME = "wrong@gmail.com";
 
     public static final String NEW_STAFF_FIRSTNAME ="FIRSTNAME1";
     public static final String NEW_STAFF_LASTNAME ="LASTNAME1";

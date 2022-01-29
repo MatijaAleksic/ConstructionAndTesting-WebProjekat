@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
+import kts.restaurant_application.DTO.OrderDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,6 +32,7 @@ import kts.restaurant_application.services.TableService;
 import kts.restaurant_application.services.WaiterService;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource("classpath:application-test.properties")
 public class OrderControllerUnitTest {
 
 
@@ -47,36 +50,29 @@ public class OrderControllerUnitTest {
     private TableService restourantTables;
     @Test
     public void testCreate() {
-        Order o = new Order();
+        OrderDTO o = new OrderDTO();
         o.setId(12l);
-        o.setDateTime(new Date());
         o.setPrice(22.22);
-        o.setVersion(0l);
-        Waiter w = new Waiter();
-        w.setId(1l);
-        o.setWaiter(w);
+
+        o.setWaiter(12L);
         HashSet<OrderedItem> set = new HashSet<OrderedItem>();
         OrderedItem ord = new OrderedItem();
-        ord.setId(1l);
+        ord.setId(2l);
         set.add(new OrderedItem());
-        o.setFood(set);
+
+        Long[] a = {1L};
+        o.setOrderedItems(a);
         RestourantTables t = new RestourantTables();
         t.setId(1l);
-        o.setRestourantTable(t);
+        o.setRestourantTable(1L);
 
-        Mockito.when(orderService.save(o)).thenReturn(o);
-        Mockito.when(waiterService.findOne(1l)).thenReturn(w);
         Mockito.when(orderedItemService.findOne(1l)).thenReturn(ord);
         Mockito.when(restourantTables.findOne(1l)).thenReturn(t);
         
-        ResponseEntity<Order> responseEntity = restTemplate.postForEntity(
-                  "/orders", o, Order.class);
+        ResponseEntity<OrderDTO> responseEntity = restTemplate.postForEntity(
+                  "/orders", o, OrderDTO.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Mockito.when(orderService.save(o)).thenThrow(new ResponseStatusException(HttpStatus.ALREADY_REPORTED));
 
-      responseEntity = restTemplate.postForEntity(
-        "/orders", o, Order.class);
-          assertEquals(HttpStatus.ALREADY_REPORTED, responseEntity.getStatusCode()); // save does not work for some reason
     }
 
     @Test

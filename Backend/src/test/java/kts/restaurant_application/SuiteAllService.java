@@ -17,7 +17,7 @@
           OrderItemServiceUnitTest.class,RestourantTableServiceUnitTest.class,StaffServiceUnitTest.class,UserServiceUnitTest.class,WaiterServiceUnitTest.class,
   })
  @TestPropertySource("classpath:test.properties")
- public class SuiteAll {
+ public class SuiteAllService {
 
 
  }

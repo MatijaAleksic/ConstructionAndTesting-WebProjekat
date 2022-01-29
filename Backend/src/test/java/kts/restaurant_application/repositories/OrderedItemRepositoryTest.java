@@ -39,7 +39,7 @@ public class OrderedItemRepositoryTest {
         Date date_from = new SimpleDateFormat("yyyy-MM-dd").parse(prvi);
         Date date_to = new SimpleDateFormat("yyyy-MM-dd").parse(drugi);
         Collection<OrderedItem> found = orderedItemRepository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(date_from, date_to);
-        assertEquals(2,found.size());
+        assertEquals(6,found.size());
     }
 
     @Test
@@ -55,12 +55,12 @@ public class OrderedItemRepositoryTest {
     @Test
     public void testFindAllByItemIdTrue() {
         Collection<OrderedItem> found = orderedItemRepository.findAllByItemId(1L);
-        assertEquals(1, found.size());
+        assertEquals(2, found.size());
     }
 
     @Test
     public void testFindAllByItemIdFalse() {
         Collection<OrderedItem> found = orderedItemRepository.findAllByItemId(2L);
-        assertFalse("Nema porudzbina za trazeni item", found.size() > 0);
+        assertEquals(1, found.size());
     }
 }

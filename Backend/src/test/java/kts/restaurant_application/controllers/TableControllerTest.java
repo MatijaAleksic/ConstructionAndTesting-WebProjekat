@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Collections;
 import java.util.Set;
 
+import kts.restaurant_application.DTO.Position;
+import kts.restaurant_application.DTO.TableDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,9 @@ public class TableControllerTest {
     public void testCreateStatusOk() {
         RestourantTables table = new RestourantTables(3, 20.5, 24.55,TableStatus.free , false);
 
-        ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
-                "/tables", table, RestourantTables.class);
+            TableDTO a = new TableDTO(1L,1, TableStatus.free, new Position(1.0, 1.0) );
+        ResponseEntity<TableDTO> responseEntity = restTemplate.postForEntity(
+                "/tables", a, TableDTO.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
@@ -51,14 +54,14 @@ public class TableControllerTest {
     public void testDeleteStatusOk() {
         ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
                 "/tables/delete/1", 1, RestourantTables.class);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.METHOD_NOT_ALLOWED, responseEntity.getStatusCode());
     }
 
     @Test
     public void testDeleteStatusNotFound() {
         ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
                 "/tables/delete/3", 1, RestourantTables.class);
-        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.METHOD_NOT_ALLOWED, responseEntity.getStatusCode());
     }
 
     @Test
@@ -89,10 +92,12 @@ public class TableControllerTest {
         Set<Order> EmptySet = Collections.<Order>emptySet();
         RestourantTables table = new RestourantTables(1l, 5l, 1, 321.22, 3213.22, TableStatus.free, false, EmptySet);
 
-        ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
-                "/tables/update", table, RestourantTables.class);
+        TableDTO a = new TableDTO(1L,1, TableStatus.free, new Position(1.0, 1.0) );
 
-        RestourantTables response = responseEntity.getBody();
+        ResponseEntity<TableDTO> responseEntity = restTemplate.postForEntity(
+                "/tables/update", a, TableDTO.class);
+
+        TableDTO response = responseEntity.getBody();
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         

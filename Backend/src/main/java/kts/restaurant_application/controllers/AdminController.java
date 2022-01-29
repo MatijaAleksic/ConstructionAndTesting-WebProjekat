@@ -8,10 +8,11 @@
 package kts.restaurant_application.controllers;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
-import kts.restaurant_application.model.Authority;
-import kts.restaurant_application.services.AuthorityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kts.restaurant_application.model.Admin;
+import kts.restaurant_application.model.Authority;
 import kts.restaurant_application.services.AdminService;
-
-import java.util.ArrayList;
-import java.util.List;
+import kts.restaurant_application.services.AuthorityService;
 
 @Transactional
 @RestController
@@ -65,12 +65,10 @@ public class AdminController {
 
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         entity.setIsDeleted(false);
-
+        
         List<Authority> auth = new ArrayList<Authority>();
 
-        auth.add(authorityService.findByName("ROLE_USER"));
-        auth.add(authorityService.findByName("ROLE_STAFF"));
-        auth.add(authorityService.findByName("ROLE_BARMAN"));
+        auth.add(authorityService.findByName("ROLE_ADMIN"));
 
         entity.setAuthorities(auth);
 

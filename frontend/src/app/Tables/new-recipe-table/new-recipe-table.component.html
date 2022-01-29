@@ -1,17 +1,11 @@
-<div class="demo-button-container">
 
-
-  <mat-sidenav-container class="example-container">
-      <mat-sidenav mode="side" opened class="side-menu"> 
-      </mat-sidenav>
-      <mat-sidenav-content class="main-menu">
 
 
 <div class="demo-button-container">
     <mat-sidenav-container class="example-container">
         <mat-sidenav mode="side" opened class="side-menu"> 
           <div *ngFor="let button of subcategories">
-            <button (click)="subSelected(button)" class="side-button">
+            <button mat-raised-button color="primary" (click)="subSelected(button)" class="side-button">
            {{ button }}</button>
          </div>
         </mat-sidenav>
@@ -76,5 +70,3 @@
     </mat-sidenav-container>
 
 </div>
-
-      </mat-sidenav-content>

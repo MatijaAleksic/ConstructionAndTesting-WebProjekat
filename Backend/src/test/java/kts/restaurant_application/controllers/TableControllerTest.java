@@ -31,7 +31,7 @@ public class TableControllerTest {
 
     @Test
     public void testCreateStatusOk() {
-        RestourantTables table = new RestourantTables(55l, 3, 20.5, 24.55,TableStatus.free , false);
+        RestourantTables table = new RestourantTables(3, 20.5, 24.55,TableStatus.free , false);
 
         ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
                 "/tables", table, RestourantTables.class);
@@ -40,7 +40,7 @@ public class TableControllerTest {
 
     @Test
     public void testCreateInternalServerError(){
-        RestourantTables table = new RestourantTables(1l, 3, 20.5, 24.55,TableStatus.free , false);
+        RestourantTables table = new RestourantTables(3, 20.5, 24.55,TableStatus.free , false);
 
         ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
                 "/tables", table, RestourantTables.class);
@@ -70,7 +70,7 @@ public class TableControllerTest {
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(ResourantTablesConstants.FIND_ALL_NUMBER_OF_RESTOURANT_TABLES, tables.length);
-        assertEquals(ResourantTablesConstants.DB_RESTOURANT_TABLE_NUMBER, tables[0].getTableNumber());
+        assertEquals(ResourantTablesConstants.DB_RESTOURANT_TABLE_NUMBER, tables[0].getId());
     }
 
     @Test
@@ -81,13 +81,13 @@ public class TableControllerTest {
         RestourantTables table = responseEntity.getBody();
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(ResourantTablesConstants.DB_RESTOURANT_TABLE_NUMBER, table.getTableNumber());
+        assertEquals(ResourantTablesConstants.DB_RESTOURANT_TABLE_NUMBER, table.getId());
     }
 
     @Test
     public void testUpdate() {
         Set<Order> EmptySet = Collections.<Order>emptySet();
-        RestourantTables table = new RestourantTables(1l, 5l, 12l, 1, 321.22, 3213.22, TableStatus.free, false, EmptySet);
+        RestourantTables table = new RestourantTables(1l, 5l, 1, 321.22, 3213.22, TableStatus.free, false, EmptySet);
 
         ResponseEntity<RestourantTables> responseEntity = restTemplate.postForEntity(
                 "/tables/update", table, RestourantTables.class);

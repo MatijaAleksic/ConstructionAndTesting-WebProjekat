@@ -8,6 +8,9 @@
 package kts.restaurant_application.controllers;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kts.restaurant_application.DTO.TableDTO;
 import kts.restaurant_application.model.RestourantTables;
 import kts.restaurant_application.services.TableService;
 
@@ -32,29 +36,79 @@ public class TableController {
 
     private final TableService service;
 
+    public static Collection<TableDTO> tablesToDTO(Collection<RestourantTables> tables){
+        ArrayList<TableDTO> lista = new ArrayList<>();
+        for(RestourantTables t : tables){
+            lista.add( new TableDTO(t));
+        }
+        return lista;
+    }
+
+    public static TableDTO[] tablesToDTO(RestourantTables[] tables){
+        ArrayList<TableDTO> lista = new ArrayList<>();
+        for(RestourantTables t : tables){
+            lista.add( new TableDTO(t));
+        }
+        return lista.toArray(new TableDTO[lista.size()]);
+    }
+
+    public static Collection<TableDTO> tablesToDTO(Iterable<RestourantTables> tables){
+        ArrayList<TableDTO> lista = new ArrayList<>();
+        for(RestourantTables t : tables){
+            lista.add( new TableDTO(t));
+        }
+        return lista;
+    }
+
     @Autowired
     public TableController(TableService service) {
         this.service = service;
     }
 
     @GetMapping
-    public Iterable<RestourantTables> findAll() {
-        return service.findAll();
+    public Iterable<TableDTO> findAll() {
+        return tablesToDTO(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public RestourantTables findOne(@PathVariable("id") Long id) {
-        return service.findOne(id);
+    public TableDTO findOne(@PathVariable("id") Long id) {
+        return new TableDTO(service.findOne(id));
+    }
+
+
+    @GetMapping("/findTablesByFloor/{floor}")
+    public TableDTO[] findTablesByFloor(@PathVariable("floor") Integer floor) {
+        return tablesToDTO(service.findTablesByFloor(floor));
+    }
+
+    @GetMapping("/numberOfFloors")
+    public Integer numberOfFloors() {
+        return service.getNumberOfFloors();
     }
 
     @PostMapping
-    public RestourantTables create(@RequestBody @Valid RestourantTables entity) {
-        return service.save(entity);
+    public TableDTO create(@RequestBody @Valid TableDTO entity) {
+        RestourantTables t = new RestourantTables();
+        t.setDeleted(false);
+        t.setFloor(entity.floor);
+        t.setPositionX(entity.position.x);
+        t.setPositionY(entity.position.y);
+        t.setState(entity.state);
+        
+
+        return new TableDTO(service.save(t));
     }
 
     @PostMapping("/update")
-    public RestourantTables update(@RequestBody RestourantTables entity){
-        return service.update(entity);
+    public TableDTO update(@RequestBody TableDTO entity){
+        RestourantTables t = new RestourantTables();
+        t.setDeleted(false);
+        t.setFloor(entity.floor);
+        t.setPositionX(entity.position.x);
+        t.setPositionY(entity.position.y);
+        t.setState(entity.state);
+        t.setId(entity.id);
+        return new TableDTO(service.update(t));
     }
 
     @PostMapping("/delete/{id}")

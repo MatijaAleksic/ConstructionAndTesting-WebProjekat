@@ -1,7 +1,9 @@
-package kts.restaurant_application.model;
+package kts.restaurant_application.DTO;
 
 public class OrderDTO {
     
+    public Long id;
+
     public Double price;
 
 	public Long waiter;
@@ -40,6 +42,14 @@ public class OrderDTO {
 
     public void setOrderedItems(Long[] orderedItems) {
         this.orderedItems = orderedItems;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

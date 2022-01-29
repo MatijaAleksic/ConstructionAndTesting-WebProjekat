@@ -35,6 +35,8 @@ import { ChangeItemInfoComponent } from './Forms/change-item-info/change-item-in
 import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.component';
 import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component';
 import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-table-cooks.component';
+import { RestourantTablesComponent } from './restourant-tables/restourant-tables.component';
+
 
 const routes: Routes = [
   {
@@ -49,6 +51,12 @@ const routes: Routes = [
   },
 
   {
+    path: 'restourant-menu',
+    component: RestourantTablesComponent,
+  },
+
+
+  {
     path: 'bartender-menu',
     component: BartenderMenuComponent,
   },
@@ -60,7 +68,6 @@ const routes: Routes = [
   { 
     path: 'drink-menu', component: DrinkMenuComponent
   },
-
 
   {
     path: 'navbar',

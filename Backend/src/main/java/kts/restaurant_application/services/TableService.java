@@ -7,8 +7,6 @@
 package kts.restaurant_application.services;
 
 
-import kts.restaurant_application.model.Food;
-import kts.restaurant_application.model.OrderedItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,12 +46,11 @@ public class TableService {
     public RestourantTables update(RestourantTables entity){
         RestourantTables existingRestourantTables= findOne(entity.getId());
 
-        existingRestourantTables.setIsDeleted(entity.getIsDeleted());
         existingRestourantTables.setFloor(entity.getFloor());
-        existingRestourantTables.setTableNumber(entity.getTableNumber());
         existingRestourantTables.setPositionX(entity.getPositionX());
         existingRestourantTables.setPositionY(entity.getPositionY());
         existingRestourantTables.setState(entity.getState());
+        
 
         return save(existingRestourantTables);
     }
@@ -66,5 +63,20 @@ public class TableService {
 
     public RestourantTables delete(Long id) {
         return delete(findOne(id));
+    }
+
+    public RestourantTables[] findTablesByFloor(Integer floor) {
+        RestourantTables[] t = this.repository.findAllByFloor(floor);
+        return t;
+    }
+
+    public Integer getNumberOfFloors() {
+        Integer max = 0;
+        for(RestourantTables t : this.findAll()){
+            if(max < t.getFloor()){
+                max = t.getFloor();
+            }
+        }
+        return max;
     }
 }

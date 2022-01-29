@@ -20,17 +20,26 @@ import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Order;
 import kts.restaurant_application.model.OrderedItem;
+import kts.restaurant_application.model.RestourantTables;
+import kts.restaurant_application.model.State;
+import kts.restaurant_application.model.TableStatus;
 import kts.restaurant_application.repositories.OrderRepository;
+import kts.restaurant_application.repositories.OrderedItemRepository;
+import kts.restaurant_application.repositories.TableRepository;
 
 @Service
 public class OrderService {
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
     private final OrderRepository repository;
+    private final TableRepository tableRepository;
+    private final OrderedItemRepository orderedItemRepository;
 
     @Autowired
-    public OrderService(OrderRepository repository) {
+    public OrderService(OrderRepository repository, TableRepository tableRepository, OrderedItemRepository orderedItemRepository) {
         this.repository = repository;
+        this.tableRepository = tableRepository;
+        this.orderedItemRepository = orderedItemRepository;
     }
 
     public Iterable<Order> findAll() {
@@ -58,6 +67,11 @@ public class OrderService {
             }
             entity = existingOrder;
         }
+        RestourantTables t = entity.getRestourantTable();
+        t.setState(TableStatus.occupied);
+        t.getOrders().add(entity);
+
+        this.tableRepository.save(t);
         return repository.save(entity);
 
     }
@@ -96,5 +110,18 @@ public class OrderService {
 
     public Collection<Order> getOrdersByTable(Long id) {
         return this.repository.findAllByRestourantTable_id(id);
+    }
+
+    public Order finishOrder(Long id) {
+        Order o = this.findOne(id);
+        o.setIsCompleted(true);
+        for(OrderedItem item : o.getFood()){
+            item.setState(State.delivered);
+            this.orderedItemRepository.save(item);
+        }
+        RestourantTables t = o.getRestourantTable();
+        t.setState(TableStatus.free);
+        this.tableRepository.save(t);
+        return this.repository.save(o);
     }
 }

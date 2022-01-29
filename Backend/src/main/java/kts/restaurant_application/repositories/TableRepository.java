@@ -14,4 +14,6 @@ import kts.restaurant_application.model.RestourantTables;
 @Repository
 public interface TableRepository extends JpaRepository<RestourantTables, Long> {
 
+    RestourantTables[] findAllByFloor(Integer floor);
+
 }

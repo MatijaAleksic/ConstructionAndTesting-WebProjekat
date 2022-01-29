@@ -54,6 +54,9 @@ import { ChangeItemInfoComponent } from './Forms/change-item-info/change-item-in
 import { AddNewDrinkComponent } from './Forms/add-new-drink/add-new-drink.component';
 import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component';
 import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-table-cooks.component';
+import { RestourantTablesComponent } from './restourant-tables/restourant-tables.component';
+import {DragDropModule} from '@angular/cdk/drag-drop'; 
+
 
 @NgModule({
   declarations: [
@@ -91,7 +94,8 @@ import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-ta
     ChangeItemInfoComponent,
     AddNewDrinkComponent,
     AddNewFoodComponent,
-    OrdersTableCooksComponent
+    OrdersTableCooksComponent,
+    RestourantTablesComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +113,8 @@ import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-ta
     MatBadgeModule,
     MatSortModule,
     MatSnackBarModule,
-    MatInputModule
+    MatInputModule,
+    DragDropModule
 
   ],
   providers: [

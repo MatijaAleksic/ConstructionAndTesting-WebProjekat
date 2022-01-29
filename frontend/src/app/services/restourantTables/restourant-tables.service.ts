@@ -16,13 +16,29 @@ export class RestourantTableService {
   constructor(private http: HttpClient) { }
 
 
+  public getNumberOfFloors() {
+    return this.http.get<number>(
+      `${environment.baseUrl}/${environment.restourantTables}/numberOfFloors`);
+  }
+
+
+  public findTablesByFloor(floor : number) {
+    return this.http.get<Table[]>(
+      `${environment.baseUrl}/${environment.restourantTables}/findTablesByFloor/` + floor
+    );
+  }
+
   public getCurrentTable(){
     this.currentTable = JSON.parse(localStorage.getItem('currentTable') || '{}');
+    console.log("current");
+    console.log(this.currentTable);
     return this.currentTable;
   }
 
   public setCurrentTable(table : Table){
     this.currentTable = table;
+    console.log("current set");
+    console.log(this.currentTable);
     localStorage.setItem('currentTable', JSON.stringify(this.currentTable));
   }
 

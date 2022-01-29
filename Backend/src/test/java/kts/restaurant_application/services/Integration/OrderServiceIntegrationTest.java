@@ -1,7 +1,32 @@
 package kts.restaurant_application.services.Integration;
 
-import kts.restaurant_application.model.*;
-import kts.restaurant_application.services.OrderService;
+import static kts.restaurant_application.constants.OrderConstants.DB_NEW_ORDER_ID;
+import static kts.restaurant_application.constants.OrderConstants.DB_ORDER_DATETIME;
+import static kts.restaurant_application.constants.OrderConstants.DB_ORDER_ID;
+import static kts.restaurant_application.constants.OrderConstants.DB_ORDER_ID2;
+import static kts.restaurant_application.constants.OrderConstants.DB_ORDER_NOTE;
+import static kts.restaurant_application.constants.OrderConstants.DB_ORDER_PRICE;
+import static kts.restaurant_application.constants.OrderConstants.DB_WRONG_ORDER_ID;
+import static kts.restaurant_application.constants.OrderConstants.FIND_ALL_NUMBER_OF_ORDERS;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_FLOOR;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_ID;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_IS_DELETED;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_POSITION_X;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_POSITION_Y;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_STATE;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_DATE_OF_BIRTH;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_FIRSTNAME;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_ID;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_IS_DELETED;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_LASTNAME;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_PASSWORD;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_SALARY;
+import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_USERNAME;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import javax.transaction.Transactional;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,14 +37,10 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.transaction.Transactional;
-
-import static kts.restaurant_application.constants.OrderConstants.*;
-import static kts.restaurant_application.constants.ResourantTablesConstants.*;
-import static kts.restaurant_application.constants.WaiterConstants.*;
-import static kts.restaurant_application.constants.WaiterConstants.DB_WAITER_ID;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import kts.restaurant_application.model.Order;
+import kts.restaurant_application.model.RestourantTables;
+import kts.restaurant_application.model.Waiter;
+import kts.restaurant_application.services.OrderService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -85,7 +106,7 @@ public class OrderServiceIntegrationTest {
 
     @Test
     public void GtestDelete2() {
-        RestourantTables restorantTables = new RestourantTables(DB_RESTOURANT_TABLE_NUMBER, DB_RESTOURANT_TABLE_FLOOR, DB_RESTOURANT_TABLE_POSITION_X, DB_RESTOURANT_TABLE_POSITION_Y, DB_RESTOURANT_TABLE_STATE, DB_RESTOURANT_TABLE_IS_DELETED);
+        RestourantTables restorantTables = new RestourantTables(DB_RESTOURANT_TABLE_FLOOR, DB_RESTOURANT_TABLE_POSITION_X, DB_RESTOURANT_TABLE_POSITION_Y, DB_RESTOURANT_TABLE_STATE, DB_RESTOURANT_TABLE_IS_DELETED);
         restorantTables.setId(DB_RESTOURANT_TABLE_ID);
 
         Waiter waiter = new Waiter(DB_WAITER_FIRSTNAME, DB_WAITER_LASTNAME, DB_WAITER_USERNAME, DB_WAITER_PASSWORD, DB_WAITER_DATE_OF_BIRTH, DB_WAITER_SALARY, DB_WAITER_IS_DELETED);

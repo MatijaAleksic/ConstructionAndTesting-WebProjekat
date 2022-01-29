@@ -20,17 +20,18 @@ export class Order {
 }
 
 export class OrderBack {
-
+    public id : number
     public price : number;
     public waiter : number;
     public restourantTable : number;
     public orderedItems : number[];
 
 
-    constructor(price : number, waiter : number, restourantTable : number, orderedItems : number[]){
+    constructor(price : number, waiter : number, restourantTable : number, orderedItems : number[], id : number){
         this.price = price;
         this.waiter = waiter;
         this.restourantTable = restourantTable;
         this.orderedItems = orderedItems;
+        this.id = id;
     }
 }

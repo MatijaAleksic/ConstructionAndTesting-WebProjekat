@@ -3,19 +3,16 @@ import { Order } from "./order";
 export class Table {
 
     public id: number;
-    public tableNumber : number;
     public floor : number;
-    public positionX : number;
-    public positionY : number;
+    public position: {x: number,y: number};
     public state : any;
     public orders : Order[];
     
 
-    constructor(tableNumber : number, floor : number, positionX : number, positionY : number, state : any ){
-        this.tableNumber = tableNumber;
+    constructor(floor : number, state : any ){
         this.floor = floor;
-        this.positionX = positionX;
-        this.positionY = positionY;
         this.state = state;
+        this.position = {x: 20, y:20}
+        
     }
 }

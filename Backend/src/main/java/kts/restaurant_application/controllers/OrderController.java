@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kts.restaurant_application.DTO.DateDTO;
+import kts.restaurant_application.DTO.OrderDTO;
 import kts.restaurant_application.model.Order;
-import kts.restaurant_application.model.OrderDTO;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.RestourantTables;
 import kts.restaurant_application.model.Waiter;
@@ -96,6 +96,15 @@ public class OrderController {
         Date dateTo = data.dateTo;
 
         return service.getOrdersByDate(dateFrom, dateTo);
+        
+    }
+
+
+
+    @GetMapping("/finishOrder/{id}")
+    public Order finishOrder(@PathVariable Long id){
+        
+        return service.finishOrder(id);
         
     }
 

@@ -4,8 +4,11 @@
     <mat-sidenav-container class="example-container">
         <mat-sidenav mode="side" opened class="side-menu"> 
           <div *ngFor="let button of restourantTables">
-            <button mat-raised-button color="primary" (click)="subSelected(button)" class="side-button">
-           floor: {{ button.floor }} num: {{button.tableNumber}}</button>
+            <button mat-raised-button color="primary" *ngIf="button.state==='ordeoccupiedred'" (click)="subSelected(button)" class="side-button">
+           floor: {{ button.floor }} num: {{button.id}}</button>
+
+           <button mat-raised-button color="accent" *ngIf="button.state==='free'" (click)="subSelected(button)" class="side-button">
+            floor: {{ button.floor }} num: {{button.id}}</button>
          </div>
         </mat-sidenav>
         <mat-sidenav-content class="main-menu">
@@ -18,6 +21,13 @@
     </button>
     <button mat-raised-button color="accent" (click)="this.router.navigate(['drink-menu'])" class="demo-button">
         order drinks
+      </button>
+      <button mat-raised-button color="accent" (click)="this.router.navigate(['drink-menu'])" class="demo-button" disabled>
+        floor: {{this.activeTable.floor}} table: {{this.activeTable.id}}
+      </button>
+
+      <button mat-raised-button color="primary" (click)="finishOrder()" class="demo-button">
+        finish order
       </button>
       <!-- <mat-icon style="margin-left: 1415px; margin-top: 10px;" matBadge="" matBadgeColor="warn" (click)=showShoppingCart()>shopping_cart</mat-icon> -->
 

@@ -104,12 +104,12 @@ export class Cart {
         console.log(z)
         if(realOrderedItems.length === orderedItems.length){
 
-          const currentOrder = new OrderBack(priceOfTheOrder, user.id, this.restourantTableService.getCurrentTable().id, realOrderedItems);
+          const currentOrder = new OrderBack(priceOfTheOrder, user.id, this.restourantTableService.getCurrentTable().id, realOrderedItems, 0);
           console.log("order")
           console.log(currentOrder)
           this.orderService.create(currentOrder).subscribe();
           this.itemService.removeAllOrderedItems();
-          this._snackBar.open("Successfully ordered for table ", this.restourantTableService.getCurrentTable().tableNumber + "", {duration: 500});
+          this._snackBar.open("Successfully ordered for table ", this.restourantTableService.getCurrentTable().id + "", {duration: 500});
           this.restartView();
 
         }

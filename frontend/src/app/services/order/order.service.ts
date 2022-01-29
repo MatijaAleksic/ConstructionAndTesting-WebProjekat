@@ -2,12 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Order, OrderBack } from 'src/app/model/order';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+
+  public finishOrder(id : number){
+    return this.http.get<Order>(
+      `${environment.baseUrl}/${environment.orders}/finishOrder/` + id
+    );
+
+  };
 
   constructor(private http: HttpClient) { }
   

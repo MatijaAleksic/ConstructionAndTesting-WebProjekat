@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import kts.restaurant_application.model.Item;
-import kts.restaurant_application.model.ItemStatus;
+import kts.restaurant_application.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import kts.restaurant_application.model.OrderedItem;
-import kts.restaurant_application.model.State;
 import kts.restaurant_application.repositories.OrderedItemRepository;
 
 @Service
@@ -39,12 +36,26 @@ public class OrderedItemService {
         return repository.findAll();
     }
 
-    public Iterable<OrderedItem> findAllOrdered() {
+    public Iterable<OrderedItem> findAllOrderedCooks() {
+
         Iterable<OrderedItem> all = repository.findAll();
         ArrayList<OrderedItem> ordered = new ArrayList<>();
 
         for(OrderedItem b : all){
-            if(b.getState() == State.ordered){
+
+            if(b.getState() == State.ordered && b.getItem() instanceof Food){
+                ordered.add(b);
+            }
+        }
+        return ordered;
+    }
+
+    public Iterable<OrderedItem> findAllOrderedBarman() {
+        Iterable<OrderedItem> all = repository.findAll();
+        ArrayList<OrderedItem> ordered = new ArrayList<>();
+
+        for(OrderedItem b : all){
+            if(b.getState() == State.ordered && b.getItem() instanceof Drink ){
                 ordered.add(b);
             }
         }
@@ -57,7 +68,7 @@ public class OrderedItemService {
 
         for(OrderedItem b : all){
             if(b.getStaff() != null) {
-                if (b.getStaff().getId().equals(id)) {
+                if (b.getStaff().getId().equals(id) && b.getState() == State.inMaking) {
                     ordered.add(b);
                 }
             }

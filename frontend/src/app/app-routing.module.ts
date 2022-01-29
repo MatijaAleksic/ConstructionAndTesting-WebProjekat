@@ -37,6 +37,9 @@ import { AddNewFoodComponent } from './Forms/add-new-food/add-new-food.component
 import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-table-cooks.component';
 import { RestourantTablesComponent } from './restourant-tables/restourant-tables.component';
 import { RestourantTablesBartenderComponent } from './restourant-tables-bartender/restourant-tables-bartender.component';
+import { OrdersTableBarmanComponent } from './Tables/orders-table-barman/orders-table-barman.component';
+import { TakenOrdersTableBarmanComponent } from './Tables/taken-orders-table-barman/taken-orders-table-barman.component';
+import { TakenOrdersTableCooksComponent } from './Tables/taken-orders-table-cooks/taken-orders-table-cooks.component';
 
 const routes: Routes = [
   {
@@ -205,6 +208,21 @@ const routes: Routes = [
   {
     path: 'order-table-cooks',
     component: OrdersTableCooksComponent,
+  },
+
+  {
+    path: 'order-table-barman',
+    component: OrdersTableBarmanComponent,
+  },
+
+  {
+    path: 'taken-orders-table-barman',
+    component: TakenOrdersTableBarmanComponent,
+  },
+
+  {
+    path: 'taken-orders-table-cooks',
+    component: TakenOrdersTableCooksComponent,
   },
 
 ];

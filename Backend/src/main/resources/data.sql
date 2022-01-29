@@ -115,11 +115,11 @@ insert into user_authority (user_id, authority_id) values (13, 8); -- user has R
 
 
 
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija1', false, 'Pice1', 'active',100, 1, 'subcategory1', 'assets/food.jpg');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija1', false, 'Pice1', 'active',100, 1, 'subcategory1', 'assets/drink.jpg');
 INSERT INTO _drinks (item) VALUES (1);
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija2', false, 'Pice2', 'active',100, 1, 'subcategory2', 'assets/food.jpg');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija2', false, 'Pice2', 'active',100, 1, 'subcategory2', 'assets/drink.jpg');
 INSERT INTO _drinks (item) VALUES (2);
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija3', false, 'Pice3', 'active',100, 1, 'subcategory3', 'assets/food.jpg');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija3', false, 'Pice3', 'active',100, 1, 'subcategory3', 'assets/drink.jpg');
 INSERT INTO _drinks (item) VALUES (3);
 
 INSERT INTO _items (description, is_deleted, name, item_status, price, priority, subcategory, picture) VALUES ('Deskripcija4', false, 'Jelo1', 'active', 100, 1, 'subcategory4', 'assets/food.jpg');
@@ -130,9 +130,9 @@ INSERT INTO _items (description, is_deleted, name, item_status,price, priority, 
 INSERT INTO _foods (item) VALUES (6);
 
 
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija7', false, 'Pice7', 'newItem',100, 1, 'subcategory7', 'assets/food.jpg');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija7', false, 'Pice7', 'newItem',100, 1, 'subcategory7', 'assets/drink.jpg');
 INSERT INTO _drinks (item) VALUES (7);
-INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija8', false, 'Pice8', 'newItem',100, 1, 'subcategory8', 'assets/food.jpg');
+INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija8', false, 'Pice8', 'newItem',100, 1, 'subcategory8', 'assets/drink.jpg');
 INSERT INTO _drinks (item) VALUES (8);
 INSERT INTO _items (description, is_deleted, name, item_status,price, priority, subcategory, picture) VALUES ('Deskripcija9', false, 'Jelo9', 'newItem',100, 1, 'subcategory9', 'assets/food.jpg');
 INSERT INTO _foods (item) VALUES (9);
@@ -143,10 +143,10 @@ INSERT INTO _tables (floor, positionX, positionY, state, is_deleted) VALUES (4, 
 INSERT INTO _orders (price, waiter_id, restourant_table_id,date_time) VALUES (100.0, 12, 1, '2012-12-12');
 INSERT INTO _orders (price, waiter_id, restourant_table_id, date_time) VALUES (200.0, 13, 2, '2012-11-11');
 
-INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na kikiriki', '2012-12-12', 1, 5, 200, 1);
-INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na nesto', '2012-11-11', 4, 6, 200, 2);
-INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na kikiriki', '2012-12-12', 1, 5, 50, 1);
-INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na nesto', '2012-11-11', 4, 6, 100, 2);
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na kikiriki', '2012-12-12', 1, null, 200, 1);
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 2, 'alergija na nesto', '2012-11-11', 4, null, 200, 2);
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na kikiriki', '2012-12-12', 1, null, 50, 1);
+INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na nesto', '2012-11-11', 4, null, 100, 2);
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na kikiriki', '2012-12-12', 2, null, 50, 1);
 INSERT INTO _ordered_items (state, number, note,  date_time, item_id, staff_id, price, _id) VALUES ('ordered', 1, 'alergija na nesto', '2012-11-11', 5, null, 100, 2);
 

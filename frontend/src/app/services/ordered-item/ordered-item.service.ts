@@ -52,9 +52,15 @@ export class OrderedItemService {
     );
   }
 
-  public getAllOrdered() {
+  public getAllOrderedCooks() {
     return this.http.get<OrderedItem[]>(
-      `${environment.baseUrl}/${environment.orderedItems}/staff`
+      `${environment.baseUrl}/${environment.orderedItems}/cooks`
+    );
+  }
+
+  public getAllOrderedBarman() {
+    return this.http.get<OrderedItem[]>(
+      `${environment.baseUrl}/${environment.orderedItems}/barman`
     );
   }
 

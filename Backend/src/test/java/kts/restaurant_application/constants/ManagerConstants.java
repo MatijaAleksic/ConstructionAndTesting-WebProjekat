@@ -18,7 +18,8 @@ public class ManagerConstants {
     public static final Long DB_MANAGER_SALARY = 20000L;
     public static final Boolean DB_MANAGER_IS_DELETED = false;
 
-
+    public static final String DB_MANAGER_USERNAME1 = "manager@gmail.com";
+    public static final String WRONG_MANAGER_USERNAME = "wrong@gmail.com";
 
     public static final String NEW_MANAGER_FIRSTNAME ="FIRSTNAME1";
     public static final String NEW_MANAGER_LASTNAME ="LASTNAME1";

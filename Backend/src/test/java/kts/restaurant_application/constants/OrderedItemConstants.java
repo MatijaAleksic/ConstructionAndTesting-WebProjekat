@@ -12,7 +12,7 @@ public class OrderedItemConstants {
     public static final Date NEW_ORDERED_ITEM_DATETIME= new Date(2021, Calendar.DECEMBER, 13);
     public static final String NEW_ORDERED_ITEM_NOTE= "Novi note";
     public static final Double NEW_ORDERED_ITEM_PRICE= 100.0;
-    public static final Long NEW_ORDERED_ITEM_ID = 3L;
+    public static final Long NEW_ORDERED_ITEM_ID = 7L;
 
 
     public static final Date ORDERED_ITEM_DATETIME_FROM= new Date(2012, Calendar.DECEMBER, 12);
@@ -28,7 +28,7 @@ public class OrderedItemConstants {
 
 
 
-    public static final int FIND_ALL_NUMBER_OF_ORDERED_ITEMS= 2;
+    public static final int FIND_ALL_NUMBER_OF_ORDERED_ITEMS= 6;
 
     public static final Long DB_ORDERED_ITEM_ID= 1L;
     public static final Long DB_WRONG_ORDERED_ITEM_ID= 100L;

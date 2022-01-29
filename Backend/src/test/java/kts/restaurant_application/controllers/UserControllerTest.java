@@ -41,20 +41,6 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testDelete() {
-      ResponseEntity<User> responseEntity = restTemplate.postForEntity(
-				"/users/delete/1", 1, User.class);
-		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-      User user = responseEntity.getBody();
-        assert user != null;
-        assertEquals(user.getIsDeleted(), true);
-      responseEntity = restTemplate.postForEntity(
-				"/users/delete/999", 999, User.class);
-		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-
-    }
-
-    @Test
     public void testFindAll() {
         ResponseEntity<User[]> responseEntity = restTemplate
 				.getForEntity("/users/", User[].class);

@@ -19,6 +19,9 @@ public class BarmanConstants {
     public static final Long DB_BARMAN_SALARY = 20000L;
     public static final Boolean DB_BARMAN_IS_DELETED = false;
 
+    public static final String DB_BARMAN_USERNAME1 = "barman@gmail.com";
+    public static final String WRONG_BARMAN_USERNAME = "wrong@gmail.com";
+
 
     public static final String NEW_BARMAN_FIRSTNAME ="FIRSTNAME1";
     public static final String NEW_BARMAN_LASTNAME ="LASTNAME1";

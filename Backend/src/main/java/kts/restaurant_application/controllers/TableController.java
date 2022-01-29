@@ -111,7 +111,7 @@ public class TableController {
         return new TableDTO(service.update(t));
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

@@ -6,6 +6,9 @@
 
 package kts.restaurant_application.repositories;
 
+import java.util.Collection;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +18,11 @@ import kts.restaurant_application.model.RestourantTables;
 public interface TableRepository extends JpaRepository<RestourantTables, Long> {
 
     RestourantTables[] findAllByFloor(Integer floor);
+
+    Collection<RestourantTables> findAllByIsDeleted(Boolean isDeleted);
+
+    Optional<RestourantTables> findByIdAndIsDeleted(Long id, Boolean isDeleted);
+
+    RestourantTables[] findAllByFloorAndIsDeleted(Integer floor, Boolean isDeleted);
 
 }

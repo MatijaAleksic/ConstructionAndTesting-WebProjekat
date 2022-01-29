@@ -34,11 +34,11 @@ export interface PeriodicElement {
  * @title Adding and removing data when using an array-based datasource.
  */
 @Component({
-  selector: 'restourant-tables.component',
-  styleUrls: ['restourant-tables.component.css'],
-  templateUrl: 'restourant-tables.component.html',
+  selector: 'restourant-tables-bartender.component',
+  styleUrls: ['restourant-tables-bartender.component.css'],
+  templateUrl: 'restourant-tables-bartender.component.html',
 })
-export class RestourantTablesComponent {
+export class RestourantTablesBartenderComponent {
   restourantTables : Table[];
   numberOfFloors : number;
   activeFloor : number;

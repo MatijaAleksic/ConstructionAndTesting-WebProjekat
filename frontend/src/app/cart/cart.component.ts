@@ -109,7 +109,7 @@ export class Cart {
           console.log(currentOrder)
           this.orderService.create(currentOrder).subscribe();
           this.itemService.removeAllOrderedItems();
-          this._snackBar.open("Successfully ordered for table ", this.restourantTableService.getCurrentTable().id + "", {duration: 500});
+          this._snackBar.open("Successfully ordered for table ", this.restourantTableService.getCurrentTable().id + "", {duration: 5000});
           this.restartView();
 
         }

@@ -22,6 +22,9 @@ public class NotificationService {
     private final NotificationRepository repository;
 
     @Autowired
+    private WebSocketService webSocketService;
+
+    @Autowired
     public NotificationService(NotificationRepository repository) {
         this.repository = repository;
     }
@@ -46,6 +49,7 @@ public class NotificationService {
     }
 
     public Notification save(Notification entity) {
+        notifyFrontend();
         return repository.save(entity);
     }
 
@@ -59,5 +63,18 @@ public class NotificationService {
 
     public boolean delete(Long id) {
         return delete(findOne(id));
+    }
+
+    private void notifyFrontend() {
+        final String entityTopic = getEntityTopic();
+        if (entityTopic == null) {
+            return;
+        }
+
+        webSocketService.sendMessage(entityTopic);
+    }
+
+    protected String getEntityTopic() {
+        return "notifications-service";
     }
 }

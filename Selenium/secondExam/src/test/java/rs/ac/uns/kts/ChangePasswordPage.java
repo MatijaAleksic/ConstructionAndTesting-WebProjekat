@@ -1,10 +1,11 @@
-package rs.ac.uns.kts.pages;
+package rs.ac.uns.kts;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import rs.ac.uns.kts.pages.AdminTestPages.Utilities;
 
-public class ChangePasswordAdminPage {
+public class ChangePasswordPage {
     private WebDriver driver;
 
     @FindBy(id = "changePasswordButton")
@@ -19,7 +20,7 @@ public class ChangePasswordAdminPage {
     @FindBy(id = "change-password-button")
     private WebElement changePasswordButton;
 
-    public ChangePasswordAdminPage(WebDriver driver){
+    public ChangePasswordPage(WebDriver driver){
         this.driver = driver;
     }
 

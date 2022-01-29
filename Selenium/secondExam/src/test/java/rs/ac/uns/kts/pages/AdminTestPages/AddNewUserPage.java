@@ -1,4 +1,4 @@
-package rs.ac.uns.kts.pages;
+package rs.ac.uns.kts.pages.AdminTestPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -85,7 +85,7 @@ public class AddNewUserPage {
     public void setSalaryInput(String value) {
         WebElement el = getSalaryInput();
         el.clear();
-        el.sendKeys(value);
+        el.sendKeys(String.valueOf(value));
     }
 
     public void submitBtnClick() {

@@ -57,9 +57,15 @@ import { OrdersTableCooksComponent } from './Tables/orders-table-cooks/orders-ta
 import { RestourantTablesComponent } from './restourant-tables/restourant-tables.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { RestourantTablesBartenderComponent } from './restourant-tables-bartender/restourant-tables-bartender.component';
-import { StatsComponent } from './stats/stats.component'; 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { StatsComponent } from './stats/stats.component';
+import { OrdersTableBarmanComponent } from './Tables/orders-table-barman/orders-table-barman.component';
+import { TakenOrdersTableBarmanComponent } from './Tables/taken-orders-table-barman/taken-orders-table-barman.component';
+import { TakenOrdersTableCooksComponent } from './Tables/taken-orders-table-cooks/taken-orders-table-cooks.component'; 
+import { DatePipe } from '@angular/common';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +105,10 @@ import {MatNativeDateModule} from '@angular/material/core';
     OrdersTableCooksComponent,
     RestourantTablesComponent,
     RestourantTablesBartenderComponent,
-    StatsComponent
+    StatsComponent,
+    OrdersTableBarmanComponent,
+    TakenOrdersTableBarmanComponent,
+    TakenOrdersTableCooksComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +137,9 @@ import {MatNativeDateModule} from '@angular/material/core';
       provide: HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
       multi : true,
-    }
+      
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

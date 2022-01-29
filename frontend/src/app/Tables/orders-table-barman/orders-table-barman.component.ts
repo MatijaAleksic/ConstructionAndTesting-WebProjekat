@@ -7,7 +7,6 @@ import { OrderedItem } from 'src/app/model/ordered-item';
 import { UserId } from 'src/app/model/user-id';
 import { OrderedItemService } from 'src/app/services/ordered-item/ordered-item.service';
 
-
 export interface PeriodicElement {
   picture: string;
   name: string;
@@ -15,13 +14,13 @@ export interface PeriodicElement {
 }
 
 @Component({
-  selector: 'app-orders-table-cooks',
-  templateUrl: './orders-table-cooks.component.html',
-  styleUrls: ['./orders-table-cooks.component.css']
+  selector: 'app-orders-table-barman',
+  templateUrl: './orders-table-barman.component.html',
+  styleUrls: ['./orders-table-barman.component.css']
 })
-export class OrdersTableCooksComponent implements OnInit {
+export class OrdersTableBarmanComponent implements OnInit {
 
-  displayedColumns: string[] = [ 'picture', 'name','dateTime', 'note', 'number', 'state', 'take']; //'picture', 'name',
+  displayedColumns: string[] = ['picture','name', 'dateTime', 'note', 'number', 'state', 'take']; //'picture', 'name',
   dataSource: Observable<OrderedItem[]>;
   orders: OrderedItem[];
 
@@ -35,7 +34,7 @@ export class OrdersTableCooksComponent implements OnInit {
   ) { }
 
   ngOnInit(){
-    this.dataSource = this.orderedItemService.getAllOrderedCooks();
+    this.dataSource = this.orderedItemService.getAllOrderedBarman();
   }
 
   takeOrder(element : OrderedItem){
@@ -46,7 +45,7 @@ export class OrdersTableCooksComponent implements OnInit {
       {
         next: data => {
           if(data !== null) {
-            this.dataSource = this.orderedItemService.getAllOrderedCooks();
+            this.dataSource = this.orderedItemService.getAllOrderedBarman();
           }
         }
       }

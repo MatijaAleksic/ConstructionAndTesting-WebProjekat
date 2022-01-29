@@ -19,7 +19,8 @@ export const environment = {
   items : 'items',
   orders: 'orders',
   orderedItems: 'orderedItems',
-  restourantTables: 'tables'
+  restourantTables: 'tables',
+
 };
 
 /*

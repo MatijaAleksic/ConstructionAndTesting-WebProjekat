@@ -5,3 +5,7 @@ export class ApiResponse{
     message:number;
     result: any;
 }
+
+export class ChangePasswordResponse{
+    result : string;
+}

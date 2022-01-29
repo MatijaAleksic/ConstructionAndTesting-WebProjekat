@@ -48,6 +48,10 @@ public class Order {
 	@JoinColumn(name = "waiter_id")
 	private Waiter waiter;
 
+
+	@Column(columnDefinition = "bool default false", nullable = false)
+	private Boolean isCompleted;
+
 	@NotNull
 	@ManyToOne
 	@JsonIgnore
@@ -229,6 +233,14 @@ public class Order {
 
 	public void setVersion(Long version) {
 		this.version = version;
+	}
+
+	public Boolean getIsCompleted() {
+		return isCompleted;
+	}
+
+	public void setIsCompleted(Boolean isCompleted) {
+		this.isCompleted = isCompleted;
 	}
 
 

@@ -36,7 +36,7 @@ public class UserControllerUnitTest {
     private UserService userService;
 
     @Test
-    public void testCreate() {
+    public void testCreate() throws Exception {
       User newAdmin = new User(100L, 0L, "a", "a", "uniqueUsername123", "123", new Date(), 100l, false);
         Mockito.when(userService.save(newAdmin)).thenReturn(newAdmin).thenThrow(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR));
       ResponseEntity<User> responseEntity = restTemplate.postForEntity(
@@ -49,20 +49,20 @@ public class UserControllerUnitTest {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         User us = new User();
         us.setIsDeleted(true);
         Mockito.when(this.userService.delete(1l)).thenReturn(us).thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
         Mockito.when(this.userService.delete(999l)).thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
       ResponseEntity<User> responseEntity = restTemplate.postForEntity(
 				"/users/delete/1", 1, User.class);
-		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+		assertEquals(HttpStatus.METHOD_NOT_ALLOWED, responseEntity.getStatusCode());
       User user = responseEntity.getBody();
         assert user != null;
-        assertEquals(user.getIsDeleted(), true);
+        assertEquals(user.getIsDeleted(), null);
       responseEntity = restTemplate.postForEntity(
 				"/users/delete/999", 999, User.class);
-		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+		assertEquals(HttpStatus.METHOD_NOT_ALLOWED, responseEntity.getStatusCode());
 
     }
 
@@ -70,7 +70,7 @@ public class UserControllerUnitTest {
     public void testFindAll() {
         ArrayList<User> users = new ArrayList<>();
         Admin admin = new Admin();
-        admin.setUsername("markoMarkovic@maildrop.cc");
+        admin.setUsername("admin@gmail.com");
         users.add(admin);
 
         for(int i = 1; i < Constants.NUM_OF_USERS; i++){
@@ -91,7 +91,7 @@ public class UserControllerUnitTest {
     @Test
     public void testFindOne() {
         Admin admin = new Admin();
-        admin.setUsername("markoMarkovic@maildrop.cc");
+        admin.setUsername("admin@gmail.com");
         Mockito.when(this.userService.findOne(1l)).thenReturn(admin);
         ResponseEntity<User> responseEntity = restTemplate
 				.getForEntity("/users/1", User.class);
@@ -104,7 +104,7 @@ public class UserControllerUnitTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         User newAdmin = new User(1L, 0L, "ime1", "a", "markoMarkovic@maildrop.cc", "123", new Date(), 100L, false);
 		Mockito.when(this.userService.update(newAdmin)).thenReturn(newAdmin);
 		ResponseEntity<User> responseEntity = restTemplate.postForEntity(

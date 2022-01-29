@@ -7,6 +7,7 @@
 package kts.restaurant_application.services;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -17,6 +18,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import kts.restaurant_application.model.Drink;
+import kts.restaurant_application.model.Food;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.State;
 import kts.restaurant_application.repositories.OrderedItemRepository;
@@ -36,6 +39,46 @@ public class OrderedItemService {
         return repository.findAll();
     }
 
+    public Iterable<OrderedItem> findAllOrderedCooks() {
+
+        Iterable<OrderedItem> all = repository.findAll();
+        ArrayList<OrderedItem> ordered = new ArrayList<>();
+
+        for(OrderedItem b : all){
+
+            if(b.getState() == State.ordered && b.getItem() instanceof Food){
+                ordered.add(b);
+            }
+        }
+        return ordered;
+    }
+
+    public Iterable<OrderedItem> findAllOrderedBarman() {
+        Iterable<OrderedItem> all = repository.findAll();
+        ArrayList<OrderedItem> ordered = new ArrayList<>();
+
+        for(OrderedItem b : all){
+            if(b.getState() == State.ordered && b.getItem() instanceof Drink ){
+                ordered.add(b);
+            }
+        }
+        return ordered;
+    }
+
+    public Iterable<OrderedItem> findAllByStaff(Long id) {
+        Iterable<OrderedItem> all = repository.findAll();
+        ArrayList<OrderedItem> ordered = new ArrayList<>();
+
+        for(OrderedItem b : all){
+            if(b.getStaff() != null) {
+                if (b.getStaff().getId().equals(id) && b.getState() == State.inMaking) {
+                    ordered.add(b);
+                }
+            }
+        }
+        return ordered;
+    }
+
     public OrderedItem findOne(Long id) {
         return repository
                 .findById(id)
@@ -44,9 +87,10 @@ public class OrderedItemService {
     }
 
     public OrderedItem save(OrderedItem entity) {
-        if(repository.existsById(entity.getId())){
+        if( entity.getId() != null && repository.existsById(entity.getId())){
             throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED, "Ordered item with that id already exists: " + entity.getId());
         }
+        entity.setDateTime(new Date());
         return repository.save(entity);
     }
 
@@ -82,6 +126,13 @@ public class OrderedItemService {
     }
 
     public Collection<OrderedItem> getOrderedItemsByDate(Date dateFrom, Date dateTo) {
-        return repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
+        Collection<OrderedItem> items = repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
+        if(items.size() == 0){
+            items = repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateTo, dateFrom);
+
+        }
+        return items;
     }
+
+    
 }

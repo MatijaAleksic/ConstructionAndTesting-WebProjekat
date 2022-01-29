@@ -18,7 +18,8 @@ public class WaiterConstants {
     public static final Long DB_WAITER_SALARY = 20000L;
     public static final Boolean DB_WAITER_IS_DELETED = false;
 
-
+    public static final String DB_WAITER_USERNAME1 = "waiter@gmail.com";
+    public static final String WRONG_WAITER_USERNAME = "wrong@gmail.com";
 
     public static final String NEW_WAITER_FIRSTNAME ="FIRSTNAME1";
     public static final String NEW_WAITER_LASTNAME ="LASTNAME1";

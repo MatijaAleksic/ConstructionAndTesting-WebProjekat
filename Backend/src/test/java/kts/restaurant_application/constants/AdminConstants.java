@@ -19,6 +19,8 @@ public class AdminConstants {
     public static final Long DB_ADMIN_SALARY = 20000L;
     public static final Boolean DB_ADMIN_IS_DELETED = false;
 
+    public static final String DB_ADMIN_USERNAME1 = "admin@gmail.com";
+    public static final String WRONG_ADMIN_USERNAME = "wrong@gmail.com";
 
 
     public static final String NEW_ADMIN_FIRSTNAME ="FIRSTNAME1";

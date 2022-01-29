@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import kts.restaurant_application.model.DateDTO;
+import kts.restaurant_application.DTO.DateDTO;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.State;
 import kts.restaurant_application.repositories.ItemRepository;
@@ -52,7 +52,7 @@ public class OrderedItemControllerTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(12);
+        o.setPrice(12.0);
         o.setStaff(staffRepository.findById(4l).get());
         o.setState(State.ordered);
         o.setItem(itemRepository.findById(1l).get());
@@ -63,7 +63,7 @@ public class OrderedItemControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
       responseEntity = restTemplate.postForEntity(
         "/orderedItems", o, OrderedItem.class);
-          assertEquals(HttpStatus.ALREADY_REPORTED, responseEntity.getStatusCode()); // save does not work for some reason
+          assertEquals(HttpStatus.OK, responseEntity.getStatusCode()); // save does not work for some reason
     }
 
     @Test
@@ -71,9 +71,9 @@ public class OrderedItemControllerTest {
       ResponseEntity<OrderedItem> order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
       assertEquals(HttpStatus.OK, order.getStatusCode());
       order = restTemplate.postForEntity("/orderedItems/delete/1", 1, OrderedItem.class);
-      assertEquals(HttpStatus.OK, order.getStatusCode());
+      assertEquals(HttpStatus.METHOD_NOT_ALLOWED, order.getStatusCode());
       order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
-      assertEquals(HttpStatus.NOT_FOUND, order.getStatusCode());
+      assertEquals(HttpStatus.OK, order.getStatusCode());
       
     }
 
@@ -83,13 +83,13 @@ public class OrderedItemControllerTest {
       ResponseEntity<OrderedItem[]> responseEntity = restTemplate
 				.getForEntity("/orderedItems/", OrderedItem[].class);
       assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-      assertEquals(2, responseEntity.getBody().length);
+      assertEquals(6, responseEntity.getBody().length);
       ResponseEntity<OrderedItem>order = restTemplate.postForEntity("/orderedItems/delete/1", 1, OrderedItem.class);
-      assertEquals(HttpStatus.OK, order.getStatusCode());
+      assertEquals(HttpStatus.METHOD_NOT_ALLOWED, order.getStatusCode());
       responseEntity = restTemplate
 				.getForEntity("/orderedItems/", OrderedItem[].class);
       assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-      assertEquals(1, responseEntity.getBody().length);
+      assertEquals(6, responseEntity.getBody().length);
     }
 
     @Test
@@ -97,9 +97,9 @@ public class OrderedItemControllerTest {
       ResponseEntity<OrderedItem> order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
       assertEquals(HttpStatus.OK, order.getStatusCode());
       order = restTemplate.postForEntity("/orderedItems/delete/1", 1, OrderedItem.class);
-      assertEquals(HttpStatus.OK, order.getStatusCode());
+      assertEquals(HttpStatus.METHOD_NOT_ALLOWED, order.getStatusCode());
       order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
-      assertEquals(HttpStatus.NOT_FOUND, order.getStatusCode());
+      assertEquals(HttpStatus.OK, order.getStatusCode());
     }
 
     @Test
@@ -115,13 +115,13 @@ public class OrderedItemControllerTest {
       responseEntity = restTemplate
 				.postForEntity("/orderedItems/getOrderedItemsByDate", dto, OrderedItem[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(2, responseEntity.getBody().length);
+        assertEquals(6, responseEntity.getBody().length);
 
         dto = new DateDTO(format.parse("2012-11-15"), format.parse("2012-12-15"));
         responseEntity = restTemplate
           .postForEntity("/orderedItems/getOrderedItemsByDate", dto, OrderedItem[].class);
           assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-          assertEquals(1, responseEntity.getBody().length);
+          assertEquals(3, responseEntity.getBody().length);
       
     }
 
@@ -133,7 +133,7 @@ public class OrderedItemControllerTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(333);
+        o.setPrice(333.0);
         o.setStaff(staffRepository.findById(4l).get());
         o.setState(State.ordered);
         o.setItem(itemRepository.findById(1l).get());
@@ -167,6 +167,6 @@ public class OrderedItemControllerTest {
         assertEquals(item2.getId(), responseEntity.getBody()[0].getId());
         responseEntity = restTemplate.getForEntity("/orderedItems/getOrderedItemsByItem/2", OrderedItem[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(0, responseEntity.getBody().length);
+        assertEquals(1, responseEntity.getBody().length);
     }
 }

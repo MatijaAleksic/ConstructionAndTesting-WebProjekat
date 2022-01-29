@@ -1,7 +1,22 @@
 package kts.restaurant_application.services.Integration;
 
-import kts.restaurant_application.model.RestourantTables;
-import kts.restaurant_application.services.TableService;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_NEW_RESTOURANT_TABLE_FLOOR;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_NEW_RESTOURANT_TABLE_IS_DELETED;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_NEW_RESTOURANT_TABLE_POSITION_X;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_NEW_RESTOURANT_TABLE_POSITION_Y;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_NEW_RESTOURANT_TABLE_STATE;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_FLOOR;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_ID;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_IS_DELETED;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_POSITION_X;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_POSITION_Y;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_RESTOURANT_TABLE_STATE;
+import static kts.restaurant_application.constants.ResourantTablesConstants.DB_WRONG_RESTOURANT_TABLE_ID;
+import static kts.restaurant_application.constants.ResourantTablesConstants.FIND_ALL_NUMBER_OF_RESTOURANT_TABLES;
+import static org.junit.Assert.assertEquals;
+
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +25,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.transaction.Transactional;
-
-import static org.junit.Assert.assertEquals;
-import static kts.restaurant_application.constants.ResourantTablesConstants.*;
+import kts.restaurant_application.model.RestourantTables;
+import kts.restaurant_application.services.TableService;
 
 
 
@@ -51,11 +64,11 @@ public class RestaurantTableServiceIntegrationTest {
 
     @Test
     public void testSave(){
-        RestourantTables RestorantTables = new RestourantTables(DB_NEW_RESTOURANT_TABLE_NUMBER, DB_NEW_RESTOURANT_TABLE_FLOOR, DB_NEW_RESTOURANT_TABLE_POSITION_X, DB_NEW_RESTOURANT_TABLE_POSITION_Y,DB_NEW_RESTOURANT_TABLE_STATE, DB_NEW_RESTOURANT_TABLE_IS_DELETED );
+        RestourantTables RestorantTables = new RestourantTables(DB_NEW_RESTOURANT_TABLE_FLOOR, DB_NEW_RESTOURANT_TABLE_POSITION_X, DB_NEW_RESTOURANT_TABLE_POSITION_Y,DB_NEW_RESTOURANT_TABLE_STATE, DB_NEW_RESTOURANT_TABLE_IS_DELETED );
 
         RestourantTables created = restorantTablesService.save(RestorantTables);
 
-        assertEquals(DB_NEW_RESTOURANT_TABLE_NUMBER, created.getTableNumber());
+        assertEquals(DB_NEW_RESTOURANT_TABLE_FLOOR, created.getFloor());
     }
 
     @Test
@@ -66,7 +79,7 @@ public class RestaurantTableServiceIntegrationTest {
 
     @Test
     public void testDelete2(){
-        RestourantTables restorantTables = new RestourantTables(DB_RESTOURANT_TABLE_NUMBER, DB_RESTOURANT_TABLE_FLOOR, DB_RESTOURANT_TABLE_POSITION_X, DB_RESTOURANT_TABLE_POSITION_Y,DB_RESTOURANT_TABLE_STATE, DB_RESTOURANT_TABLE_IS_DELETED );
+        RestourantTables restorantTables = new RestourantTables(DB_RESTOURANT_TABLE_FLOOR, DB_RESTOURANT_TABLE_POSITION_X, DB_RESTOURANT_TABLE_POSITION_Y,DB_RESTOURANT_TABLE_STATE, DB_RESTOURANT_TABLE_IS_DELETED );
         restorantTables.setId(DB_RESTOURANT_TABLE_ID);
 
         RestourantTables tested_table = restorantTablesService.delete(restorantTables);

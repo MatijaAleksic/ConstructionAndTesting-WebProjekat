@@ -8,8 +8,11 @@
 package kts.restaurant_application.controllers;
 
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
+import kts.restaurant_application.model.ItemStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +45,13 @@ public class ItemController {
 
     @GetMapping
     public Iterable<Item> findAll() {
+        
         return service.findAll();
+    }
+
+    @GetMapping("/new")
+    public Iterable<Item> findAllNew(){
+        return service.findAllNew();
     }
 
     @GetMapping("/{id}")
@@ -52,12 +61,26 @@ public class ItemController {
 
     @PostMapping
     public Item create(@RequestBody @Valid Item entity) {
+        entity.setIsDeleted(false);
+        entity.setItemStatus(ItemStatus.newItem);
         return service.save(entity);
     }
 
     @PostMapping("/update")
     public Item update(@RequestBody Item entity){
         return service.update(entity);
+    }
+
+    @GetMapping("/getSubcategories")
+    public ResponseEntity<String[]> getSubcategories(){
+        
+        return new ResponseEntity<>( service.getSubcategories(), HttpStatus.OK );
+    }
+
+
+    @PostMapping("/findBySubcategory")
+    public ResponseEntity<Collection<Item>> findBySubcategory(@RequestBody String category){
+        return new ResponseEntity<Collection<Item>>(this.service.findAllBySubcategory(category), HttpStatus.OK);
     }
 
     @PostMapping("/delete/{id}")

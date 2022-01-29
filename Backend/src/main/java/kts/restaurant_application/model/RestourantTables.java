@@ -32,9 +32,6 @@ public class RestourantTables {
 	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
 	private Long version;
 
-	@NotNull
-	@Column(nullable = false, unique = true)
-	private Long tableNumber;
 
 	@NotNull
 	@Column(nullable = false)
@@ -61,9 +58,6 @@ public class RestourantTables {
 	@OneToMany(mappedBy = "restourantTable")
 	private Set<Order> orders = new HashSet<>();
 
-	public Long getTableNumber() {
-		return tableNumber;
-	}
 
 	public Integer getFloor() {
 		return floor;
@@ -92,10 +86,9 @@ public class RestourantTables {
 	public RestourantTables() {
 	}
 
-	public RestourantTables(Long id, Long version, @NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted, Set<Order> orders) {
+	public RestourantTables(Long id, Long version, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted, Set<Order> orders) {
 		this.id = id;
 		this.version = version;
-		this.tableNumber = tableNumber;
 		this.floor = floor;
 		this.positionX = positionX;
 		this.positionY = positionY;
@@ -104,8 +97,7 @@ public class RestourantTables {
 		this.orders = orders;
 	}
 
-	public RestourantTables(@NotNull Long tableNumber, @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted) {
-		this.tableNumber = tableNumber;
+	public RestourantTables( @NotNull Integer floor, @NotNull Double positionX, @NotNull Double positionY, @NotNull TableStatus state, @NotNull Boolean isDeleted) {
 		this.floor = floor;
 		this.positionX = positionX;
 		this.positionY = positionY;
@@ -114,10 +106,6 @@ public class RestourantTables {
 	}
 	
 
-	public RestourantTables setTableNumber(Long tableNumber) {
-		this.tableNumber = tableNumber;
-		return this;
-	}
 
 	public RestourantTables setFloor(Integer floor) {
 		this.floor = floor;

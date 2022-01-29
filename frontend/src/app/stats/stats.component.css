@@ -1,0 +1,47 @@
+.my-chart1{
+    display: block;
+    margin-top: 150px;
+    margin-left: 150px;
+}
+
+.my-chart2{
+    display: block;
+    margin-top: 150px;
+    margin-right: 150px;
+}
+
+.demo-table {
+    width: 100%;
+  }
+  
+  
+  .demo-button {
+    width: 150px;
+    height: 50px;
+    margin-top: 25px;
+  }
+  
+  .example-container {
+    margin-top: 50px;
+    border: 1px solid #555;
+    height: 1000px;
+    width: 100%;
+  }
+
+  .side-menu{
+    width: 130px;
+  }
+
+  .main-menu{
+    height: 100%;
+    width: 100%;
+  }
+
+  .side-button{
+    margin-top: 20px;
+    height: 50px;
+  }
+
+  .date-picker{
+      margin-left: 100px;
+  }

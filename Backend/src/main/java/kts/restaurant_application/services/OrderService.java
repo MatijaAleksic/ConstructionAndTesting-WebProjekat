@@ -6,10 +6,8 @@
 
 package kts.restaurant_application.services;
 
-
 import java.util.Collection;
 import java.util.Date;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -21,17 +19,27 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Order;
+import kts.restaurant_application.model.OrderedItem;
+import kts.restaurant_application.model.RestourantTables;
+import kts.restaurant_application.model.State;
+import kts.restaurant_application.model.TableStatus;
 import kts.restaurant_application.repositories.OrderRepository;
+import kts.restaurant_application.repositories.OrderedItemRepository;
+import kts.restaurant_application.repositories.TableRepository;
 
 @Service
 public class OrderService {
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
 
     private final OrderRepository repository;
+    private final TableRepository tableRepository;
+    private final OrderedItemRepository orderedItemRepository;
 
     @Autowired
-    public OrderService(OrderRepository repository) {
+    public OrderService(OrderRepository repository, TableRepository tableRepository, OrderedItemRepository orderedItemRepository) {
         this.repository = repository;
+        this.tableRepository = tableRepository;
+        this.orderedItemRepository = orderedItemRepository;
     }
 
     public Iterable<Order> findAll() {
@@ -44,33 +52,45 @@ public class OrderService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Cannot find Order by " + id));
     }
+
     @Transactional
     public Order save(Order entity) {
-        Optional<Order> o = repository.findById(entity.getId());
-        if(o.isPresent()){
-            throw new ResponseStatusException(HttpStatus.ALREADY_REPORTED,
-                        "order already exists: " + entity.getId());
+        if (entity.getIsCompleted() == null) {
+            entity.setIsCompleted(false);
         }
+        Order existingOrder = this.getOrderByTable(entity.getRestourantTable().getId());
+
+        if (existingOrder != null) {
+            existingOrder.setPrice( existingOrder.getPrice() + entity.getPrice());
+            for (OrderedItem item : entity.getFood()) {
+                existingOrder.linkFood(item);
+            }
+            entity = existingOrder;
+        }
+        RestourantTables t = entity.getRestourantTable();
+        t.setState(TableStatus.occupied);
+        t.getOrders().add(entity);
+
+        this.tableRepository.save(t);
         return repository.save(entity);
 
     }
 
-    public Order update(Order entity){
+    public Order update(Order entity) {
         Order existingOrder = findOne(entity.getId());
 
         existingOrder.setPrice(entity.getPrice());
         existingOrder.setWaiter(entity.getWaiter());
         existingOrder.setRestourantTable(entity.getRestourantTable());
 
-
         return repository.save(existingOrder);
     }
 
     public boolean delete(Order entity) {
-        if(findOne(entity.getId()) != null) {
+        if (findOne(entity.getId()) != null) {
             repository.delete(entity);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -81,5 +101,27 @@ public class OrderService {
 
     public Collection<Order> getOrdersByDate(Date dateFrom, Date dateTo) {
         return repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
+    }
+
+    public Order getOrderByTable(Long id) {
+        Order orders = this.repository.findByRestourantTable_idAndIsCompleted(id, false);
+        return orders;
+    }
+
+    public Collection<Order> getOrdersByTable(Long id) {
+        return this.repository.findAllByRestourantTable_id(id);
+    }
+
+    public Order finishOrder(Long id) {
+        Order o = this.findOne(id);
+        o.setIsCompleted(true);
+        for(OrderedItem item : o.getFood()){
+            item.setState(State.delivered);
+            this.orderedItemRepository.save(item);
+        }
+        RestourantTables t = o.getRestourantTable();
+        t.setState(TableStatus.free);
+        this.tableRepository.save(t);
+        return this.repository.save(o);
     }
 }

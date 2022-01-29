@@ -13,11 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import kts.restaurant_application.model.Cook;
 import kts.restaurant_application.repositories.CookRepository;
+
+import java.util.ArrayList;
 
 @Service
 public class CookService {
@@ -26,12 +29,23 @@ public class CookService {
     private final CookRepository repository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     public CookService(CookRepository repository) {
         this.repository = repository;
     }
 
     public Iterable<Cook> findAll() {
-        return repository.findAll();
+        Iterable<Cook> all = repository.findAll();
+        ArrayList<Cook> notDeleted = new ArrayList<>();
+
+        for(Cook b : all){
+            if(!b.getIsDeleted()){
+                notDeleted.add(b);
+            }
+        }
+        return notDeleted;
     }
 
     public Cook findOne(Long id) {
@@ -50,10 +64,9 @@ public class CookService {
 
         existingCook.setFirstName(entity.getFirstName());
         existingCook.setLastName(entity.getLastName());
-        existingCook.setPassword(entity.getPassword());
+        existingCook.setPassword(passwordEncoder.encode(entity.getPassword()));
         existingCook.setDateOfBirth(entity.getDateOfBirth());
         existingCook.setSalary(entity.getSalary());
-        existingCook.setIsDeleted(entity.getIsDeleted());
 
         return save(existingCook);
     }

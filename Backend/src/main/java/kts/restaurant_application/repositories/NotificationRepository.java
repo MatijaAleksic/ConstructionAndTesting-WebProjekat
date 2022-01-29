@@ -1,10 +1,10 @@
 package kts.restaurant_application.repositories;
 
-import kts.restaurant_application.model.Manager;
-import kts.restaurant_application.model.Notification;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import kts.restaurant_application.model.Notification;
+
 @Repository
-public interface NotificationRepository extends CrudRepository<Notification, Long> {
+public interface NotificationRepository extends JpaRepository<Notification, Long> {
 }

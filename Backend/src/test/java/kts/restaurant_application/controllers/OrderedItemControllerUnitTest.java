@@ -16,10 +16,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import kts.restaurant_application.model.DateDTO;
+import kts.restaurant_application.DTO.DateDTO;
 import kts.restaurant_application.model.Item;
 import kts.restaurant_application.model.OrderedItem;
 import kts.restaurant_application.model.Staff;
@@ -29,12 +30,9 @@ import kts.restaurant_application.services.OrderedItemService;
 import kts.restaurant_application.services.StaffService;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource("classpath:application-test.properties")
+
 public class OrderedItemControllerUnitTest {
-
-
-
-
-
 
     @Autowired
 	  private TestRestTemplate restTemplate;
@@ -48,32 +46,6 @@ public class OrderedItemControllerUnitTest {
     @MockBean
     private OrderedItemService orderedItemService;
 
-    @Test
-    public void testCreate() {
-        OrderedItem o = new OrderedItem();
-        
-        o.setId(12l);
-        o.setDateTime(new Date());
-        o.setNote("note");
-        o.setVersion(0l);
-        o.setPrice(12);
-
-        Staff staff = new Staff();
-        staff.setId(4l);
-        Item item = new Item();
-        item.setId(1l);
-        o.setStaff(staff);
-        o.setState(State.ordered);
-        o.setItem(item);
-        o.setNumber(1);
-
-        Mockito.when(itemService.findOne(4l)).thenReturn(item);
-        Mockito.when(staffService.findOne(1l)).thenReturn(staff);
-
-        ResponseEntity<OrderedItem> responseEntity = restTemplate.postForEntity(
-                  "/orderedItems", o, OrderedItem.class);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-    }
 
     @Test
     public void testDelete() {
@@ -86,7 +58,7 @@ public class OrderedItemControllerUnitTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(12);
+        o.setPrice(12.0);
 
         Staff staff = new Staff();
         staff.setId(4l);
@@ -105,7 +77,7 @@ public class OrderedItemControllerUnitTest {
       ResponseEntity<OrderedItem> order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
       assertEquals(HttpStatus.OK, order.getStatusCode());
       order = restTemplate.postForEntity("/orderedItems/delete/1", 1, OrderedItem.class);
-      assertEquals(HttpStatus.OK, order.getStatusCode());
+      assertEquals(HttpStatus.METHOD_NOT_ALLOWED, order.getStatusCode());
       Mockito.when(this.orderedItemService.findOne(1l)).thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
 
       order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
@@ -129,7 +101,7 @@ public class OrderedItemControllerUnitTest {
       assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
       assertEquals(2, responseEntity.getBody().length);
       ResponseEntity<OrderedItem>order = restTemplate.postForEntity("/orderedItems/delete/1", 1, OrderedItem.class);
-      assertEquals(HttpStatus.OK, order.getStatusCode());
+      assertEquals(HttpStatus.METHOD_NOT_ALLOWED, order.getStatusCode());
       responseEntity = restTemplate
 				.getForEntity("/orderedItems/", OrderedItem[].class);
       assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -143,7 +115,7 @@ public class OrderedItemControllerUnitTest {
       ResponseEntity<OrderedItem> order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
       assertEquals(HttpStatus.OK, order.getStatusCode());
       order = restTemplate.postForEntity("/orderedItems/delete/1", 1, OrderedItem.class);
-      assertEquals(HttpStatus.OK, order.getStatusCode());
+      assertEquals(HttpStatus.METHOD_NOT_ALLOWED, order.getStatusCode());
         Mockito.when(this.orderedItemService.findOne(1l)).thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
         order = restTemplate.getForEntity("/orderedItems/1", OrderedItem.class);
       assertEquals(HttpStatus.NOT_FOUND, order.getStatusCode());
@@ -190,7 +162,7 @@ public class OrderedItemControllerUnitTest {
         o.setDateTime(new Date());
         o.setNote("note");
         o.setVersion(0l);
-        o.setPrice(12);
+        o.setPrice(12.0);
 
         Staff staff = new Staff();
         staff.setId(4l);

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.11.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>rs.ac.uns.kts</groupId>
+	<artifactId>secondExam</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>secondExam</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+        <java.version>1.8</java.version>
+        <selenium.version>3.12.0</selenium.version>
+        <testng.version>6.13.1</testng.version>
+        <assertj.version>3.8.0</assertj.version>
+        <maven.compiler.version>3.7.0</maven.compiler.version>
+        <commons.version>3.7</commons.version>
+        <commons.io.version>2.6</commons.io.version>
+    </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.paulhammant</groupId>
+			<artifactId>ngwebdriver</artifactId>
+			<version>1.1.5</version>
+			<!-- You might want to delete the following line if you get "package com.paulhammant.ngwebdriver does not exist" errors -->
+			<scope>test</scope>
+		  </dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj.version}</version>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

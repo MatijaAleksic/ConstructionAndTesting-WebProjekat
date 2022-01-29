@@ -6,12 +6,16 @@
 
 package kts.restaurant_application.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Collection;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import kts.restaurant_application.model.Item;
 
 @Repository
-public interface ItemRepository extends CrudRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long> {
+
+    Collection<Item> findAllBySubcategory(String subcategory);
 
 }

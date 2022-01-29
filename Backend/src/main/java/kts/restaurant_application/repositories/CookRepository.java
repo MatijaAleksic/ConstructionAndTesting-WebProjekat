@@ -6,12 +6,14 @@
 
 package kts.restaurant_application.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import kts.restaurant_application.model.Cook;
 
 @Repository
-public interface CookRepository extends CrudRepository<Cook, Long> {
-
+public interface CookRepository extends JpaRepository<Cook, Long> {
+    Optional<Cook> findByUsername(String username);
 }

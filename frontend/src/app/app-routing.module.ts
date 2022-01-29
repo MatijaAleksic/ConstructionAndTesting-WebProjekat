@@ -41,6 +41,7 @@ import { StatsComponent } from './stats/stats.component';
 import { OrdersTableBarmanComponent } from './Tables/orders-table-barman/orders-table-barman.component';
 import { TakenOrdersTableBarmanComponent } from './Tables/taken-orders-table-barman/taken-orders-table-barman.component';
 import { TakenOrdersTableCooksComponent } from './Tables/taken-orders-table-cooks/taken-orders-table-cooks.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -231,6 +232,11 @@ const routes: Routes = [
   {
     path: 'taken-orders-table-cooks',
     component: TakenOrdersTableCooksComponent,
+  },
+
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
   },
 
 ];

@@ -10,6 +10,8 @@ import { AuthentitacionService } from 'src/app/services/autentication/authentita
 })
 export class NavBarComponent implements OnInit {
 
+  numNotifications : number = 0;
+  
   constructor(
     public router: Router,
     private authService: AuthentitacionService

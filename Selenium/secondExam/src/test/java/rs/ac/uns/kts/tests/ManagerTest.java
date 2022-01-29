@@ -4,10 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import rs.ac.uns.kts.ChangePasswordPage;
 import rs.ac.uns.kts.EditSalary;
@@ -70,7 +73,8 @@ public class ManagerTest {
         changePasswordPage.setOldPasswordInput("manager");
         changePasswordPage.setNewPasswordInput("manager");
         changePasswordPage.changePasswordBtn();
-        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(browser, 100);
+        wait.until(ExpectedConditions.alertIsPresent());
         browser.switchTo().alert().accept();
         Utilities.urlWait(browser, "http://localhost:4200/profile", 100);
         assertEquals("http://localhost:4200/profile", browser.getCurrentUrl());
@@ -111,7 +115,7 @@ public class ManagerTest {
         Utilities.urlWait(browser, "http://localhost:4200/items-table", 100);
         assertEquals("http://localhost:4200/items-table", browser.getCurrentUrl());
 
-        itemsTable.activateBtnClick();
+        itemsTable.editPriceBtnClick();
     }
 
     @Test
@@ -120,8 +124,8 @@ public class ManagerTest {
         Utilities.urlWait(browser, "http://localhost:4200/new-recipe-table", 100);
         assertEquals("http://localhost:4200/new-recipe-table", browser.getCurrentUrl());
 
-        itemsTable.activateItemBtnClick();
-        itemsTable.deactivateItemBtnClick();
+        itemsTable.editPriceBtnClick();
+        itemsTable.editPriceBtnClick();
     }
 
     @Test
@@ -138,5 +142,9 @@ public class ManagerTest {
         tablesManagerPage.deleteTableLinkClick();
     }
 
-
+    @After
+    public void closeSelenium() {
+        // Shutdown the browser
+        browser.quit();
+    }
 }

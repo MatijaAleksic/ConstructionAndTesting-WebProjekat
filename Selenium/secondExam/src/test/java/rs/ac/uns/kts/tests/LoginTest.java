@@ -1,7 +1,6 @@
 package rs.ac.uns.kts.tests;
 
 import static org.junit.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,7 +8,9 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+
 import rs.ac.uns.kts.SingInPage;
+import rs.ac.uns.kts.pages.AdminTestPages.Utilities;
 
 
 public class LoginTest {
@@ -21,7 +22,7 @@ public class LoginTest {
 	@Before
 	public void setupSelenium() {
 		// instantiate browser
-		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "chromedriver");
 		browser = new ChromeDriver();
 		// maximize window
 		browser.manage().window().maximize();
@@ -53,6 +54,7 @@ public class LoginTest {
 		singInPage.setEmailInput("admin@gmail.com");
 		singInPage.setPasswordInput("admin");
 		singInPage.submitBtnClick();
+		Utilities.urlWait(browser, "http://localhost:4200/profile", 100);
 		assertEquals("http://localhost:4200/profile", browser.getCurrentUrl());
 		
 		// bufix za https://stackoverflow.com/questions/62003082/elementnotinteractableexception-element-not-interactable-element-has-zero-size

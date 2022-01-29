@@ -9,11 +9,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import rs.ac.uns.kts.ChangePasswordPage;
 import rs.ac.uns.kts.EditSalary;
 import rs.ac.uns.kts.SingInPage;
-import rs.ac.uns.kts.pages.AdminTestPages.*;
+import rs.ac.uns.kts.pages.AdminTestPages.AddNewUserPage;
+import rs.ac.uns.kts.pages.AdminTestPages.UserTablesPage;
+import rs.ac.uns.kts.pages.AdminTestPages.Utilities;
 
 
 public class AdminTest {
@@ -29,7 +33,7 @@ public class AdminTest {
     @Before
     public void setupSelenium() {
         // instantiate browser
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
         browser = new ChromeDriver();
         angularWebDriver = new NgWebDriver(browser);
         // maximize window
@@ -66,7 +70,9 @@ public class AdminTest {
         changePasswordPage.setOldPasswordInput("admin");
         changePasswordPage.setNewPasswordInput("admin");
         changePasswordPage.changePasswordBtn();
-        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(browser, 100);
+        wait.until(ExpectedConditions.alertIsPresent());
+
         browser.switchTo().alert().accept();
         Utilities.urlWait(browser, "http://localhost:4200/profile", 100);
         assertEquals("http://localhost:4200/profile", browser.getCurrentUrl());
@@ -258,8 +264,6 @@ public class AdminTest {
 
 
         userTablePage.editManagerSalaryBtnClick();
-        Utilities.urlWait(browser, "http://localhost:4200/edit-salary;id=11", 100);
-        assertEquals("http://localhost:4200/edit-salary;id=11", browser.getCurrentUrl());
 
         editSalary.setSalaryInput("10000");
         editSalary.submitBtnClick();

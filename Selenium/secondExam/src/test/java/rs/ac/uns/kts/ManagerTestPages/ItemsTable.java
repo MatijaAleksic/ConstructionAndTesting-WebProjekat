@@ -3,6 +3,7 @@ package rs.ac.uns.kts.ManagerTestPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import rs.ac.uns.kts.pages.AdminTestPages.Utilities;
 
 public class ItemsTable {
@@ -18,7 +19,7 @@ public class ItemsTable {
     @FindBy(xpath = "//a[contains(text(),'New Recipes')]")
     private WebElement newRecipes;
 
-    @FindBy(xpath = "//button[contains(text(),'Edit')]")
+    @FindBy(id = "edit-item-price-button")
     private WebElement editPrice;
 
     @FindBy(xpath = "//button[contains(text(),'Activate/Deactivate')]")

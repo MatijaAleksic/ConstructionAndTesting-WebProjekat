@@ -16,16 +16,16 @@ public class TablesManagerPage {
     @FindBy(xpath = "//a[contains(text(),'Tables manager')]")
     private WebElement tables;
 
-    @FindBy(xpath = "//button[contains(text(),'floor: 2')]")
+    @FindBy(xpath = "/html/body/app-root/html/body/restourant-tables/div/mat-sidenav-container/mat-sidenav/div/div[3]/button")
     private WebElement floor;
 
-    @FindBy(xpath = "//button[contains(text(), 'add table')]")
+    @FindBy(xpath = "/html/body/app-root/html/body/restourant-tables/div/mat-sidenav-container/mat-sidenav-content/button[1]")
     private WebElement addTable;
 
-    @FindBy(xpath = "//p[contains(text(),'3')]")
+    @FindBy(xpath = "/html/body/app-root/html/body/restourant-tables/div/mat-sidenav-container/mat-sidenav-content/div/div/p")
     private WebElement table;
 
-    @FindBy(xpath = "//button[contains(text(),'delete')]")
+    @FindBy(xpath = "/html/body/app-root/html/body/restourant-tables/div/mat-sidenav-container/mat-sidenav-content/button[3]")
     private WebElement deleteTable;
 
     public void tablesManagerLinkClick() {

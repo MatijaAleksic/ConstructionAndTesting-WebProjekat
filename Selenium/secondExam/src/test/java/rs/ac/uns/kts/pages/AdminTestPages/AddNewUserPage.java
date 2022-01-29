@@ -1,4 +1,4 @@
-package rs.ac.uns.kts.pages;
+package rs.ac.uns.kts.pages.AdminTestPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

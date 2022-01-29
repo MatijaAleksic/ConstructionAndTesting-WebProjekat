@@ -10,15 +10,17 @@ import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import rs.ac.uns.kts.pages.*;
+import rs.ac.uns.kts.ChangePasswordPage;
+import rs.ac.uns.kts.EditSalary;
+import rs.ac.uns.kts.SingInPage;
+import rs.ac.uns.kts.pages.AdminTestPages.*;
 
 
 public class AdminTest {
 
     private ChromeDriver browser;
     private SingInPage singInPage;
-    private ChangePasswordAdminPage changePasswordAdminPage;
+    private ChangePasswordPage changePasswordPage;
     private UserTablesPage userTablePage;
     private AddNewUserPage addNewUserPage;
     private EditSalary editSalary;
@@ -36,7 +38,7 @@ public class AdminTest {
         browser.navigate().to("http://localhost:4200/login");
 
         singInPage = PageFactory.initElements(browser, SingInPage.class);
-        changePasswordAdminPage = PageFactory.initElements(browser, ChangePasswordAdminPage.class);
+        changePasswordPage = PageFactory.initElements(browser, ChangePasswordPage.class);
         userTablePage = PageFactory.initElements(browser, UserTablesPage.class);
         addNewUserPage = PageFactory.initElements(browser, AddNewUserPage.class);
         editSalary = PageFactory.initElements(browser,EditSalary.class);
@@ -57,13 +59,13 @@ public class AdminTest {
 
     @Test
     public void changePasswordTest() throws InterruptedException {
-        changePasswordAdminPage.singInLinkClick();
+        changePasswordPage.singInLinkClick();
         Utilities.urlWait(browser, "http://localhost:4200/change-password", 100);
         assertEquals("http://localhost:4200/change-password", browser.getCurrentUrl());
 
-        changePasswordAdminPage.setOldPasswordInput("admin");
-        changePasswordAdminPage.setNewPasswordInput("admin");
-        changePasswordAdminPage.changePasswordBtn();
+        changePasswordPage.setOldPasswordInput("admin");
+        changePasswordPage.setNewPasswordInput("admin");
+        changePasswordPage.changePasswordBtn();
         Thread.sleep(1000);
         browser.switchTo().alert().accept();
         Utilities.urlWait(browser, "http://localhost:4200/profile", 100);
@@ -248,6 +250,23 @@ public class AdminTest {
     }
 
     @Test
+    public void editManagerSalaryTest(){
+        userTablePage.usersLinkClick();
+        userTablePage.managerLinkClick();
+        Utilities.urlWait(browser, "http://localhost:4200/manager-table", 100);
+        assertEquals("http://localhost:4200/manager-table", browser.getCurrentUrl());
+
+
+        userTablePage.editManagerSalaryBtnClick();
+        Utilities.urlWait(browser, "http://localhost:4200/edit-salary;id=11", 100);
+        assertEquals("http://localhost:4200/edit-salary;id=11", browser.getCurrentUrl());
+
+        editSalary.setSalaryInput("10000");
+        editSalary.submitBtnClick();
+
+    }
+
+    @Test
     public void deleteAdminTest(){
         userTablePage.usersLinkClick();
         userTablePage.adminLinkClick();
@@ -346,23 +365,6 @@ public class AdminTest {
         int numOfCategoriesAfter = userTablePage.getNumberOfUsers();
 
         assertTrue(numOfCategoriesAfter == numOfUsersBefore - 1);
-
-    }
-
-    @Test
-    public void editManagerSalaryTest(){
-        userTablePage.usersLinkClick();
-        userTablePage.managerLinkClick();
-        Utilities.urlWait(browser, "http://localhost:4200/manager-table", 100);
-        assertEquals("http://localhost:4200/manager-table", browser.getCurrentUrl());
-
-
-        userTablePage.editManagerSalaryBtnClick();
-        Utilities.urlWait(browser, "http://localhost:4200/edit-salary;id=11", 100);
-        assertEquals("http://localhost:4200/edit-salary;id=11", browser.getCurrentUrl());
-
-        editSalary.setSalaryInput("10000");
-        editSalary.submitBtnClick();
 
     }
 

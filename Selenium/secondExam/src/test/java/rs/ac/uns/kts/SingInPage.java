@@ -1,8 +1,9 @@
-package rs.ac.uns.kts.pages;
+package rs.ac.uns.kts;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import rs.ac.uns.kts.pages.AdminTestPages.Utilities;
 
 public class SingInPage {
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables, ChartConfiguration } from 'node_modules/chart.js'
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 
 Chart.register(...registerables);
 
@@ -48,9 +48,8 @@ export class StatsComponent implements OnInit {
     const myChart = new Chart("myChart", this.CHART_DATA);
   }
 
-  dateRangeChange(dateRangeStart : HTMLInputElement, dateRangeEnd : HTMLInputElement){
-    console.log(dateRangeStart)
-    console.log(dateRangeEnd)
+  addEvent(event: MatDatepickerInputEvent<Date>) {
+    console.log(event.value);
   }
 
   foodStats(){

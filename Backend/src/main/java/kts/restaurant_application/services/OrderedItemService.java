@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import kts.restaurant_application.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import kts.restaurant_application.model.Drink;
+import kts.restaurant_application.model.Food;
+import kts.restaurant_application.model.OrderedItem;
+import kts.restaurant_application.model.State;
 import kts.restaurant_application.repositories.OrderedItemRepository;
 
 @Service
@@ -123,6 +126,13 @@ public class OrderedItemService {
     }
 
     public Collection<OrderedItem> getOrderedItemsByDate(Date dateFrom, Date dateTo) {
-        return repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
+        Collection<OrderedItem> items = repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateFrom, dateTo);
+        if(items.size() == 0){
+            items = repository.findAllByDateTimeGreaterThanEqualAndDateTimeLessThanEqual(dateTo, dateFrom);
+
+        }
+        return items;
     }
+
+    
 }

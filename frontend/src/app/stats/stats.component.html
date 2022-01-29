@@ -3,23 +3,16 @@
 
     <mat-sidenav-container class="example-container">
         <mat-sidenav mode="side" opened class="side-menu"> 
-            <button mat-raised-button color="primary" class="demo-button" (click)="foodStats()">
-                Food
-              </button>
-              <br>
-              <button mat-raised-button color="primary" class="demo-button">
-                Drinks
-              </button>
-              <br>
-              <button mat-raised-button color="primary" class="demo-button">
-                Employees
+              <button mat-raised-button color="primary" class="demo-button" (click)="ordersChart()">
+                Orders
               </button>
     
               <br>
-              <button mat-raised-button color="primary" class="demo-button">
-                Profit
+              <button mat-raised-button color="primary" class="demo-button" (click)="employeesChart()">
+                Employees
               </button>
               <br>
+              
               
         </mat-sidenav>
         <mat-sidenav-content class="main-menu">
@@ -27,15 +20,15 @@
             <mat-form-field appearance="fill" class="date-picker">
                 <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
-                  <input matStartDate placeholder="Start date">
-                  <input matEndDate (dateChange)="addEvent($event)" placeholder="End date" >
+                  <input matStartDate (dateChange)="addEvent1($event)" placeholder="Start date">
+                  <input matEndDate (dateChange)="addEvent2($event)" placeholder="End date" >
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
               </mat-form-field>
               
-            <canvas id="myChart" width="600" height="500"  class="my-chart"></canvas>
-      
+            <canvas id="myChart" width="600" height="500" style="float: left;"  class="my-chart1"></canvas>
+            <canvas id="myChart2" width="600" height="500" style="float: right;"  class="my-chart2"></canvas>
     
             
 

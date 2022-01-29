@@ -28,7 +28,7 @@ export class AddNewDrinkComponent implements OnInit {
   }
 
   addNew(){
-    this.item = new ItemConstruct(this.name, this.price,this.subcategory, this.description, this.priority, "assets/food.jpg")
+    this.item = new ItemConstruct(this.name, this.price,this.subcategory, this.description, this.priority, "assets/drink.jpg")
 
     this.drinkService.create(this.item).subscribe(
       {

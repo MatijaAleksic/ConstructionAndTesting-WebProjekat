@@ -58,5 +58,13 @@ export class BottomSheetOverviewExampleSheet {
     this._snackBar.open(this.item.name, "removed", {duration: 500});
   }
 
+  checkRole(role : string){
+    if(localStorage.getItem('autorities') != null){
+      return JSON.parse(localStorage.getItem('autorities') || '{}').some((e: { name: string; }) => e.name === role);
+    }
+    else{
+      return false;
+    }
 
+  }
 }

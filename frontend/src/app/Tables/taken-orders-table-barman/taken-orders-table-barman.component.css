@@ -32,3 +32,39 @@
     margin-top: 10px;
     height: 50px;
   }
+
+
+
+
+  .admin-table {
+    width: 100%;
+  }
+  
+  .demo-button-container {
+    padding-bottom: 16px;
+  }
+  
+  .demo-button + .demo-button {
+    margin-left: 8px;
+  }
+  
+  .example-container {
+    margin-top: 50px;
+    border: 1px solid #555;
+    height: 1000px;
+    width: 100%;
+  }
+
+  .side-menu{
+    width: 130px;
+  }
+
+  .main-menu{
+    height: 100%;
+    width: 100%;
+  }
+
+  .side-button{
+    margin-top: 20px;
+    height: 50px;
+  }

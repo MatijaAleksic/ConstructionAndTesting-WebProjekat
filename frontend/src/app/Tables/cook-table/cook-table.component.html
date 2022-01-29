@@ -1,4 +1,12 @@
-    <div id="container-div">
+<div class="demo-button-container">
+
+
+  <mat-sidenav-container class="example-container">
+      <mat-sidenav mode="side" opened class="side-menu"> 
+      </mat-sidenav>
+      <mat-sidenav-content class="main-menu">
+
+<div id="container-div">
     <div id="form-holder-div">
       <h3 id="cook-h3">Cook Table</h3>
       <table mat-table [dataSource]="cooks" class="cook-table">
@@ -36,7 +44,7 @@
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
-            <button type="button" class="btn btn-dark" (click)="deleteCook(element.id)" id="delete-button">Delete</button>
+            <button mat-raised-button color="primary" (click)="deleteCook(element.id)" id="delete-button">Delete</button>
           </td>
         </ng-container>
 
@@ -44,7 +52,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       </table>
-        <button type="button" class="btn btn-dark" (click)="addNew()" id="add-new-cook-button">New Cook</button>
+        <button mat-raised-button color="accent" (click)="addNew()" id="add-new-cook-button">New Cook</button>
     </div>
   </div>
 
+</mat-sidenav-content> 

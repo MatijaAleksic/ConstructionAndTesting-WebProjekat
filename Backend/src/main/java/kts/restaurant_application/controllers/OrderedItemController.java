@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,8 @@ import kts.restaurant_application.services.OrderedItemService;
 import kts.restaurant_application.services.StaffService;
 
 @Transactional
+
+@CrossOrigin
 @RestController
 @RequestMapping("/orderedItems")
 public class OrderedItemController {
@@ -107,6 +110,7 @@ public class OrderedItemController {
     }
 
 
+    @CrossOrigin
     @GetMapping("/getOrderedItemsByItem/{itemId}")
     public Collection<OrderedItem> getOrderedItemsByItem(@PathVariable Long itemId){
         
@@ -115,6 +119,7 @@ public class OrderedItemController {
         
     }
 
+    @CrossOrigin
     @PostMapping("/getOrderedItemsByDate")
     public Collection<OrderedItem> getOrdersByDate(@RequestBody DateDTO data){
         Date dateFrom = data.dateFrom;

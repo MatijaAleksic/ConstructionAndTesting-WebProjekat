@@ -1,7 +1,13 @@
-.my-chart{
+.my-chart1{
     display: block;
     margin-top: 150px;
     margin-left: 150px;
+}
+
+.my-chart2{
+    display: block;
+    margin-top: 150px;
+    margin-right: 150px;
 }
 
 .demo-table {

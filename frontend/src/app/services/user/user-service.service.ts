@@ -24,6 +24,12 @@ export class UserService {
     );
   }
 
+  public getAll(){
+    return this.http.get<UserId[]>(
+      `${environment.baseUrl}/${environment.users}/`
+    );
+  }
+
   
   
 }

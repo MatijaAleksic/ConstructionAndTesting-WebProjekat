@@ -5,7 +5,7 @@ import { User } from 'src/app/model/user';
 import { UserId } from 'src/app/model/user-id';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
-import { OrderedItem } from 'src/app/model/ordered-item';
+import { dateDTO, dateDTO2, OrderedItem } from 'src/app/model/ordered-item';
 import { Observable } from 'rxjs';
 
 
@@ -14,9 +14,20 @@ import { Observable } from 'rxjs';
 })
 export class OrderedItemService {
 
+
   private currentOrderedItemSelected : OrderedItem;
 
   constructor(private http: HttpClient, private router: Router) { }
+
+
+
+  public getOrderedItemsByDate(date1: Date, date2: Date) {
+    console.log("date1")
+    console.log(date1.toISOString().substring(0,10))
+    return this.http.post<OrderedItem[]>(
+      `${environment.baseUrl}/${environment.orderedItems}/getOrderedItemsByDate`, {dateTo: date1, dateFrom: date2}
+    );
+  }
 
   public setCurrentOrderedItem(orderedItem : OrderedItem){
     this.currentOrderedItemSelected = orderedItem;
@@ -27,7 +38,7 @@ export class OrderedItemService {
   }
 
   public getOne(id : number) {
-    return this.http.get<UserId>(
+    return this.http.get<OrderedItem>(
       `${environment.baseUrl}/${environment.orderedItems}/` + id
     );
   }

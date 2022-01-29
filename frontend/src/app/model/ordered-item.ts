@@ -1,6 +1,16 @@
 import { Item } from "./item.model";
 import { UserId } from "./user-id";
 
+
+export class dateDTO{
+    public dateFrom : Date;
+    public dateTo: Date;
+}
+export class dateDTO2{
+    public dateFrom : string;
+    public dateTo: string;
+}
+
 export class OrderedItem {
 
     public id: number;
